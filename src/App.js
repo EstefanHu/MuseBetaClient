@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,6 +11,13 @@ import { Primary } from './views/Primary';
 import './styles/App.css';
 
 export const App = () => {
+  useEffect(() => {
+    fetch('http://ip-api.com/json')
+      .then(res => res.json())
+      .then(console.log)
+      .catch(console.error);
+  }, []);
+
   return (
     <Router>
       <Switch>
