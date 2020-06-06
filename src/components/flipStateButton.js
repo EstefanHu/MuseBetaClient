@@ -16,5 +16,6 @@ const styles = {
   button: {
     border: 'none',
     fontSize: '1rem',
+    background: 'transparent',
   }
 }

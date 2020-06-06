@@ -22,6 +22,10 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: '20px',
+  },
+  close: {
+    marginLeft: '40px',
+    fontWeight: 'bold',
   }
 }
 
@@ -30,8 +34,14 @@ export const Auth = () => {
   return (
     <section style={styles.container}>
       <header style={styles.header}>
-        <FlipStateButton trueTitle={'Login'} falseTitle={'Register'} state={hasAccount} action={setHasAccount} />
-        <GrClose />
+        <FlipStateButton
+          trueTitle={'Login'}
+          falseTitle={'Register'}
+          state={hasAccount}
+          action={setHasAccount} />
+        <GrClose 
+        style={styles.close}
+        size={20} />
       </header>
       {hasAccount ? <Login /> : <Register />}
     </section>
