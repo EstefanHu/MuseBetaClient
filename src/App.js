@@ -4,7 +4,6 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import Cookie from 'js-cookie';
 
 import { Landing } from './views/Landing';
 import { Primary } from './views/Primary';
@@ -16,7 +15,7 @@ export const App = () => {
     <Router>
       <Switch>
         <Route exact path='/' component={Landing} />
-        <Route path='/app' component={Primary} />
+        <Route exact path='/app' component={Primary} />
       </Switch>
     </Router>
   );

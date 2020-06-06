@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Cookie from 'js-cookie';
 import { Auth } from '../layout/auth';
 
 export const Landing = () => {
