@@ -4,6 +4,8 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
+import Cookie from 'js-cookie';
+
 import { Landing } from './views/Landing';
 import { Primary } from './views/Primary';
 
