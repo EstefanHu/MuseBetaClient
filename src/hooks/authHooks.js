@@ -1,7 +1,7 @@
 import { API } from '../constants/api.js';
 
 export const loginUser = (email, password) => {
-  fetch(API + 'auth/login', {
+  fetch(API + '/auth/login', {
     credentials: 'include',
     method: 'POST',
     headers: {
@@ -21,7 +21,7 @@ export const loginUser = (email, password) => {
 }
 
 export const registerUser = (firstName, lastName, email, password) => {
-  fetch(API + 'auth/register', {
+  fetch(API + '/auth/register', {
     credentials: 'include',
     method: 'POST',
     headers: {

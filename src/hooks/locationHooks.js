@@ -4,7 +4,7 @@ export const getApiKey = setKey => {
   let key = sessionStorage.getItem('key');
 
   if (key === null)
-    fetch(API + 'auth/mapKey', {
+    fetch(API + '/auth/mapKey', {
       credentials: 'include'
     }).then(res => res.json())
       .then(res => {
