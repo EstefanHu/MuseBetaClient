@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContet } from 'react';
+import React from 'react';
 
 const styles = {
   container: {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactMapGl from 'react-map-gl';
 
 export const Map = ({ apikey }) => {
@@ -14,7 +14,7 @@ export const Map = ({ apikey }) => {
     <div id='mapboxView'>
       <ReactMapGl
         {...viewport}
-        mapboxApiAccessToken={apikey}
+        mapboxApiAccessToken={'pk.eyJ1IjoiZXN0ZWZhbjA3NCIsImEiOiJjazltN2d3bGMyZGxqM2hxdHRneGhwOGJ0In0.qIWG-bwqMgy8NMOKRIdRzA'}
         mapStyle='mapbox://styles/estefan074/ck002rku546481cnq4hc1buof'
         onViewportChange={viewport => {
           setViewport(viewport)
