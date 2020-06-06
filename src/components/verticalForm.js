@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const VerticalForm = ({ action, children }) => (
-  <form onSubmit={action} style={styles.form}>
+  <form onSubmit={action} style={styles.form} className='vertical_form'>
     {children}
   </form>
 )

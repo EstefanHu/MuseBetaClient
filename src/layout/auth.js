@@ -1,11 +1,38 @@
 import React, { useState } from 'react';
 import { loginUser, registerUser } from '../hooks/authHooks.js';
-import { VerticleForm } from '../components/verticalForm.js';
+import { VerticalForm } from '../components/verticalForm.js';
+import { GrClose } from 'react-icons/gr';
+import { FlipStateButton } from '../components/flipStateButton.js';
+
+const styles = {
+  container: {
+    width: '600px',
+    height: '100vh',
+    backgroundColor: 'white',
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    bottom: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  header: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: '20px',
+  }
+}
 
 export const Auth = () => {
   const [hasAccount, setHasAccount] = useState(true);
   return (
-    <section>
+    <section style={styles.container}>
+      <header style={styles.header}>
+        <FlipStateButton trueTitle={'Login'} falseTitle={'Register'} state={hasAccount} action={setHasAccount} />
+        <GrClose />
+      </header>
       {hasAccount ? <Login /> : <Register />}
     </section>
   )
@@ -22,7 +49,7 @@ const Login = ({ history }) => {
   }
 
   return (
-    <VerticleForm action={launchLogin}>
+    <VerticalForm action={launchLogin}>
       <input
         type='email'
         value={email}
@@ -37,7 +64,7 @@ const Login = ({ history }) => {
         placeholder='Password'
         required
       />
-    </VerticleForm>
+    </VerticalForm>
   )
 }
 
@@ -57,7 +84,7 @@ const Register = ({ history }) => {
   }
 
   return (
-    <VerticleForm action={launchRegister}>
+    <VerticalForm action={launchRegister}>
       <input
         className='landing__form--input'
         type='text'
@@ -99,6 +126,6 @@ const Register = ({ history }) => {
         required
       />
       <input type='submit' value='Register' />
-    </VerticleForm>
+    </VerticalForm>
   )
 }

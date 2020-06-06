@@ -9,6 +9,8 @@ import Cookie from 'js-cookie';
 import { Landing } from './views/Landing';
 import { Primary } from './views/Primary';
 
+import './styles/App.css';
+
 export const App = () => {
   return (
     <Router>

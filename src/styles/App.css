@@ -1,0 +1,17 @@
+.vertical_form input {
+  border-radius: 5px;
+  height: 35px;
+  width: 100%;
+  border: 1px solid lightgrey;
+  background: white;
+  padding: 8px 12px;
+  margin-top: 10px;
+}
+
+.vertical_form input:focus {
+  border-color: var(--color);
+}
+
+.vertical_form input:hover {
+  background-color: rgb(243, 243, 243);
+}

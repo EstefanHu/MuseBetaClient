@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Cookie from 'js-cookie';
+import { Auth } from '../layout/auth';
 
 export const Landing = () => {
   useEffect(() => {
@@ -8,8 +9,17 @@ export const Landing = () => {
 
   return (
     <>
-      <main>
+      <main style={styles.container}>
       </main>
+      <Auth />
     </>
   )
+}
+
+const styles = {
+  container: {
+    background: 'var(--color)',
+    width: '100vw',
+    height: '100vh',
+  }
 }
