@@ -10,6 +10,8 @@ const styles = {
     bottom: 0,
     top: '55px',
     width: '70px',
+    zIndex: '5',
+    backgroundColor: 'white'
   }
 }
 
