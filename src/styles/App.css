@@ -9,6 +9,10 @@
   --color-secondary: rgb(255, 230, 230);
 }
 
+.noBar::-webkit-scrollbar {
+  display: none;
+}
+
 #mapboxView {
   position: absolute;
   top: 0;

@@ -3,7 +3,7 @@ import React from 'react';
 const styles = {
   container: {
     width: '100%',
-    height: '300px',
+    height: '180px',
     padding: '20px 30px',
     borderTop: '1px solid lightgrey'
   }

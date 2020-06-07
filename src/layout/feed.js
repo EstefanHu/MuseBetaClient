@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Filter } from '../components/filter.js';
 import { Pitch } from '../components/pitch.js';
 
 const styles = {
@@ -29,12 +30,17 @@ const styles = {
 }
 
 export const Feed = () => {
+  const fetchStories = () => {
+    console.log('hello')
+  }
+  
   return (
     <section style={styles.container}>
-      <Pitch title='Hello World' description={'First Test'} />
+      <Filter />
+      {/* <Pitch title='Hello World' description={'First Test'} /> */}
 
       <div style={styles.more}>
-        <button style={styles.moreButton}>See more results</button>
+        <button style={styles.moreButton} onClick={fetchStories}>See more results</button>
       </div>
     </section>
   )
