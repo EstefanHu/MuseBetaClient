@@ -13,10 +13,10 @@ const styles = {
     display: 'inline-block',
     border: '1px solid lightgrey',
     borderRadius: '15px',
-    background: 'white',
-    fontSize: '.9rem',
+    background: 'rgb(240,240,240)',
+    fontSize: '.8rem',
     fontWeight: 'bold',
-    padding: '4px 10px',
+    padding: '6px 12px',
     cursor: 'pointer',
     margin: '0 5px'
   }

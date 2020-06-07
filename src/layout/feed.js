@@ -37,7 +37,7 @@ export const Feed = () => {
   return (
     <section style={styles.container}>
       <Filter />
-      {/* <Pitch title='Hello World' description={'First Test'} /> */}
+      <Pitch title='Hello World' description={'First Test'} />
 
       <div style={styles.more}>
         <button style={styles.moreButton} onClick={fetchStories}>See more results</button>
