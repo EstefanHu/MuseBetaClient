@@ -10,8 +10,11 @@ const styles = {
   },
   more: {
     width: '100%',
-    height: '200px',
-    borderTop: '1px solid lightgrey'
+    height: '100px',
+    borderTop: '1px solid lightgrey',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   moreButton: {
     backgroundColor: 'var(--color)',
@@ -21,7 +24,7 @@ const styles = {
     borderRadius: '5px',
     fontSize: '1rem',
     fontWeight: 'bold',
-    padding: '8px 15px',
+    padding: '8px 20px',
   }
 }
 
