@@ -7,6 +7,7 @@ import {
 
 import { Landing } from './views/Landing';
 import { Primary } from './views/Primary';
+import { FourOhFour } from './views/FourOhFour';
 
 import './styles/App.css';
 
@@ -22,7 +23,8 @@ export const App = () => {
     <Router>
       <Switch>
         <Route exact path='/' component={Landing} />
-        <Route exact path='/app' component={Primary} />
+        <Route exact path='/app/(home|profile|settings)' component={Primary} />
+        <Route component={FourOhFour} />
       </Switch>
     </Router>
   );

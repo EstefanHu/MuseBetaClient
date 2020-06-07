@@ -55,7 +55,7 @@ export const Auth = () => {
           size={20} />
       </header>
       <div style={styles.content}>
-        <a href='/app/'>to App</a>
+        <a href='/app/home'>to App</a>
         {hasAccount ? <Login /> : <Register />}
       </div>
     </section>
