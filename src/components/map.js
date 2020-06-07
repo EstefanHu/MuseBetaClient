@@ -7,14 +7,14 @@ export const Map = memo(({ apikey }) => {
     longitude: -122.3321,
     width: '100vw',
     height: '100vh',
-    zoom: 14
+    zoom: 12
   });
 
   return (
     <div id='mapboxView'>
       <ReactMapGl
         {...viewport}
-        mapboxApiAccessToken={'pk.eyJ1IjoiZXN0ZWZhbjA3NCIsImEiOiJjazltN2d3bGMyZGxqM2hxdHRneGhwOGJ0In0.qIWG-bwqMgy8NMOKRIdRzA'}
+        mapboxApiAccessToken={apikey}
         mapStyle='mapbox://styles/estefan074/ck002rku546481cnq4hc1buof'
         onViewportChange={viewport => {
           setViewport(viewport)

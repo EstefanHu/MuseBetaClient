@@ -1,7 +1,8 @@
 import React from 'react';
-import {
-  AiFillHome
-} from 'react-icons/ai';
+import { AiFillHome } from 'react-icons/ai';
+import { BsFillPersonFill } from 'react-icons/bs';
+import { MdSettings } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const styles = {
   container: {
@@ -21,7 +22,15 @@ const styles = {
 export const Nav = () => {
   return (
     <nav style={styles.container}>
-      <AiFillHome size='30' color={'white'} />
+      <Link to='/app/home'>
+        <AiFillHome size='30' color='white' />
+      </Link>
+      <Link to='/app/profile'>
+        <BsFillPersonFill size='30' color='white' />
+      </Link>
+      <Link to='/app/settings'>
+        <MdSettings size='30' color='white' />
+      </Link>
     </nav>
   )
 }

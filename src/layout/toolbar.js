@@ -15,9 +15,11 @@ const styles = {
     height: '55px',
     zIndex: 10,
     color: 'var(--color)',
+    paddingLeft: '20px'
   },
   logo: {
-    fontFamily: 'Heebo'
+    fontFamily: 'Heebo',
+    marginRight: '25px'
   }
 }
 
