@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+  AiFillHome
+} from 'react-icons/ai';
 
 const styles = {
   container: {
@@ -11,14 +14,14 @@ const styles = {
     top: '55px',
     width: '70px',
     zIndex: '5',
-    backgroundColor: 'white'
+    backgroundColor: 'var(--color)'
   }
 }
 
 export const Nav = () => {
   return (
     <nav style={styles.container}>
-
+      <AiFillHome size='30' color={'white'} />
     </nav>
   )
 }

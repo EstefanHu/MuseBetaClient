@@ -6,6 +6,7 @@
 
 :root {
   --color: rgb(255, 50, 50);
+  --color-secondary: rgb(255, 230, 230);
 }
 
 #mapboxView {

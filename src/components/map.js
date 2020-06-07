@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import ReactMapGl from 'react-map-gl';
 
-export const Map = ({ apikey }) => {
+export const Map = memo(({ apikey }) => {
   const [viewport, setViewport] = useState({
     latitude: 47.6062,
     longitude: -122.3321,
@@ -21,4 +21,4 @@ export const Map = ({ apikey }) => {
         }} />
     </div>
   )
-}
+})
