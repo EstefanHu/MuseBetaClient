@@ -1,4 +1,4 @@
-.toolbar_button {
+.navbar_button {
   border: none;
   border-radius: 5px;
   padding: 4px 10px;
@@ -7,6 +7,6 @@
   font-weight: bold;
 }
 
-.toolbar_button:hover {
+.navbar_button:hover {
   background-color: var(--color-secondary);
 }

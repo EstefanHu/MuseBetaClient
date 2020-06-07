@@ -3,6 +3,14 @@ import { getApiKey } from '../hooks/locationHooks';
 import { Map } from '../components/map.js';
 import { Triangulate } from '../components/triangulate.js'
 
+const styles ={
+  container: {
+    position: 'relative',
+    height: '100vh',
+    flex: 1
+  }
+}
+
 export const Background = () => {
   const [key, setKey] = useState('');
 
@@ -11,5 +19,7 @@ export const Background = () => {
     getApiKey(setKey);
   }, []);
 
-  return key ? <Map apikey={key} /> : <Triangulate />;
+  return <div style={styles.container}>
+    {key ? <Map apikey={key} /> : <Triangulate />}
+  </div>;
 }
