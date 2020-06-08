@@ -1,4 +1,4 @@
-import createDataProvider from './createDataProvider.js'
+import createDataContext from './createDataContext.js';
 
 const storyReducer = (state, action) => {
   switch (action.type) {
@@ -47,7 +47,7 @@ const deleteStory = dispatch => {
   }
 }
 
-export const { Context, Provider } = createDataProvider(
+export const { Context, Provider } = createDataContext(
   storyReducer,
   { addStory, editStory, deleteStory },
   []
