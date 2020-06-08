@@ -32,19 +32,20 @@ const styles = {
 export const Feed = () => {
   const [genre, setGenre] = useState('All');
 
-  useEffect(() => {
-    console.log(genre);
-  })
-
   const fetchStories = () => {
     console.log('hello')
   }
-  
+
   return (
     <section style={styles.container}>
-      <Filter setGenre={item => setGenre(item)}/>
-      <Pitch title='Hello World' description={'First Test'} />
-
+      <Filter setGenre={item => setGenre(item)} />
+      <Pitch
+        title='Hello World'
+        description={'First Test'}
+        credibility={39485}
+        genre={'Fiction'}
+        author={'Estefan'}
+      />
       <div style={styles.more}>
         <button style={styles.moreButton} onClick={fetchStories}>See more results</button>
       </div>

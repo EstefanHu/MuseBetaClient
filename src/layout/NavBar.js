@@ -20,7 +20,16 @@ const styles = {
   logo: {
     fontFamily: 'Heebo',
     marginRight: '25px',
+    marginBottom: '0px',
     color: 'white',
+  },
+  search: {
+    fontSize: '1rem',
+    border: 'none',
+    borderRadius: '3px',
+    padding: '10px 12px',
+    outline: 'none',
+    marginRight: '10px',
   }
 }
 
@@ -40,7 +49,10 @@ export const NavBar = () => {
 
 const Create = ({ toggleCreate }) => {
   return (
-    <button onClick={toggleCreate} className='navbar_button'>New</button>
+    <>
+      <input style={styles.search} placeholder='Search...' />
+      <button onClick={toggleCreate} className='navbar_button'>New</button>
+    </>
   )
 }
 
