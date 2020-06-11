@@ -12,7 +12,7 @@ const styles = {
     width: '500px',
     height: '100vh',
     backgroundColor: 'white',
-    position: 'absolute',
+    position: 'fixed',
     right: 0,
     top: 0,
     bottom: 0,
@@ -161,4 +161,4 @@ const Register = withRouter(({ history }) => {
       <p><Link to='/terms'>Terms of Service</Link> & <Link to='/privacy'>Privacy Policy.</Link></p>
     </VerticalForm>
   )
-})
+});
