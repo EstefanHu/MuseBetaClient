@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Context as StoryContext } from '../providers/storyProvider.js';
+import React from 'react';
 
 import { Filter } from '../components/filter.js';
 import { Pitch } from '../components/pitch.js';
@@ -31,17 +30,13 @@ const styles = {
 }
 
 export const Feed = () => {
-  const { state } = useContext(StoryContext);
-  const [genre, setGenre] = useState('All');
-
-
   const fetchStories = () => {
     console.log('hello')
   }
 
   return (
     <section style={styles.container}>
-      <Filter setGenre={item => setGenre(item)} />
+      <Filter setGenre={item => console.log(item)} />
       <Pitch
         index={1}
         title='Hello World'

@@ -5,7 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 
-import { Landing } from './views/Landing';
+import {Landing} from './routers/Landing.js';
 import { Primary } from './views/Primary';
 import { FourOhFour } from './views/FourOhFour';
 
@@ -22,7 +22,7 @@ export const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path='/' component={Landing} />
+        <Route exact path='/(|legal)' component={Landing} />
         <Route exact path='/app/(home|profile|settings)' component={Primary} />
         <Route component={FourOhFour} />
       </Switch>
