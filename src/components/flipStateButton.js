@@ -17,5 +17,6 @@ const styles = {
     border: 'none',
     fontSize: '1rem',
     background: 'transparent',
+    cursor: 'pointer',
   }
 }

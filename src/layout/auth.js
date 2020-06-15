@@ -20,6 +20,7 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'space-between',
     padding: '30px 40px 80px 40px',
+    zIndex: 1,
   },
   header: {
     display: 'flex',
@@ -30,6 +31,7 @@ const styles = {
   close: {
     marginLeft: '40px',
     fontWeight: 'bold',
+    cursor: 'pointer',
   },
   content: {
     padding: '0 30px',
@@ -63,12 +65,33 @@ const styles = {
     color: 'grey',
     textDecoration: 'underline',
     cursor: 'pointer',
+  },
+  open: {
+    position: 'fixed',
+    right: 0,
+    top: 0,
+    height: '60px',
+    width: '230px',
+    display: 'flex',
+    alignItems: 'bottom',
+    justifyContent: 'space-around',
+    paddingRight: '30px',
+    zIndex: 0,
+  },
+  authButton: {
+    width: '80px',
+    border: 'none',
+    backgroundColor: 'transparent',
+    fontSize: '1.2rem',
+    color: 'white',
   }
 }
 
 export const Auth = () => {
   const [hasAccount, setHasAccount] = useState(true);
-  return (
+  const [isOpen, setIsOpen] = useState(true);
+
+  return isOpen ? (
     <section style={styles.container}>
       <header style={styles.header}>
         <FlipStateButton
@@ -78,7 +101,9 @@ export const Auth = () => {
           action={setHasAccount} />
         <GrClose
           style={styles.close}
-          size={20} />
+          size={20}
+          onClick={() => setIsOpen(false)}
+        />
       </header>
       <div style={styles.logo}>
         <h1 style={styles.watermark}>:Muse</h1>
@@ -88,7 +113,22 @@ export const Auth = () => {
         {hasAccount ? <Login setHasAccount={setHasAccount} /> : <Register />}
       </div>
     </section>
-  )
+  ) : (
+      <div style={styles.open}>
+        <button
+          style={styles.authButton}
+          onClick={() => {
+            setIsOpen(true);
+            setHasAccount(true);
+          }}>Sign in</button>
+        <button
+          style={styles.authButton}
+          onClick={() => {
+            setIsOpen(true);
+            setHasAccount(false);
+          }}>Register</button>
+      </div>
+    )
 }
 
 const Login = withRouter(({ history, setHasAccount }) => {
