@@ -3,7 +3,7 @@ import { Route, Link } from 'react-router-dom';
 import { FaConnectdevelop } from 'react-icons/fa';
 import { Splash } from '../views/Splash.js';
 import { Forgot } from '../views/Forgot.js';
-import { Legal } from '../views/Legal.js';
+import { Terms } from '../views/Terms.js';
 import { Privacy } from '../views/Privacy.js';
 import { Auth } from '../layout/auth.js';
 
@@ -34,7 +34,7 @@ export const Landing = () => {
       </header>
       <Route exact path='/' component={Splash} />
       <Route exact path='/forgot' component={Forgot} />
-      <Route exact path='/legal' component={Legal} />
+      <Route exact path='/terms' component={Terms} />
       <Route exact path='/privacy' component={Privacy} />
       <Auth />
     </>
