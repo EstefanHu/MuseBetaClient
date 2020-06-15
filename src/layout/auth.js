@@ -25,18 +25,47 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
+    zIndex: 1,
   },
   close: {
     marginLeft: '40px',
     fontWeight: 'bold',
   },
   content: {
-    padding: '0 30px'
+    padding: '0 30px',
+    zIndex: 1,
   },
   title: {
     fontSize: '2rem',
     fontWeight: 'bold',
     fontFamily: 'Heebo'
+  },
+  logo: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 0,
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 0,
+  },
+  watermark: {
+    color: 'var(--color-secondary)',
+    fontSize: '20rem',
+    fontFamily: 'Heebo',
+    fontWeight: 'bold',
+    transform: 'rotate(90deg)',
+    webkitTransform: 'rotate(90deg)',
+    mozTransform: 'rotate(90deg)',
+    msTransform: 'rotate(90deg)',
+    oTransform: 'rotate(90deg)',
+  },
+  link: {
+    color: 'grey',
+    textDecoration: 'underline',
+    cursor: 'pointer',
   }
 }
 
@@ -54,15 +83,18 @@ export const Auth = () => {
           style={styles.close}
           size={20} />
       </header>
+      <div style={styles.logo}>
+        <h1 style={styles.watermark}>:Muse</h1>
+      </div>
       <div style={styles.content}>
         <a href='/app/home'>to App</a>
-        {hasAccount ? <Login /> : <Register />}
+        {hasAccount ? <Login setHasAccount={setHasAccount} /> : <Register />}
       </div>
     </section>
   )
 }
 
-const Login = withRouter(({ history }) => {
+const Login = withRouter(({ history, setHasAccount }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -93,7 +125,10 @@ const Login = withRouter(({ history }) => {
         className='authInput'
         type='submit'
         value='Log in' />
-      <p><Link to='/forgot'>Forgot Password?</Link> - <span onClick={() => alert('clicked')}>Sign up for :Muse</span></p>
+      <p>
+        <Link style={styles.link} to='/forgot'>Forgot Password?</Link> -&nbsp;
+        <span style={styles.link} onClick={() => setHasAccount(false)}>Sign up for :Muse</span>
+      </p>
     </VerticalForm>
   )
 })
@@ -158,7 +193,10 @@ const Register = withRouter(({ history }) => {
       />
       <input className='authInput' type='submit' value='Register' />
       <p>Click "Register" above to accept Muse's</p>
-      <p><Link to='/terms'>Terms of Service</Link> & <Link to='/privacy'>Privacy Policy.</Link></p>
+      <p>
+        <Link style={styles.link} to='/terms'>Terms of Service</Link> &&nbsp;
+        <Link style={styles.link} to='/privacy'>Privacy Policy.</Link>
+      </p>
     </VerticalForm>
   )
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { FaConnectdevelop } from 'react-icons/fa';
 import { Splash } from '../views/Splash';
 import { Auth } from '../layout/auth';
@@ -12,16 +12,16 @@ export const Landing = () => {
         <h1>&nbsp;:Muse</h1>
         <ul style={styles.links}>
           <li>
-            <Link
+            <a
+              href='#me'
               style={styles.link}
-              to='/'
-            >For teams</Link>
+            >Who are We</a>
           </li>
           <li>
-            <Link
+            <a
+              href='vision'
               style={styles.link}
-              to='/'
-            >For Individuals</Link>
+            >Our Future</a>
           </li>
         </ul>
       </header>
