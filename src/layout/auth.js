@@ -57,10 +57,7 @@ const styles = {
     fontFamily: 'Heebo',
     fontWeight: 'bold',
     transform: 'rotate(90deg)',
-    webkitTransform: 'rotate(90deg)',
-    mozTransform: 'rotate(90deg)',
     msTransform: 'rotate(90deg)',
-    oTransform: 'rotate(90deg)',
   },
   link: {
     color: 'grey',

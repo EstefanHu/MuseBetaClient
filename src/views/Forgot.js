@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export const Forgot = () => {
+  const [email, setEmail] = useState('');
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    console.log(email);
+  }
+
   return (
     <section style={styles.container}>
       <h1>Hello from Forgot</h1>
-      <form>
-      
+      <form style={styles.form} onSubmit={handleSubmit}>
+        <input
+          style={styles.input}
+          type='email'
+          placeholder='Email Address'
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+        />
+        <input
+          style={styles.input}
+          type='submit'
+          value='Submit'
+        />
       </form>
     </section>
   )
@@ -20,4 +39,8 @@ const styles = {
   title: {
     fontSize: '2rem',
   },
+  form: {},
+  input: {
+
+  }
 }
