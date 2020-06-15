@@ -400,7 +400,8 @@ export const Privacy = () => {
               Project:Muse <br />
             -----------<br />
             -----------<br />
-            United States
+            United States<br />
+            Seattle, Wa
             </p>
           </article>
         </section>
