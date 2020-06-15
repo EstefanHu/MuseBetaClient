@@ -270,8 +270,34 @@ export const Privacy = () => {
             </p>
           </article>
         </section>
-        <section id='longevity'></section>
-        <section id='safeInfo'></section>
+
+        <section style={styles.section} id='longevity'>
+          <h3 style={styles.title}>7. HOW LONG DO WE KEEP YOUR INFORMATION?</h3>
+          <article style={styles.article}>
+            <p style={styles.paragraph}>
+              <em><strong>In short:</strong> We keep your information for as long as necessary to fulfill the purposes outlined in this privacy policy unless otherwise required by law.</em>
+            </p>
+            <p style={styles.paragraph}>
+              We will only keep your personal information for as long as it is necessary for the purposes set out in this privacy policy, unless a longer retention period is required or permitted by law (such as tax, accounting or other legal requirements). No purpose in this policy will require us keeping your personal information for longer than 6 months past the termination of the user's account.
+            </p>
+            <p style={styles.paragraph}>
+              When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymize it, or, if this is not possible (for example, because your personal information has been stored in backup archives), then we will securely store your personal information and isolate it from any further processing until deletion is possible.
+            </p>
+          </article>
+        </section>
+
+        <section style={styles.section} id='safeInfo'>
+          <h3 style={styles.title}>8. HOW DO WE KEEP YOUR INFORMATION SAFE?</h3>
+          <article style={styles.article}>
+            <p style={styles.paragraph}>
+              <em><strong>In short</strong> We aim to protect your personal information through a system of organizational and technical security measures.</em>
+            </p>
+            <p style={styles.paragraph}>
+              We have implemented appropriate technical and organizational security measures designed to protect the security of any personal information we process. However, please also remember that we cannot guarantee that the internet itself is 100% secure. Although we will do our best to protect your personal information, transmission of personal information to and from our Services or Apps is at your own risk. You should only access the services within a secure environment.
+            </p>
+          </article>
+        </section>
+
         <section id='minorInfo'></section>
         <section id='rights'></section>
         <section id='track'></section>
