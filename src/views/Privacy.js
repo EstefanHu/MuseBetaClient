@@ -216,42 +216,60 @@ export const Privacy = () => {
 
         <section id='willInfo'></section>
 
-        <section id='cookie'>
+        <section style={styles.section} id='cookie'>
           <h3 style={styles.title}>4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</h3>
-          <p style={styles.paragraph}>
-            <em><strong>In short:</strong> We may use cookies and other tracking technologies to collect and store your information.</em>
-          </p>
-          <p style={styles.paragraph}>
-            We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Policy.
-          </p>
+          <article style={styles.article}>
+            <p style={styles.paragraph}>
+              <em><strong>In short:</strong> We may use cookies and other tracking technologies to collect and store your information.</em>
+            </p>
+            <p style={styles.paragraph}>
+              We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Policy.
+            </p>
+          </article>
         </section>
 
-        <section id='google'>
+        <section style={styles.section} id='google'>
           <h3 style={styles.title}>5. DO WE USE GOOGLE MAPS?</h3>
-          <p style={styles.paragraph}>
-            <em><strong>In short:</strong> Yes, we use Google Maps for the purpose of providing better service.</em>
-          </p>
-          <p style={styles.paragraph}>
-            This website, mobile application, or Facebook application uses Google Maps APIs. You may find the Google Maps APIs Terms of Service <a href='https://cloud.google.com/maps-platform/terms/'>here</a>. To better understand Google’s Privacy Policy, please refer to this <a href='https://policies.google.com/privacy'>link</a>.
-          </p>
-          <p style={styles.paragraph}>
-            By using our Maps API Implementation, you agree to be bound by Google’s Terms of Service. By using our implementation of the Google Maps APIs, you agree to allow us to gain access to information about you including personally identifiable information (such as usernames) and non-personally identifiable information (such as location). We will be collecting the following information:
-          </p>
-          <ul style={styles.squareList}>
-            <li>
-              <p style={styles.paragraph}>
-                geolocation
+          <article style={styles.article}>
+            <p style={styles.paragraph}>
+              <em><strong>In short:</strong> Yes, we use Google Maps for the purpose of providing better service.</em>
+            </p>
+            <p style={styles.paragraph}>
+              This website, mobile application, or Facebook application uses Google Maps APIs. You may find the Google Maps APIs Terms of Service <a href='https://cloud.google.com/maps-platform/terms/'>here</a>. To better understand Google’s Privacy Policy, please refer to this <a href='https://policies.google.com/privacy'>link</a>.
+            </p>
+            <p style={styles.paragraph}>
+              By using our Maps API Implementation, you agree to be bound by Google’s Terms of Service. By using our implementation of the Google Maps APIs, you agree to allow us to gain access to information about you including personally identifiable information (such as usernames) and non-personally identifiable information (such as location). We will be collecting the following information:
+            </p>
+            <ul style={styles.squareList}>
+              <li>
+                <p style={styles.paragraph}>
+                  geolocation
               </p>
-            </li>
-          </ul>
-          <p style={styles.paragraph}>
-            For a full list of what we use information for, please see the previous section titled "<a href='#useInfo'>HOW DO WE USE YOUR INFORMATION?</a>" and “<a href='willInfo'>WILL YOUR INFORMATION BE SHARED WITH ANYONE?</a>” You agree to allow us to obtain or cache your location. You may revoke your consent at anytime. We use information about location in conjunction with data from other data providers.
-          </p>
-          <p style={styles.paragraph}>
-            The Maps APIs that we use store and access cookies and other information on your devices. If you are a user currently in the European Economic Area (EU countries, Iceland, Liechtenstein and Norway), please take a look at our EU User Consent Policy
-          </p>
+              </li>
+            </ul>
+            <p style={styles.paragraph}>
+              For a full list of what we use information for, please see the previous section titled "<a href='#useInfo'>HOW DO WE USE YOUR INFORMATION?</a>" and “<a href='willInfo'>WILL YOUR INFORMATION BE SHARED WITH ANYONE?</a>” You agree to allow us to obtain or cache your location. You may revoke your consent at anytime. We use information about location in conjunction with data from other data providers.
+            </p>
+            <p style={styles.paragraph}>
+              The Maps APIs that we use store and access cookies and other information on your devices. If you are a user currently in the European Economic Area (EU countries, Iceland, Liechtenstein and Norway), please take a look at our EU User Consent Policy
+            </p>
+          </article>
         </section>
-        <section id='social'></section>
+
+        <section style={styles.section} id='social'>
+          <h3 style={styles.title}>6. HOW DO WE HANDLE YOUR SOCIAL LOGINS?</h3>
+          <article style={styles.article}>
+            <p style={styles.paragraph}>
+              <em><strong>In short:</strong> If you choose to register or log in to our services using a social media account, we may have access to certain information about you.</em>
+            </p>
+            <p style={styles.paragraph}>
+              Our Services or Apps offer you the ability to register and login using your third party social media account details (like your Facebook or Twitter logins). Where you choose to do this, we will receive certain profile information about you from your social media provider. The profile Information we receive may vary depending on the social media provider concerned, but will often include your name, e-mail address, friends list, profile picture as well as other information you choose to make public.
+            </p>
+            <p style={styles.paragraph}>
+              We will use the information we receive only for the purposes that are described in this privacy policy or that are otherwise made clear to you on the Services or Apps. Please note that we do not control, and are not responsible for, other uses of your personal information by your third party social media provider. We recommend that you review their privacy policy to understand how they collect, use and share your personal information, and how you can set your privacy preferences on their sites and apps.
+            </p>
+          </article>
+        </section>
         <section id='longevity'></section>
         <section id='safeInfo'></section>
         <section id='minorInfo'></section>
@@ -291,7 +309,8 @@ const styles = {
     marginBottom: '60px'
   },
   article: {
-    marginTop: '30px'
+    marginTop: '20px',
+    marginBottom: '10px'
   },
   articleTitle: {
     fontSize: '1.3rem',
