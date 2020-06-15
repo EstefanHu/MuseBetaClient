@@ -26,8 +26,8 @@ export const Privacy = () => {
           </article>
         </section>
 
-        <section>
-          <article style={styles.section}>
+        <section style={styles.section}>
+          <article style={styles.article}>
             <h3 style={styles.title}>TABLE OF CONTENTS</h3>
             <ul style={styles.contentList}>
               <a href='#whatInfo'><li style={styles.listItem}>1. WHAT INFORMATION DO WE COLLECT?</li></a>
@@ -91,13 +91,166 @@ export const Privacy = () => {
           </article>
           <article style={styles.article}>
             <h4 style={styles.articleTitle}>Information collected through our Apps</h4>
+            <p style={styles.paragraph}>
+              <em><strong>In short:</strong> We may collect information regarding your geo-location, mobile device, push notifications, when you use our apps</em>
+            </p>
+            <p style={styles.paragraph}>
+              If you use our Apps, we may also collect the following information:
+            </p>
+            <ul style={styles.squareList}>
+              <li>
+                <p style={styles.paragraph}>
+                  <em>Geo-Location Information.</em> We may request access or permission to and track location-based information from your mobile device, either continuously or while you are using our mobile application, to provide location-based services. If you wish to change our access or permissions, you may do so in your device's settings.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <em>Mobile Device Access.</em> We may request access or permission to certain features from your mobile device, including your mobile device's reminders, storage, camera, microphone, social media accounts, and other features. If you wish to change our access or permissions, you may do so in your device's settings.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <em>Mobile Device Data.</em> We may automatically collect device information (such as your mobile device ID, model and manufacturer), operating system, version information and IP address.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <em>Push Notifications.</em> We may request to send you push notifications regarding your account or the mobile application. If you wish to opt-out from receiving these types of communications, you may turn them off in your device's settings.
+                </p>
+              </li>
+            </ul>
           </article>
         </section>
 
-        <section id='useInfo'></section>
+        <section style={styles.section} id='useInfo'>
+          <h3 style={styles.title}>2. HOW DO WE USE YOUR INFORMATION?</h3>
+          <article style={styles.article}>
+            <p style={styles.paragraph}>
+              <em><strong>In short: </strong> We process your information for purposes based on legitimate business interests, the fulfillment of our contract with you, compliance with our legal obligations, and/or your consent.</em>
+            </p>
+            <p style={styles.paragraph}>
+              We use personal information collected via our Services or Apps for a variety of business purposes described below. We process your personal information for these purposes in reliance on our legitimate business interests, in order to enter into or perform a contract with you, with your consent, and/or for compliance with our legal obligations. We indicate the specific processing grounds we rely on next to each purpose listed below.
+          </p>
+            <p style={styles.paragraph}>
+              We use the information we collect or receive:
+          </p>
+            <ul style={styles.squareList}>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>To facilitate account creation and logon process.</strong>  If you choose to link your account with us to a third party account (such as your Google or Facebook account), we use the information you allowed us to collect from those third parties to facilitate account creation and logon process for the performance of the contract. See the section below headed <a href='#social'>"HOW DO WE HANDLE YOUR SOCIAL LOGINS"</a> for further information.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>To send you marketing and promotional communications.</strong> We and/or our third party marketing partners may use the personal information you send to us for our marketing purposes, if this is in accordance with your marketing preferences. You can opt-out of our marketing emails at any time (see the <a href='#rights'>"WHAT ARE YOUR PRIVACY RIGHTS"</a> below).
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>To send administrative information to you.</strong> We may use your personal information to send you product, service and new feature information and/or information about changes to our terms, conditions, and policies.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>Fulfill and manage your orders.</strong> We may use your information to fulfill and manage your orders, payments, returns, and exchanges made through the Services or Apps.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>To post testimonials.</strong> We post testimonials on our Services or Apps that may contain personal information. Prior to posting a testimonial, we will obtain your consent to use your name and testimonial. If you wish to update, or delete your testimonial, please contact us at info@projectmuse.co and be sure to include your name, testimonial location, and contact information.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>Deliver targeted advertising to you.</strong> We may use your information to develop and display content and advertising (and work with third parties who do so) tailored to your interests and/or location and to measure its effectiveness.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>Request Feedback.</strong> We may use your information to request feedback and to contact you about your use of our Services or Apps.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>To protect our Services.</strong> We may use your information as part of our efforts to keep our Services or Apps safe and secure (for example, for fraud monitoring and prevention).
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>To enable user-to-user communications.</strong> We may use your information in order to enable user-to-user communications with each user's consent.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>To enforce our terms, conditions and policies for Business Purposes, Legal Reasons and Contractual.</strong>
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>To respond to legal requests and prevent harm.</strong> If we receive a subpoena or other legal request, we may need to inspect the data we hold to determine how to respond.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>To manage user accounts.</strong> We may use your information for the purposes of managing our account and keeping it in working order.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>To deliver services to the user.</strong> We may use your information to provide you with the requested service.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>To respond to user inquiries/offer support to users.</strong> We may use your information to respond to your inquiries and solve any potential issues you might have with the use of our Services.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>For other Business Purposes.</strong> We may use your information for other Business Purposes, such as data analysis, identifying usage trends, determining the effectiveness of our promotional campaigns and to evaluate and improve our Services or Apps, products, marketing and your experience. We may use and store this information in aggregated and anonymized form so that it is not associated with individual end users and does not include personal information. We will not use identifiable personal information without your consent.
+                </p>
+              </li>
+            </ul>
+          </article>
+        </section>
+
         <section id='willInfo'></section>
-        <section id='cookie'></section>
-        <section id='google'></section>
+
+        <section id='cookie'>
+          <h3 style={styles.title}>4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</h3>
+          <p style={styles.paragraph}>
+            <em><strong>In short:</strong> We may use cookies and other tracking technologies to collect and store your information.</em>
+          </p>
+          <p style={styles.paragraph}>
+            We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Policy.
+          </p>
+        </section>
+
+        <section id='google'>
+          <h3 style={styles.title}>5. DO WE USE GOOGLE MAPS?</h3>
+          <p style={styles.paragraph}>
+            <em><strong>In short:</strong> Yes, we use Google Maps for the purpose of providing better service.</em>
+          </p>
+          <p style={styles.paragraph}>
+            This website, mobile application, or Facebook application uses Google Maps APIs. You may find the Google Maps APIs Terms of Service <a href='https://cloud.google.com/maps-platform/terms/'>here</a>. To better understand Google’s Privacy Policy, please refer to this <a href='https://policies.google.com/privacy'>link</a>.
+          </p>
+          <p style={styles.paragraph}>
+            By using our Maps API Implementation, you agree to be bound by Google’s Terms of Service. By using our implementation of the Google Maps APIs, you agree to allow us to gain access to information about you including personally identifiable information (such as usernames) and non-personally identifiable information (such as location). We will be collecting the following information:
+          </p>
+          <ul style={styles.squareList}>
+            <li>
+              <p style={styles.paragraph}>
+                geolocation
+              </p>
+            </li>
+          </ul>
+          <p style={styles.paragraph}>
+            For a full list of what we use information for, please see the previous section titled "<a href='#useInfo'>HOW DO WE USE YOUR INFORMATION?</a>" and “<a href='willInfo'>WILL YOUR INFORMATION BE SHARED WITH ANYONE?</a>” You agree to allow us to obtain or cache your location. You may revoke your consent at anytime. We use information about location in conjunction with data from other data providers.
+          </p>
+          <p style={styles.paragraph}>
+            The Maps APIs that we use store and access cookies and other information on your devices. If you are a user currently in the European Economic Area (EU countries, Iceland, Liechtenstein and Norway), please take a look at our EU User Consent Policy
+          </p>
+        </section>
         <section id='social'></section>
         <section id='longevity'></section>
         <section id='safeInfo'></section>
@@ -152,5 +305,9 @@ const styles = {
   },
   listItem: {
     marginTop: '15px',
+  },
+  squareList: {
+    listStyle: 'square',
+    paddingLeft: '20px'
   }
 }
