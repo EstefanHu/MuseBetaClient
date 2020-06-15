@@ -3,7 +3,7 @@ import { BsArrowDown } from 'react-icons/bs';
 
 export const Splash = () => {
   useEffect(() => {
-
+    console.log('hello');
   }, [])
 
   return (

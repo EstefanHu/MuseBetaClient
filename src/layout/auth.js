@@ -11,7 +11,7 @@ const styles = {
   container: {
     width: '500px',
     height: '100vh',
-    backgroundColor: 'white',
+    backgroundColor: 'rgb(250,250,250)',
     position: 'fixed',
     right: 0,
     top: 0,
