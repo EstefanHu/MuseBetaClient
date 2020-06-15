@@ -298,8 +298,32 @@ export const Privacy = () => {
           </article>
         </section>
 
-        <section id='minorInfo'></section>
-        <section id='rights'></section>
+        <section style={styles.section} id='minorInfo'>
+          <h3 style={styles.title}>9. DO WE COLLECT INFORMATION FROM MINORS?</h3>
+          <article style={styles.article}>
+            <p style={styles.paragraph}>
+              <em><strong>In short:</strong> We do not knowingly collect data from or market to children under 18 years of age.</em>
+            </p>
+            <p style={styles.paragraph}>
+              We do not knowingly solicit data from or market to children under 18 years of age. By using the Services or Apps, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent’s use of the Services or Apps. If we learn that personal information from users less than 18 years of age has been collected, we will deactivate the account and take reasonable measures to promptly delete such data from our records. If you become aware of any data we have collected from children under age 18, please contact us at info@projectmuse.co.
+            </p>
+          </article>
+        </section>
+
+        <section style={styles.section} id='rights'>
+          <h3 style={styles.title}>10. WHAT ARE YOUR PRIVACY RIGHTS?</h3>
+          <article style={styles.article}>
+            <p style={styles.paragraph}>
+              <em><strong>In short:</strong> You may review, change, or terminate your account at any time.</em>
+            </p>
+            <p style={styles.paragraph}>
+              If you are resident in the European Economic Area and you believe we are unlawfully processing your personal information, you also have the right to complain to your local data protection supervisory authority. You can find their contact details here: <a href='http://ec.europa.eu/justice/data-protection/bodies/authorities/index_en.htm'>http://ec.europa.eu/justice/data-protection/bodies/authorities/index_en.htm</a>.
+            </p>
+            <p style={styles.paragraph}>
+              If you have questions or comments about your privacy rights, you may email us at info@projectmuse.co.
+            </p>
+          </article>
+        </section>
         <section id='track'></section>
         <section id='cali'></section>
         <section id='update'></section>
