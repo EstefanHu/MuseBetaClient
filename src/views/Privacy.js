@@ -214,7 +214,72 @@ export const Privacy = () => {
           </article>
         </section>
 
-        <section id='willInfo'></section>
+        <section style={styles.section} id='willInfo'>
+          <h3 style={styles.title}>3. WILL YOUR INFORMATION BE SHARED WITH ANYONE?</h3>
+          <article style={styles.article}>
+            <p style={styles.paragraph}>
+              <em><strong>In short</strong> We only share information with your consent, to comply with laws, to provide you with services, to protect your rights, or to fulfill business obligations.</em>
+            </p>
+            <p style={styles.paragraph}>
+              We may process or share data based on the following legal basis:
+            </p>
+            <ul style={styles.squareList}>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>Consent:</strong>  We may process your data if you have given us specific consent to use your personal information in a specific purpose.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>Legitimate Interests:</strong> We may process your data when it is reasonably necessary to achieve our legitimate business interests.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>Performance of a Contract:</strong> Where we have entered into a contract with you, we may process your personal information to fulfill the terms of our contract.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>Legal Obligations:</strong> We may disclose your information where we are legally required to do so in order to comply with applicable law, governmental requests, a judicial proceeding, court order, or legal process, such as in response to a court order or a subpoena (including in response to public authorities to meet national security or law enforcement requirements).
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>Vital Interests:</strong> We may disclose your information where we believe it is necessary to investigate, prevent, or take action regarding potential violations of our policies, suspected fraud, situations involving potential threats to the safety of any person and illegal activities, or as evidence in litigation in which we are involved.
+                </p>
+              </li>
+              <p style={styles.paragraph}>
+                More specifically, we may need to process your data or share your personal information in the following situations:
+              </p>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>Vendors, Consultants and Other Third-Party Service Providers.</strong> We may share your data with third party vendors, service providers, contractors or agents who perform services for us or on our behalf and require access to such information to do that work. Examples include: payment processing, data analysis, email delivery, hosting services, customer service and marketing efforts. We may allow selected third parties to use tracking technology on the Services or Apps, which will enable them to collect data about how you interact with the Services or Apps over time. This information may be used to, among other things, analyze and track data, determine the popularity of certain content and better understand online activity. Unless described in this Policy, we do not share, sell, rent or trade any of your information with third parties for their promotional purposes.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>Business Transfers.</strong> We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>Third-Party Advertisers.</strong> We may use third-party advertising companies to serve ads when you visit the Services or Apps. These companies may use information about your visits to our Website(s) and other websites that are contained in web cookies and other tracking technologies in order to provide advertisements about goods and services of interest to you.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>Business Partners.</strong> We may share your information with our business partners to offer you certain products, services or promotions.
+                </p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>
+                  <strong>Other Users.</strong> When you share personal information (for example, by posting comments, contributions or other content to the Services or Apps) or otherwise interact with public areas of the Services or Apps, such personal information may be viewed by all users and may be publicly distributed outside the Services or Apps in perpetuity. If you interact with other users of our Services or Apps and register through a social network (such as Facebook), your contacts on the social network will see your name, profile photo, and descriptions of your activity. Similarly, other users will be able to view descriptions of your activity, communicate with you within our Services or Apps, and view your profile.
+                </p>
+              </li>
+            </ul>
+          </article>
+        </section>
 
         <section style={styles.section} id='cookie'>
           <h3 style={styles.title}>4. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</h3>
