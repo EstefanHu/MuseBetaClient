@@ -194,7 +194,7 @@ const Register = withRouter(({ history }) => {
       <input className='authInput' type='submit' value='Register' />
       <p>Click "Register" above to accept Muse's</p>
       <p>
-        <Link style={styles.link} to='/terms'>Terms of Service</Link> &&nbsp;
+        <Link style={styles.link} to='/legal'>Terms of Service</Link> &&nbsp;
         <Link style={styles.link} to='/privacy'>Privacy Policy.</Link>
       </p>
     </VerticalForm>

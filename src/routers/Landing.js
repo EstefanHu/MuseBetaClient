@@ -1,8 +1,11 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { FaConnectdevelop } from 'react-icons/fa';
-import { Splash } from '../views/Splash';
-import { Auth } from '../layout/auth';
+import { Splash } from '../views/Splash.js';
+import { Forgot } from '../views/Forgot.js';
+import { Legal } from '../views/Legal.js';
+import { Privacy } from '../views/Privacy.js';
+import { Auth } from '../layout/auth.js';
 
 export const Landing = () => {
   return (
@@ -26,6 +29,9 @@ export const Landing = () => {
         </ul>
       </header>
       <Route exact path='/' component={Splash} />
+      <Route exact path='/forgot' component={Forgot} />
+      <Route exact path='/legal' component={Legal} />
+      <Route exact path='/privacy' component={Privacy} />
       <Auth />
     </>
   )

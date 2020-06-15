@@ -22,7 +22,7 @@ export const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path='/(|legal)' component={Landing} />
+        <Route exact path='/(|legal|forgot|privacy)' component={Landing} />
         <Route exact path='/app/(home|profile|settings)' component={Primary} />
         <Route component={FourOhFour} />
       </Switch>
