@@ -323,7 +323,39 @@ export const Privacy = () => {
               If you have questions or comments about your privacy rights, you may email us at info@projectmuse.co.
             </p>
           </article>
+          <article style={styles.article}>
+            <h4 style={styles.articleTitle}>Account Information</h4>
+            <p style={styles.paragraph}>
+              If you would at any time like to review or change the information in your account or terminate your account, you can:
+            </p>
+            <ul style={styles.squareList}>
+              <li>
+                <p style={styles.paragraph}>Log into your account settings and update your user account.</p>
+              </li>
+            </ul>
+            <p style={styles.paragraph}>
+              Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases. However, some information may be retained in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our Terms of Use and/or comply with legal requirements.
+            </p>
+            <p style={styles.paragraph}>
+              <strong><u>Cookies and similar technologies:</u></strong> Most Web browsers are set to accept cookies by default. If you prefer, you can usually choose to set your browser to remove cookies and to reject cookies. If you choose to remove cookies or reject cookies, this could affect certain features or services of our Services or Apps. To opt-out of interest-based advertising by advertisers on our Services or Apps visit <a href='http://www.aboutads.info/choices/'>http://www.aboutads.info/choices/</a>.
+            </p>
+            <p style={styles.paragraph}>
+              <strong><u>Opting out of email marketing:</u></strong> You can unsubscribe from our marketing email list at any time by clicking on the unsubscribe link in the emails that we send or by contacting us using the details provided below. You will then be removed from the marketing email list – however, we will still need to send you service-related emails that are necessary for the administration and use of your account. To otherwise opt-out, you may:
+            </p>
+            <ul style={styles.squareList}>
+              <li>
+                <p style={styles.paragraph}>Note your preferences when you register an account with the site.</p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>Access your account settings and update preferences</p>
+              </li>
+              <li>
+                <p style={styles.paragraph}>Contact us using the contact information provided.</p>
+              </li>
+            </ul>
+          </article>
         </section>
+        
         <section id='track'></section>
         <section id='cali'></section>
         <section id='update'></section>
