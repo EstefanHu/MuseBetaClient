@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import { FaConnectdevelop } from 'react-icons/fa';
 import { Splash } from '../views/Splash.js';
 import { Forgot } from '../views/Forgot.js';
@@ -11,22 +11,26 @@ export const Landing = () => {
   return (
     <>
       <header style={styles.header}>
-        <FaConnectdevelop size={40} color='black' />
-        <h1>&nbsp;:Muse</h1>
-        <ul style={styles.links}>
-          <li>
-            <a
-              href='#me'
-              style={styles.link}
-            >Who are We</a>
-          </li>
-          <li>
-            <a
-              href='vision'
-              style={styles.link}
-            >Our Future</a>
-          </li>
-        </ul>
+        <FaConnectdevelop size={40} color='black' />&nbsp;
+        <Link style={{ color: 'white', textDecoration: 'none' }} to='/'>
+          <h1>:Muse</h1>
+        </Link>
+        <Route exact path='/'>
+          <ul style={styles.links}>
+            <li>
+              <a
+                href='#me'
+                style={styles.link}
+              >Who are We</a>
+            </li>
+            <li>
+              <a
+                href='vision'
+                style={styles.link}
+              >Our Future</a>
+            </li>
+          </ul>
+        </Route>
       </header>
       <Route exact path='/' component={Splash} />
       <Route exact path='/forgot' component={Forgot} />
