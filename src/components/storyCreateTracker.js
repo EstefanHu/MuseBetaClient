@@ -6,7 +6,7 @@ const TrackerContainer = styled.section`
   left: 0;
   top: 0;
   bottom: 0;
-  width: 300px;
+  width: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,14 +15,16 @@ const TrackerContainer = styled.section`
 const Tracker = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 65px;
+  height: fit-content;
   margin: 0 30px;
+  text-overflow: auto;
 `;
 
 const ProgressDrawer = styled.span`
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: flex-start;
   margin-bottom: 10px;
   width: fit-content;
   overflow: show;

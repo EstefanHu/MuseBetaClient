@@ -21,8 +21,8 @@ export const Background = () => {
 
   return <div style={styles.container}>
     {key ?
-      <Map apikey={key} />
-      // <div style={{ backgroundColor: 'pink', height: '100%', width: '100%' }}></div>
+      // <Map apikey={key} />
+      <div style={{ backgroundColor: 'pink', height: '100%', width: '100%' }}></div>
       : <Triangulate />
     }
   </div>;
