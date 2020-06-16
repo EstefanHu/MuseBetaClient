@@ -40,14 +40,19 @@ const Button = styled.button`
   font-size: 1.5rem;
   font-weight: bold;
   margin-right: 10px;
+  transition: background-color 200ms linear;
 
   &:hover {
-    background-color: rgb(250,250,250)
+    background-color: rgb(249,249,249);
+
+    & ~ h1 {
+      transition: opacity .45s;
+    }
   }
 `;
 
 const ProgressLabel = styled.h1`
-  transition: opacity 1s;
+  transition: opacity .35s;
 `;
 
 export const StoryCreateTracker = () => {
@@ -73,7 +78,9 @@ const ProgressNode = ({ count, label }) => {
       >
         {count}
       </Button>
-      {isHover && <ProgressLabel>{label}</ProgressLabel>}
+      <ProgressLabel style={{ opacity: isHover ? 1 : 0 }}>
+        {label}
+      </ProgressLabel>
     </ProgressDrawer>
   )
 }
