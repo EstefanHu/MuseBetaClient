@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { GENRES } from '../constants/genre.js';
 
+import Select from 'react-select';
+
 const Scroller = styled.section`
   width: 100%;
   height: calc(100vh - 60px);
@@ -26,8 +28,12 @@ const Card = styled.div`
   padding: 30px 40px;
   background-color: white;
   border-radius: 5px;
-  overflow: hidden;
   box-shadow: 2px 2px 10px lightgrey;
+`;
+
+const Header = styled.h1`
+  text-align: center;
+  font-size: 2rem;
 
 `;
 
@@ -45,15 +51,14 @@ const Input = styled.input`
   margin-bottom: 10px;
 `;
 
-const NextButton = styled.button`
-  width: 100px;
-  height: 55px;
+const NextButton = styled.a`
   background-color: var(--color);
   color: white;
   font-size: 1.1rem;
   font-weight: bold;
-  border: none;
   border-radius: 5px;
+  padding: 10px 15px;
+  text-decoration: none;
 `;
 
 export const CreateStoryForm = () => {
@@ -73,6 +78,7 @@ export const CreateStoryForm = () => {
       <Form onSubmit={handleSubmit}>
         <Screen>
           <Card>
+            <Header>Create your Pitch</Header>
             <Label>Title:</Label>
             <Input
               value={title}
@@ -83,16 +89,19 @@ export const CreateStoryForm = () => {
               value={description}
               onChange={e => setDescription(e.target.value)}
             />
-            {/* <a href='#plot'>
-              <NextButton type='button' value='Next' />
-            </a> */}
+            <Select
+              options={GENRES}
+              isSearchable={true}
+              isClearable={true}
+            />
+            <NextButton href='#plot'>Next</NextButton>
           </Card>
         </Screen>
-        <Screen id='plot'>
+        {/* <Screen id='plot'>
         </Screen>
         <Screen>
 
-        </Screen>
+        </Screen> */}
       </Form>
     </Scroller>
   )
