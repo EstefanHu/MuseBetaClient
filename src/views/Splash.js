@@ -20,7 +20,6 @@ export const Splash = () => {
       <section style={styles.world}>
       </section>
       <section id='me'>
-        <h2> me</h2>
       </section>
     </main>
   )

@@ -9,7 +9,7 @@ import {Landing} from './routers/Landing.js';
 import { Primary } from './views/Primary';
 import { FourOhFour } from './views/FourOhFour';
 
-import './styles/App.css';
+import './App.css';
 
 export const App = () => {
   useEffect(() => {

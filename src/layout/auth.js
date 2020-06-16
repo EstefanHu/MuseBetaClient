@@ -1,27 +1,11 @@
 import React, { useState } from 'react';
 import { withRouter, Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { loginUser, registerUser } from '../hooks/authHooks.js';
-import { VerticalForm } from '../components/verticalForm.js';
 import { GrClose } from 'react-icons/gr';
 import { FlipStateButton } from '../components/flipStateButton.js';
 
-import '../styles/auth.css';
-
 const styles = {
-  container: {
-    width: '500px',
-    height: '100vh',
-    backgroundColor: 'rgb(250,250,250)',
-    position: 'fixed',
-    right: 0,
-    top: 0,
-    bottom: 0,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    padding: '30px 40px 80px 40px',
-    zIndex: 1,
-  },
   header: {
     display: 'flex',
     alignItems: 'center',
@@ -61,6 +45,9 @@ const styles = {
     transform: 'rotate(90deg)',
     msTransform: 'rotate(90deg)',
   },
+  endLinks: {
+    textAlign: 'center',
+  },
   link: {
     color: 'grey',
     textDecoration: 'underline',
@@ -84,15 +71,70 @@ const styles = {
     backgroundColor: 'transparent',
     fontSize: '1.2rem',
     color: 'white',
-  }
+  },
 }
+
+const Container = styled.section`
+  width: 500px;
+  height: 100vh;
+  background-color: rgb(250,250,250);
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 40px 80px 40px;
+  z-index: 1;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100%;
+`;
+
+const Label = styled.label`
+  color: grey;
+  font-size: 0.7rem;
+  margin-bottom: 5px;
+`;
+
+const Input = styled.input`
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid lightgrey;
+  background: white;
+  padding: 14px 10px;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+
+  &:focus {
+    border-color: var(--color);
+    outline: none;
+  }
+
+  &:hover {
+    background-color: rgb(250, 250, 250);
+  }
+
+  &[type='submit'] {
+    background: var(--color);
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: white;
+    border: none;
+  }
+`;
 
 export const Auth = () => {
   const [hasAccount, setHasAccount] = useState(true);
   const [isOpen, setIsOpen] = useState(true);
 
   return isOpen ? (
-    <section style={styles.container}>
+    <Container>
       <header style={styles.header}>
         <FlipStateButton
           trueTitle={'Login'}
@@ -112,7 +154,7 @@ export const Auth = () => {
         <a href='/app/home'>to App</a>
         {hasAccount ? <Login setHasAccount={setHasAccount} /> : <Register />}
       </div>
-    </section>
+    </Container>
   ) : (
       <div style={styles.open}>
         <button
@@ -142,33 +184,34 @@ const Login = withRouter(({ history, setHasAccount }) => {
   }
 
   return (
-    <VerticalForm action={launchLogin}>
+    <Form onSubmit={launchLogin}>
       <h1 style={styles.title}>Sign In</h1>
-      <input
-        className='authInput'
+      <Label>EMAIL ADDRESS (REQUIRED)</Label>
+      <Input
         type='email'
         value={email}
         onChange={e => setEmail(e.target.value)}
         placeholder='Email Address'
         required />
-      <input
-        className='authInput'
+      <Label>PASSWORD (REQUIRED)</Label>
+      <Input
         type='password'
         value={password}
         onChange={e => setPassword(e.target.value)}
         placeholder='Password'
         required />
-      <input
-        className='authInput'
+      <Input
         type='submit'
         value='Log in' />
-      <p>
-        <Link style={styles.link} to='/forgot'>Forgot Password?</Link> -&nbsp;
+      <span style={styles.endLinks}>
+        <p>
+          <Link style={styles.link} to='/forgot'>Forgot Password?</Link> -&nbsp;
         <span style={styles.link} onClick={() => setHasAccount(false)}>Sign up for :Muse</span>
-      </p>
-    </VerticalForm>
+        </p>
+      </span>
+    </Form>
   )
-})
+});
 
 const Register = withRouter(({ history }) => {
   const [firstName, setFirstName] = useState('');
@@ -186,54 +229,59 @@ const Register = withRouter(({ history }) => {
   }
 
   return (
-    <VerticalForm action={launchRegister}>
+    <Form onSubmit={launchRegister}>
       <h1 style={styles.title}>Begin Your Story</h1>
-      <input
-        className='authInput'
+      <Label>FIRST NAME (REQUIRED)</Label>
+      <Input
         type='text'
         value={firstName}
         onChange={e => setFirstName(e.target.value)}
         placeholder='First Name'
         required
       />
-      <input
-        className='authInput'
+      <Label>LAST NAME (REQUIRED)</Label>
+      <Input
         type='text'
         value={lastName}
         onChange={e => setLastName(e.target.value)}
         placeholder='Last Name'
         required
       />
-      <input
-        className='authInput'
+      <Label>EMAIL ADDRESS (REQUIRED)</Label>
+      <Input
         type='email'
         value={email}
         onChange={e => setEmail(e.target.value)}
         placeholder='Email Address'
         required
       />
-      <input
-        className='authInput'
+      <Label>PASSWORD (REQUIRED)</Label>
+      <Input
         type='password'
         value={password}
         onChange={e => setPassword(e.target.value)}
         placeholder='Password'
         required
       />
-      <input
-        className='authInput'
+      <Label>CONFIRM PASSWORD(REQUIRED)</Label>
+      <Input
         type='password'
         value={confirmPassword}
         onChange={e => setConfirmPassword(e.target.value)}
         placeholder='Confirm Password'
         required
       />
-      <input className='authInput' type='submit' value='Register' />
-      <p>Click "Register" above to accept Muse's</p>
-      <p>
-        <Link style={styles.link} to='/terms'>Terms of Service</Link> &&nbsp;
-        <Link style={styles.link} to='/privacy'>Privacy Policy.</Link>
-      </p>
-    </VerticalForm>
+      <Input
+        type='submit'
+        value='Register'
+      />
+      <span style={styles.endLinks}>
+        <p>Click "Register" above to accept Muse's</p>
+        <p>
+          <Link style={styles.link} to='/terms'>Terms of Service</Link> &&nbsp;
+          <Link style={styles.link} to='/privacy'>Privacy Policy.</Link>
+        </p>
+      </span>
+    </Form>
   )
 });

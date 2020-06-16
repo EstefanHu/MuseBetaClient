@@ -1,63 +1,76 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 
-import '../styles/navbar.css';
+const Nav = styled.nav`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: var(--color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  z-index: 10;
+  color: var(--color);
+  padding-left: 20px;
+`;
 
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'var(--color)',
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: '60px',
-    zIndex: 10,
-    color: 'var(--color)',
-    paddingLeft: '20px'
-  },
-  logo: {
-    fontFamily: 'Heebo',
-    marginRight: '25px',
-    marginBottom: '0px',
-    color: 'white',
-  },
-  search: {
-    fontSize: '1rem',
-    border: 'none',
-    borderRadius: '3px',
-    padding: '10px 12px',
-    outline: 'none',
-    marginRight: '10px',
+const Logo = styled.h1`
+  font-family: Heebo;
+  margin-right: 25px;
+  margin-bottom: 0px;
+  color: white;
+`;
+
+const Search = styled.input`
+  font-size: 1rem;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 12px;
+  outline: none;
+  margin-right: 10px;
+`;
+
+const Button = styled.button`
+  border: none;
+  border-radius: 5px;
+  padding: 4px 10px;
+  background-color: var(--color);
+  font-size: .9rem;
+  font-weight: bold;
+  color: white;
+
+  &:hover {
+    background-color: rgba(0,0,0,.1);
   }
-}
+`;
 
 export const NavBar = () => {
   const [creating, setCreating] = useState(false);
 
   return (
-    <nav style={styles.container}>
-      <h1 style={styles.logo}>:Muse</h1>
+    <Nav>
+      <Logo>:Muse</Logo>
       <span>
         {creating ? <Tools toggleCreate={() => setCreating(false)} />
           : <Create toggleCreate={() => setCreating(true)} />}
       </span>
-    </nav>
+    </Nav>
   )
 }
 
 const Create = ({ toggleCreate }) => {
   return (
     <>
-      <input style={styles.search} placeholder='Search...' />
-      <button onClick={toggleCreate} className='navbar_button'>New</button>
+      <Search placeholder='Search...' />
+      <Button onClick={toggleCreate}>New</Button>
     </>
   )
 }
 
 const Tools = ({ toggleCreate }) => {
   return (
-    <button onClick={toggleCreate} className='navbar_button'>Cancel</button>
+    <Button onClick={toggleCreate}>Cancel</Button>
   )
 }
