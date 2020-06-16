@@ -6,6 +6,7 @@ import { Background } from '../layout/background';
 
 import { Home } from '../views/Home.js';
 import { New } from '../views/New.js';
+import { Profile } from '../views/Profile.js';
 
 import styled from 'styled-components';
 
@@ -26,6 +27,7 @@ export const Primary = () => {
       <Main>
         <Route exact path='/app/home' component={Home} />
         <Route exact path='/app/new' component={New} />
+        <Route exact path='/app/profile' component={Profile} />
         <Background />
       </Main>
     </>
