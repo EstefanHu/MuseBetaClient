@@ -3,6 +3,7 @@ import React from 'react';
 import { StoryCreateTracker } from '../components/storyCreateTracker.js';
 
 import styled from 'styled-components';
+import { CreateStoryForm } from '../components/createStoryForm.js';
 
 const Overlay = styled.div`
   z-index: 8;
@@ -11,13 +12,14 @@ const Overlay = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(255,255,255, 0.7);
+  background-color: rgba(255,255,255, 0.7); 
 `;
 
 export const New = () => {
   return (
     <Overlay>
       <StoryCreateTracker />
+      <CreateStoryForm />
     </Overlay>
   )
 }
