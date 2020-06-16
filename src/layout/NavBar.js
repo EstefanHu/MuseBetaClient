@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
@@ -46,15 +47,14 @@ const Button = styled.button`
   }
 `;
 
-export const NavBar = () => {
-  const [creating, setCreating] = useState(false);
+export const NavBar = ({ navigation }) => {
 
   return (
     <Nav>
       <Logo>:Muse</Logo>
       <span>
-        {creating ? <Tools toggleCreate={() => setCreating(false)} />
-          : <Create toggleCreate={() => setCreating(true)} />}
+        <Route exact path='/app/home' component={Create} />
+        <Route exact path='/app/new' component={Tools} />
       </span>
     </Nav>
   )
@@ -64,13 +64,17 @@ const Create = ({ toggleCreate }) => {
   return (
     <>
       <Search placeholder='Search...' />
-      <Button onClick={toggleCreate}>New</Button>
+      <Link to='/app/new'>
+        <Button onClick={toggleCreate}>New</Button>
+      </Link>
     </>
   )
 }
 
 const Tools = ({ toggleCreate }) => {
   return (
-    <Button onClick={toggleCreate}>Cancel</Button>
+    <Link to='/app/home'>
+      <Button onClick={toggleCreate}>Cancel</Button>
+    </Link>
   )
 }

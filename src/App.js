@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 
 import {Landing} from './routers/Landing.js';
-import { Primary } from './views/Primary';
+import { Primary } from './routers/Primary';
 import { FourOhFour } from './views/FourOhFour';
 
 import './App.css';
@@ -23,7 +23,7 @@ export const App = () => {
     <Router>
       <Switch>
         <Route exact path='/(|terms|forgot|privacy)' component={Landing} />
-        <Route exact path='/app/(home|profile|settings)' component={Primary} />
+        <Route exact path='/app/(home|new|profile|settings)' component={Primary} />
         <Route component={FourOhFour} />
       </Switch>
     </Router>
