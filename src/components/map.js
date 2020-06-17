@@ -18,7 +18,9 @@ export const Map = memo(({ apikey }) => {
         mapStyle='mapbox://styles/estefan074/ck002rku546481cnq4hc1buof'
         onViewportChange={viewport => {
           setViewport(viewport)
-        }} />
+        }}
+        onClick={() => console.log('Plotted: ')}
+        />
     </div>
   )
 })

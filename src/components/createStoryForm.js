@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { GENRES } from '../constants/genre.js';
 
 const Scroller = styled.section`
-  width: 100%;
-  height: calc(100vh - 60px);
-  overflow-y: auto;
-`;
-
-const Form = styled.form`
   width: 700px;
   margin: 0 auto;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  z-index: 9;
 `;
 
 const Screen = styled.article`
@@ -127,17 +124,16 @@ export const CreateStoryForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (!genre) return alert('No Genre pro0vided');
 
     console.log('submitted: ' + genre);
   }
 
   return (
     <Scroller className='noBar'>
-      <Form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <Screen>
           <Card>
-            <Header>Create Story Pitch</Header>
+            <Header>1. Create Story Pitch</Header>
             <Label>Title:</Label>
             <Input
               placeholder='Enter a Title...'
@@ -171,15 +167,9 @@ export const CreateStoryForm = () => {
               required
             />
             <NextButton href='#plot'>Next</NextButton>
-            <input type='submit' />
           </Card>
         </Screen>
-        {/* <Screen id='plot'>
-        </Screen>
-        <Screen>
-
-        </Screen> */}
-      </Form>
+      </form>
     </Scroller>
   )
 }
