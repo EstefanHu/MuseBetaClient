@@ -79,6 +79,13 @@ const Select = styled.select`
   }
 `;
 
+const Span = styled.span`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 190px;
+`;
+
 const NextButton = styled.a`
   background-color: var(--color);
   color: white;
@@ -89,6 +96,15 @@ const NextButton = styled.a`
   text-decoration: none;
   width: 100px;
   text-align: center;
+`;
+
+const BackButton = styled.a`
+  color: grey;
+  font-size: 1.1rem;
+  padding: 10px 15px;
+  width: 80px;
+  text-align: center;
+  text-decoration: none;
 `;
 
 const Submit = styled.input`
@@ -141,7 +157,10 @@ export const CreateWheel = ({ formData, setFormData }) => {
             >{item.label}</option>
           ))}
         </Select>
-        <NextButton href='#createPitch'>Next</NextButton>
+        <Span>
+          <NextButton href='#createPitch'>Next</NextButton>
+          <BackButton href='#createTitle'>Back</BackButton>
+        </Span>
       </Screen>
 
       <Screen id='createPitch'>
@@ -152,12 +171,18 @@ export const CreateWheel = ({ formData, setFormData }) => {
           onChange={e => setFormData({ ...formData, pitch: e.target.value })}
           required
         />
-        <NextButton href='#createCoords'>Next</NextButton>
+        <Span>
+          <NextButton href='#createCoords'>Next</NextButton>
+          <BackButton href='#createGenre'>Back</BackButton>
+        </Span>
       </Screen>
 
       <Screen id='createCoords'>
         <H1>Plot Coordinates.</H1>
-        <NextButton href='#createBody'>Next</NextButton>
+        <Span>
+          <NextButton href='#createBody'>Next</NextButton>
+          <BackButton href='#createPitch'>Back</BackButton>
+        </Span>
       </Screen>
 
       <Screen id='createBody'>
@@ -168,12 +193,18 @@ export const CreateWheel = ({ formData, setFormData }) => {
           onChange={e => setFormData({ ...formData, body: e.target.value })}
           required
         />
-        <NextButton href='#createPublish'>Next</NextButton>
+        <Span>
+          <NextButton href='#createPublish'>Next</NextButton>
+          <BackButton href='#createCoords'>Back</BackButton>
+        </Span>
       </Screen>
 
       <Screen id='createPublish'>
         <H1>Well Done!</H1>
-        <Submit type='submit' value='Publish' />
+        <Span>
+          <Submit type='submit' value='Publish' />
+          <BackButton href='#createBody'>Back</BackButton>
+        </Span>
       </Screen>
 
     </form>
