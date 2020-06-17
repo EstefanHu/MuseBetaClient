@@ -118,19 +118,14 @@ const Submit = styled.input`
   border-radius: 5px;
 `;
 
-
-export const CreateWheel = ({ formData, setFormData, setIsBlurred }) => {
-  const handleSubmit = e => {
-    e.preventDefault();
-    console.log('Submitted');
-  }
-
+export const CreateWheel = ({ formData, setFormData, handleSubmit, setIsBlurred }) => {
   return (
     <form onSubmit={handleSubmit}>
 
       <Screen id='createTitle'>
         <H1>Add a Title.</H1>
         <Input
+          type='text'
           placeholder='Enter a Title...'
           value={formData.title}
           onChange={e => setFormData({ ...formData, title: e.target.value })}

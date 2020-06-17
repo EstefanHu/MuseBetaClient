@@ -26,7 +26,7 @@ const startStory = dispatch => () => {
 }
 
 const endStory = dispatch => () => {
-  dispatch({ type: 'update_story', payload: { msg: null } });
+  dispatch({ type: 'update_story', payload: { msg: 'inactive' } });
 }
 
 const addTitle = dispatch => title => {
@@ -56,7 +56,7 @@ export const { Context, Provider } = createDataContext(
   newStoryReducer,
   { startStory, endStory, addTitle, addGenre, addPitch, addCoordinates, addBody },
   {
-    status: null,
+    status: 'inactive',
     error: null,
   }
 );

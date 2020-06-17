@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route, Link } from 'react-router-dom';
+import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
@@ -47,34 +48,27 @@ const Button = styled.button`
   }
 `;
 
-export const NavBar = ({ navigation }) => {
+export const NavBar = () => {
+  const { startStory, endStory } = useContext(NewStoryContext);
 
   return (
     <Nav>
       <Logo>:Muse</Logo>
       <span>
-        <Route exact path='/app/home' component={Create} />
-        <Route exact path='/app/new' component={Tools} />
+        <Route exact path='/app/home'>
+          <>
+            <Search placeholder='Search...' />
+            <Link to='/app/new'>
+              <Button onClick={startStory}>New</Button>
+            </Link>
+          </>
+        </Route>
+        <Route exact path='/app/new'>
+          <Link to='/app/home'>
+            <Button onClick={endStory}>Cancel</Button>
+          </Link>
+        </Route>
       </span>
     </Nav>
-  )
-}
-
-const Create = ({ toggleCreate }) => {
-  return (
-    <>
-      <Search placeholder='Search...' />
-      <Link to='/app/new'>
-        <Button onClick={toggleCreate}>New</Button>
-      </Link>
-    </>
-  )
-}
-
-const Tools = ({ toggleCreate }) => {
-  return (
-    <Link to='/app/home'>
-      <Button onClick={toggleCreate}>Cancel</Button>
-    </Link>
   )
 }
