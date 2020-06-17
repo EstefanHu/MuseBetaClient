@@ -181,8 +181,21 @@ export const CreateWheel = ({ formData, setFormData, setIsBlurred }) => {
 
       <Screen id='createCoords'>
         <H1>Plot Coordinates.</H1>
+        {
+          formData.coordinates &&
+          <>
+            <p>Longitude:</p>
+            <p>{formData.coordinates.longitude}</p>
+            <p>Latitude:</p>
+            <p>{formData.coordinates.latitude}</p>
+          </>
+        }
         <Span>
-          <NextButton href='#createBody'>Next</NextButton>
+          {
+            formData.coordinates ?
+              <NextButton href='#createBody'>Next</NextButton>
+              : null
+          }
           <BackButton href='#createPitch'>Back</BackButton>
         </Span>
       </Screen>

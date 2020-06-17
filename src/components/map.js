@@ -30,8 +30,8 @@ export const Map = memo(({ apikey }) => {
         onViewportChange={viewport => {
           setViewport(viewport)
         }}
-        onClick={() => console.log('Plotted: ')}
+        onClick={(e) => console.log(e)}
       />
     </MapboxView>
   )
-})
+});

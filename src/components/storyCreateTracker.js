@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { FaCheck } from 'react-icons/fa'
 import { TiCancel } from 'react-icons/ti';
@@ -39,8 +39,6 @@ const H2 = styled.h2`
 `;
 
 export const StoryCreateTracker = ({ formData }) => {
-
-
   return (
     <Section>
       <Phase link='createTitle' label='Title' />
