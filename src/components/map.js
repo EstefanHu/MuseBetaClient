@@ -1,5 +1,16 @@
 import React, { useState, memo } from 'react';
 import ReactMapGl from 'react-map-gl';
+import styled from 'styled-components';
+
+const MapboxView = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+`;
 
 export const Map = memo(({ apikey }) => {
   const [viewport, setViewport] = useState({
@@ -11,7 +22,7 @@ export const Map = memo(({ apikey }) => {
   });
 
   return (
-    <div id='mapboxView'>
+    <MapboxView>
       <ReactMapGl
         {...viewport}
         mapboxApiAccessToken={apikey}
@@ -20,7 +31,7 @@ export const Map = memo(({ apikey }) => {
           setViewport(viewport)
         }}
         onClick={() => console.log('Plotted: ')}
-        />
-    </div>
+      />
+    </MapboxView>
   )
 })
