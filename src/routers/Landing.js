@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
+import { Link as ScrollLink} from 'react-scroll';
 import { FaConnectdevelop } from 'react-icons/fa';
 import { Splash } from '../views/Splash.js';
 import { Forgot } from '../views/Forgot.js';
@@ -18,16 +19,18 @@ export const Landing = () => {
         <Route exact path='/'>
           <ul style={styles.links}>
             <li>
-              <a
-                href='#me'
+              <ScrollLink
+                to='me'
+                smooth={true}
+                duration={500}
                 style={styles.link}
-              >Who are We</a>
+              >Who are We</ScrollLink>
             </li>
             <li>
-              <a
-                href='vision'
+              <ScrollLink
+                to='vision'
                 style={styles.link}
-              >Our Future</a>
+              >Our Future</ScrollLink>
             </li>
           </ul>
         </Route>

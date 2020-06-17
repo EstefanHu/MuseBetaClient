@@ -119,7 +119,7 @@ const Submit = styled.input`
 `;
 
 
-export const CreateWheel = ({ formData, setFormData }) => {
+export const CreateWheel = ({ formData, setFormData, setIsBlurred }) => {
   const handleSubmit = e => {
     e.preventDefault();
     console.log('Submitted');
@@ -140,6 +140,7 @@ export const CreateWheel = ({ formData, setFormData }) => {
       </Screen>
 
       <Screen id='createGenre'>
+        <div id='test'></div>
         <H1>Choose a Genre.</H1>
         <Select
           type='text'
@@ -173,7 +174,7 @@ export const CreateWheel = ({ formData, setFormData }) => {
           required
         />
         <Span>
-          <NextButton href='#createCoords'>Next</NextButton>
+          <NextButton href='#createCoords' onClick={setIsBlurred}>Next</NextButton>
           <BackButton href='#createGenre'>Back</BackButton>
         </Span>
       </Screen>
