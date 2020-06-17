@@ -110,16 +110,16 @@ const Input = styled.input`
   padding: 14px 10px;
   margin-bottom: 10px;
   font-size: 1.1rem;
-
-  &:focus {
-    border-color: var(--color);
-    outline: none;
-  }
-
+  outline: 0;
+  
   &:hover {
     border-color: grey;
   }
 
+  &:focus {
+    border-color: var(--color);
+  }
+  
   &[type='submit'] {
     background: var(--color);
     font-weight: bold;
