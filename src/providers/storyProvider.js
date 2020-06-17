@@ -43,10 +43,6 @@ const deleteStory = dispatch => id => {
     dispatch({ type: 'delete_story', payload: id });
   }
 
-const addLngLat = dispatch => () => {
-  dispatch({ type: 'add_lng_lat' })
-}
-
 export const { Context, Provider } = createDataContext(
   storyReducer,
   { addStory, editStory, deleteStory },
