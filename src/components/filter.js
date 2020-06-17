@@ -30,7 +30,7 @@ export const Filter = ({ setGenre }) => (
   <Span className='noBar'>
     <Button onClick={() => setGenre('All')}>All</Button>
     {GENRES.map(item => (
-      <Button key={item} onClick={() => setGenre(item)}>{item}</Button>
+      <Button key={item.value} onClick={() => setGenre(item.value)}>{item.value}</Button>
     ))}
   </Span>
 )

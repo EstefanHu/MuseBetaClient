@@ -117,7 +117,7 @@ const Input = styled.input`
   }
 
   &:hover {
-    background-color: rgb(250, 250, 250);
+    border-color: grey;
   }
 
   &[type='submit'] {
