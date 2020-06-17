@@ -2,6 +2,8 @@ import createDataContext from './createDataContext.js';
 
 const newStoryReducer = (state, action) => {
   switch (action.type) {
+    case 'update_story':
+      return { ...state, status: action.payload.msg };
     case 'add_title':
       return { ...state, title: action.payload.title };
     case 'add_genre':
@@ -20,7 +22,11 @@ const newStoryReducer = (state, action) => {
 };
 
 const startStory = dispatch => () => {
-  dispatch({type: 'start_story', payload: { msg: 'inProgress' }});
+  dispatch({ type: 'update_story', payload: { msg: 'inProgress' } });
+}
+
+const endStory = dispatch => () => {
+  dispatch({ type: 'update_story', payload: { msg: null } });
 }
 
 const addTitle = dispatch => title => {
@@ -48,7 +54,7 @@ const addBody = dispatch => body => {
 
 export const { Context, Provider } = createDataContext(
   newStoryReducer,
-  { startStory, addTitle, addGenre, addPitch, addCoordinates, addBody },
+  { startStory, endStory, addTitle, addGenre, addPitch, addCoordinates, addBody },
   {
     status: null,
     error: null,
