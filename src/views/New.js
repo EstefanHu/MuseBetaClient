@@ -11,7 +11,7 @@ const Container = styled.section`
   height: calc(100vh - 60px);
   z-index: 7;
   background-color: white;
-  overflow-y: auto;
+  overflow-y: hidden;
 `;
 
 const Overlay = styled.div`
