@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
 import { CreateWheel } from '../components/createWheel.js';
-// import { StoryCreateTracker } from '../components/storyCreateTracker.js';
+import { StoryCreateTracker } from '../components/storyCreateTracker.js';
 
 import styled from 'styled-components';
 
 const Container = styled.section`
   position: 'fixed';
-  width: 550px;
+  width: 500px;
   height: calc(100vh - 60px);
   z-index: 7;
   background-color: white;
@@ -37,7 +37,7 @@ export const New = () => {
           setIsBlurred={() => setIsBlurred(false)}
         />
       </Container>
-      {/* <StoryCreateTracker formData={formData} /> */}
+      <StoryCreateTracker formData={formData} />
       {isBlurred && <Overlay />}
     </>
   )

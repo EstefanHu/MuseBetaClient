@@ -9,7 +9,7 @@ const Screen = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 60px;
+  padding: 0 50px;
 `;
 
 const H1 = styled.h1`
