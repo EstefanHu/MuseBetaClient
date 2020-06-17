@@ -136,7 +136,7 @@ export const CreateWheel = ({ formData, setFormData }) => {
           onChange={e => setFormData({ ...formData, title: e.target.value })}
           required
         />
-        <NextButton href='#createPitch'>Next</NextButton>
+        <NextButton href='#createGenre'>Next</NextButton>
       </Screen>
 
       <Screen id='createGenre'>
