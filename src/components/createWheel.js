@@ -97,16 +97,52 @@ const NextButton = styled.a`
   text-align: center;
 `;
 
-export const CreateWheel = () => {
+export const CreateWheel = ({ formData, setFormData }) => {
   return (
     <Wheel className='noBar'>
       <form>
+
         <Screen>
           <H1>Add a Title.</H1>
+          <Input
+            placeholder='Enter a Title...'
+            value={formData.title}
+            onChange={e => setFormData({ title: e.target.value })}
+            required
+          />
         </Screen>
+
         <Screen>
-          <H1>Choose a Genre</H1>
+          <H1>Choose a Genre.</H1>
+          <Select
+            type='text'
+            value={formData.genre}
+            onChange={e => setFormData({ genre: e.currentTarget.value })}
+            required
+          >
+            <option
+              value=''
+              style={{ color: 'grey', background: '#fff' }}
+            >Select a Genre...</option>
+            {GENRES.map(item => (
+              <option
+                key={item.value}
+                value={item.value}
+              >{item.label}</option>
+            ))}
+          </Select>
         </Screen>
+
+        <Screen>
+          <H1>Write a Description.</H1>
+          <Textarea
+            placeholder='Enter a Description...'
+            value={formData.description}
+            onChange={e => setFormData({ descriptin: e.target.value })}
+            required
+          />
+        </Screen>
+
       </form>
     </Wheel>
   )
