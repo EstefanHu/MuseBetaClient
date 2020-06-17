@@ -22,8 +22,6 @@ const storyReducer = (state, action) => {
       });
     case 'delete_story':
       return state.filter(story => story.id !== action.payload);
-    case 'add_lng_lat':
-      return state;
     default:
       return state;
   }
