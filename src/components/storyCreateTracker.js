@@ -1,89 +1,55 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const TrackerContainer = styled.section`
+const Article = styled.article`
   position: absolute;
-  left: 0;
-  top: 0;
   bottom: 0;
-  width: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 8;
-`;
+  left: 550px;
+  height: auto;
+  width: 250px;
+  z-index: 9;
+  padding: 30px 20px;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
 
-const Tracker = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 65px;
-  height: fit-content;
-  margin: 0 30px;
-  text-overflow: auto;
-`;
-
-const ProgressDrawer = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 10px;
-  width: fit-content;
-  overflow: show;
-`;
-
-const Button = styled.button`
-  width: 65px;
-  height: 65px;
-  background-color: white;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 3px solid lightgrey;
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-right: 10px;
-  transition: background-color 200ms linear;
-
-  &:hover {
-    background-color: rgb(249,249,249);
-
-    & ~ h1 {
-      transition: opacity .45s;
-    }
+  & > a {
+    text-decoration: none;
   }
 `;
 
-const ProgressLabel = styled.h1`
-  transition: opacity .35s;
+const H2 = styled.h2`
+  color: grey;
+  font-size: 1.4rem;
+
+  &:hover {
+    color: black;
+    text-decoration: underline;
+  }
 `;
 
-export const StoryCreateTracker = () => {
-  return (
-    <TrackerContainer>
-      <Tracker>
-        <ProgressNode count={1} label={'Initial'} />
-        <ProgressNode count={2} label={'Geolocation'} />
-        <ProgressNode count={3} label={'Body'} />
-      </Tracker>
-    </TrackerContainer>
-  )
-}
+export const StoryCreateTracker = ({ formData }) => {
 
-const ProgressNode = ({ count, label }) => {
-  const [isHover, setIsHover] = useState(false);
 
   return (
-    <ProgressDrawer>
-      <Button
-        onMouseEnter={() => setIsHover(true)}
-        onMouseLeave={() => setIsHover(false)}
-      >
-        {count}
-      </Button>
-      <ProgressLabel style={{ opacity: isHover ? 1 : 0 }}>
-        {label}
-      </ProgressLabel>
-    </ProgressDrawer>
+    <Article>
+      <a href='#createTitle'>
+        {/* <H2>{formData.title}</H2> */}
+        <H2>Hello World</H2>
+        <H2>Non-Fiction</H2>
+      </a>
+      <a href='#createGenre'>
+        <H2>{formData.genre}</H2>
+      </a>
+      <a href='#createPitch'>
+        <H2>{formData.pitch}</H2>
+      </a>
+      <a href='#createCoordinates'>
+        <H2>{formData.coordinates}</H2>
+      </a>
+      <a href='#createBody'>
+        <H2>{formData.body}</H2>
+      </a>
+    </Article>
   )
 }
