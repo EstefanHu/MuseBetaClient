@@ -22,29 +22,29 @@ const storyReducer = (state, action) => {
       });
     case 'delete_story':
       return state.filter(story => story.id !== action.payload);
+    case 'add_lng_lat':
+      return state;
     default:
       return state;
   }
 };
 
-const addStory = dispatch => {
-  return (title, content, callback) => {
+const addStory = dispatch => (title, content, callback) => {
     dispatch({ type: 'add_story', payload: { title, content } });
     callback();
   }
-};
 
-const editStory = dispatch => {
-  return (id, title, description, genre, body, callback) => {
-    dispatch({ type: 'edit_story', payload: { id, title, description, genre, body } });
-    callback();
-  }
-};
+const editStory = dispatch => (id, title, description, genre, body, callback) => {
+  dispatch({ type: 'edit_story', payload: { id, title, description, genre, body } });
+  callback();
+}
 
-const deleteStory = dispatch => {
-  return id => {
+const deleteStory = dispatch => id => {
     dispatch({ type: 'delete_story', payload: id });
   }
+
+const addLngLat = dispatch => () => {
+  dispatch({ type: 'add_lng_lat' })
 }
 
 export const { Context, Provider } = createDataContext(
