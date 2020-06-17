@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { GENRES } from '../constants/genre.js';
+import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
 
 import styled from 'styled-components';
 
@@ -107,7 +108,7 @@ const BackButton = styled.a`
   text-decoration: none;
 `;
 
-const Submit = styled.input`
+const Submit = styled.button`
   width: 150px;
   height: 45px;
   font-size: 1.3rem;
@@ -118,35 +119,77 @@ const Submit = styled.input`
   border-radius: 5px;
 `;
 
-export const CreateWheel = ({ formData, setFormData, handleSubmit, setIsBlurred }) => {
+export const CreateWheel = () => {
+  const { state } = useContext(NewStoryContext);
+
+  return (
+    <>
+      <TitleForm />
+      <GenreForm />
+      <PitchForm />
+      <CoordinatesForm />
+      <BodyForm />
+
+      <Screen id='createPublish'>
+        <H1>Well Done!</H1>
+        <Span>
+          <Submit value='Publish' onClick={() => console.log(state)} />
+          <BackButton href='#createBody'>Back</BackButton>
+        </Span>
+      </Screen>
+    </>
+  )
+}
+
+const TitleForm = () => {
+  const { addTitle } = useContext(NewStoryContext);
+  const [title, setTitle] = useState();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    // TODO: Validate
+    addTitle(title);
+  }
+
   return (
     <form onSubmit={handleSubmit}>
-
       <Screen id='createTitle'>
         <H1>Add a Title.</H1>
         <Input
           type='text'
           placeholder='Enter a Title...'
-          value={formData.title}
-          onChange={e => setFormData({ ...formData, title: e.target.value })}
+          value={title}
+          onChange={e => setTitle(e.target.value)}
           required
         />
         <NextButton href='#createGenre'>Next</NextButton>
       </Screen>
+    </form>
+  )
+}
 
+const GenreForm = () => {
+  const { addGenre } = useContext(NewStoryContext);
+  const [genre, setGenrea] = useState();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    addGenre(genre);
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
       <Screen id='createGenre'>
         <div id='test'></div>
         <H1>Choose a Genre.</H1>
         <Select
           type='text'
-          value={formData.genre}
-          onChange={e => setFormData({ ...formData, genre: e.currentTarget.value })}
+          value={genre}
+          onChange={e => setGenrea(e.currentTarget.value)}
           required
         >
-          <option
-            value=''
-            style={{ color: 'grey', background: '#fff' }}
-          >Select a Genre...</option>
+          <option value='' >Select a Genre...</option>
           {GENRES.map(item => (
             <option
               key={item.value}
@@ -159,48 +202,89 @@ export const CreateWheel = ({ formData, setFormData, handleSubmit, setIsBlurred 
           <BackButton href='#createTitle'>Back</BackButton>
         </Span>
       </Screen>
+    </form>
+  )
+}
 
+const PitchForm = () => {
+  const { addPitch } = useContext(NewStoryContext);
+  const [pitch, setPitch] = useState();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    addPitch(pitch);
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
       <Screen id='createPitch'>
         <H1>Pitch the Work.</H1>
         <Textarea
           placeholder='Enter a Pitch...'
-          value={formData.pitch}
-          onChange={e => setFormData({ ...formData, pitch: e.target.value })}
+          value={pitch}
+          onChange={e => setPitch(e.target.value)}
           required
         />
         <Span>
-          <NextButton href='#createCoords' onClick={setIsBlurred}>Next</NextButton>
+          <NextButton href='#createCoords'>Next</NextButton>
           <BackButton href='#createGenre'>Back</BackButton>
         </Span>
       </Screen>
+    </form>
+  )
+}
 
+const CoordinatesForm = () => {
+  const { state: { coordinates } } = useContext(NewStoryContext);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
       <Screen id='createCoords'>
         <H1>Plot Coordinates.</H1>
         {
-          formData.coordinates &&
+          coordinates &&
           <>
             <p>Longitude:</p>
-            <p>{formData.coordinates.longitude}</p>
+            <p>{coordinates[0]}</p>
             <p>Latitude:</p>
-            <p>{formData.coordinates.latitude}</p>
+            <p>{coordinates[1]}</p>
           </>
         }
         <Span>
           {
-            formData.coordinates ?
+            coordinates ?
               <NextButton href='#createBody'>Next</NextButton>
               : null
           }
           <BackButton href='#createPitch'>Back</BackButton>
         </Span>
       </Screen>
+    </form>
+  )
+}
 
+const BodyForm = () => {
+  const { addBody } = useContext(NewStoryContext);
+  const [body, setBody] = useState();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    addBody(body);
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
       <Screen id='createBody'>
         <H1>Write Content.</H1>
         <Textarea
           placeholder='Enter body of work...'
-          value={formData.body}
-          onChange={e => setFormData({ ...formData, body: e.target.value })}
+          value={body}
+          onChange={e => setBody(e.target.value)}
           required
         />
         <Span>
@@ -208,15 +292,6 @@ export const CreateWheel = ({ formData, setFormData, handleSubmit, setIsBlurred 
           <BackButton href='#createCoords'>Back</BackButton>
         </Span>
       </Screen>
-
-      <Screen id='createPublish'>
-        <H1>Well Done!</H1>
-        <Span>
-          <Submit type='submit' value='Publish' />
-          <BackButton href='#createBody'>Back</BackButton>
-        </Span>
-      </Screen>
-
     </form>
   )
 }

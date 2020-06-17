@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 
 import { CreateWheel } from '../components/createWheel.js';
 import { StoryCreateTracker } from '../components/storyCreateTracker.js';
@@ -27,27 +27,15 @@ const Overlay = styled.div`
 `;
 
 export const New = () => {
-  const { state } = useContext(NewStoryContext);
-  const [formData, setFormData] = useState({});
-  const [isBlurred, setIsBlurred] = useState(true);
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    console.log(formData);
-  }
+  const { state: { pitch } } = useContext(NewStoryContext);
 
   return (
     <>
       <Container className='noBar'>
-        <CreateWheel
-          formData={formData}
-          setFormData={data => setFormData(data)}
-          setIsBlurred={() => setIsBlurred(false)}
-          handleSubmit={handleSubmit}
-        />
+        <CreateWheel />
       </Container>
-      <StoryCreateTracker formData={formData} />
-      {isBlurred && <Overlay />}
+      {/* <StoryCreateTracker /> */}
+      {!pitch && <Overlay />}
     </>
   )
 }
