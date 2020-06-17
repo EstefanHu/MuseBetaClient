@@ -1,5 +1,6 @@
-import React, { useState, memo } from 'react';
+import React, { useState, useContext, memo } from 'react';
 import ReactMapGl from 'react-map-gl';
+import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
 import styled from 'styled-components';
 
 const MapboxView = styled.div`
@@ -13,6 +14,7 @@ const MapboxView = styled.div`
 `;
 
 export const Map = memo(({ apikey }) => {
+  const { state: { status }, addCoordinates } = useContext(NewStoryContext);
   const [viewport, setViewport] = useState({
     latitude: 47.6062,
     longitude: -122.315,
@@ -20,6 +22,11 @@ export const Map = memo(({ apikey }) => {
     height: 'calc(100vh - 60px)',
     zoom: 12.5
   });
+
+  const engageMap = e => {
+    console.log(e.lngLat);
+    if (status === 'inProgress') return addCoordinates(e.lngLat);
+  }
 
   return (
     <MapboxView>
@@ -30,7 +37,7 @@ export const Map = memo(({ apikey }) => {
         onViewportChange={viewport => {
           setViewport(viewport)
         }}
-        onClick={(e) => console.log(e)}
+        onClick={engageMap}
       />
     </MapboxView>
   )

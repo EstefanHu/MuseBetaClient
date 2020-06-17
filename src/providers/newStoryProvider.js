@@ -17,6 +17,10 @@ const newStoryReducer = (state, action) => {
     default:
       return state;
   }
+};
+
+const startStory = dispatch => () => {
+  dispatch({type: 'start_story', payload: { msg: 'inProgress' }});
 }
 
 const addTitle = dispatch => title => {
@@ -32,7 +36,9 @@ const addPitch = dispatch => pitch => {
   dispatch({ type: 'add_pitch', payload: pitch });
 }
 
-const addCoordinates = dispatch => (lng, lat) => {
+const addCoordinates = dispatch => coordinates => {
+  let lng = coordinates[0];
+  let lat = coordinates[1];
   dispatch({ type: 'add_coordinates', payload: { lng, lat } });
 }
 
@@ -42,7 +48,7 @@ const addBody = dispatch => body => {
 
 export const { Context, Provider } = createDataContext(
   newStoryReducer,
-  { addTitle, addGenre, addPitch, addCoordinates, addBody },
+  { startStory, addTitle, addGenre, addPitch, addCoordinates, addBody },
   {
     status: null,
     error: null,
