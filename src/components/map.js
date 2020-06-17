@@ -15,10 +15,10 @@ const MapboxView = styled.div`
 export const Map = memo(({ apikey }) => {
   const [viewport, setViewport] = useState({
     latitude: 47.6062,
-    longitude: -122.3321,
+    longitude: -122.315,
     width: '100vw',
     height: 'calc(100vh - 60px)',
-    zoom: 12
+    zoom: 12.5
   });
 
   return (
