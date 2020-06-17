@@ -8,6 +8,7 @@ const Container = styled.section`
   height: calc(100vh - 60px);
   z-index: 7;
   background-color: white;
+  overflow-y: auto;
 `;
 
 const Overlay = styled.div`
@@ -30,7 +31,7 @@ export const New = () => {
 
   return (
     <>
-      <Container>
+      <Container className='noBar'>
         <CreateWheel
           formData={formData}
           setFormData={data => setFormData(data)}
@@ -40,13 +41,6 @@ export const New = () => {
     </>
   )
 }
-
-const Wheel = styled.section`
-  width: 100%;
-  margin: 0 auto;
-  height: calc(100vh - 60px);
-  overflow-y: auto;
-`;
 
 const Screen = styled.article`
   min-height: calc(100vh - 60px);
@@ -149,7 +143,6 @@ const Submit = styled.input`
 
 const CreateWheel = ({ formData, setFormData }) => {
   return (
-    <Wheel className='noBar'>
       <form>
 
         <Screen id='createTitle'>
@@ -218,6 +211,5 @@ const CreateWheel = ({ formData, setFormData }) => {
         </Screen>
 
       </form>
-    </Wheel>
   )
 }
