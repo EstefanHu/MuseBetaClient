@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { API } from '../constants/api.js';
 import { Map } from '../components/map.js';
-import { Triangulate } from '../components/triangulate.js'
+import { Triangulate } from '../components/triangulate.js';
+import styled from 'styled-components';
 
-const styles = {
-  container: {
-    position: 'relative',
-    height: '100vh',
-    flex: 1
-  }
-}
+const Container = styled.div`
+  position: relative;
+  height: 100vh;
+  flex: 1;
+`;
 
 export const Background = () => {
   const [key, setKey] = useState('');
@@ -34,11 +33,11 @@ export const Background = () => {
     apiKey === null ? fetchKey() : setKey(apiKey);
   }, []);
 
-  return <div style={styles.container}>
+  return <Container>
     {key ?
       // <Map apikey={key} />
       <div style={{ position: 'fixed', backgroundColor: 'pink', height: '100%', width: '100%' }}></div>
       : <Triangulate />
     }
-  </div>;
+  </Container>;
 }
