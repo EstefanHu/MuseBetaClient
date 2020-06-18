@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { FaConnectdevelop } from 'react-icons/fa';
 import { Route, Link } from 'react-router-dom';
 import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
 import styled from 'styled-components';
@@ -20,8 +21,7 @@ const Nav = styled.nav`
 
 const Logo = styled.h1`
   font-family: Heebo;
-  margin-right: 25px;
-  margin-bottom: 0px;
+  margin: 0 25px 0 10px;
   color: white;
 `;
 
@@ -29,9 +29,10 @@ const Search = styled.input`
   font-size: 1rem;
   border: none;
   border-radius: 3px;
-  padding: 10px 12px;
+  padding: 8px 12px;
   outline: none;
   margin-right: 10px;
+  width: 200px;
 `;
 
 const Button = styled.button`
@@ -53,6 +54,7 @@ export const NavBar = () => {
 
   return (
     <Nav>
+      <FaConnectdevelop size={35} color='black' />
       <Logo>:Muse</Logo>
       <span>
         <Route exact path='/app/home'>
