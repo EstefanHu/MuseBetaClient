@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,7 +7,9 @@ import {
 } from 'react-router-dom';
 import Cookie from 'js-cookie';
 
-import {Landing} from './routers/Landing.js';
+import { Context as LocationContext } from './providers/locationProvider.js';
+
+import { Landing } from './routers/Landing.js';
 import { Primary } from './routers/Primary';
 import { FourOhFour } from './views/FourOhFour';
 
@@ -30,11 +32,11 @@ const AuthRoute = ({ component: Component, ...rest }) => (
 )
 
 export const App = () => {
+  const { approximateLocation } = useContext(LocationContext);
+
   useEffect(() => {
-    fetch('http://ip-api.com/json')
-      .then(res => res.json())
-      .then(console.log)
-      .catch(console.error);
+    approximateLocation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
