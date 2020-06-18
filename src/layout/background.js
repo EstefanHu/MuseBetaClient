@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { API } from '../constants/api.js';
-import { Map } from '../components/map.js';
+import { Map } from './map.js';
 import { Triangulate } from '../components/triangulate.js';
 import styled from 'styled-components';
 
@@ -36,8 +36,8 @@ export const Background = () => {
   return <Container>
     {
       key ?
-        // <Map apikey={key} />
-        <div style={{ position: 'fixed', backgroundColor: 'pink', height: '100%', width: '100%' }}></div>
+        <Map apikey={key} />
+        // <div style={{ position: 'fixed', backgroundColor: 'pink', height: '100%', width: '100%' }}></div>
         : <Triangulate />
     }
   </Container>;

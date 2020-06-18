@@ -83,7 +83,7 @@ const styles = {
 const Container = styled.section`
   width: 500px;
   height: 100vh;
-  background-color: rgb(250,250,250);
+  background-color: rgb(252,252,252);
   position: fixed;
   right: 0;
   top: 0;

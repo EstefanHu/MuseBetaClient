@@ -35,6 +35,7 @@ const fetchStories = dispatch => async (community, callback) => {
   try {
     const response = await fetch(API + '/story/community/' + community);
     const data = await response.json();
+    console.log(data.stories);
     dispatch({ type: 'fetch_stories', payload: data.stories });
     callback();
   } catch (err) {

@@ -78,7 +78,10 @@ export const Home = () => {
       <Span className='noBar'>
         <Button onClick={() => setGenre('All')}>All</Button>
         {GENRES.map(item => (
-          <Button key={item.value} onClick={() => setGenre(item.value)}>{item.value}</Button>
+          <Button
+            key={item.value}
+            onClick={() => setGenre(item.value)}
+          >{item.value}</Button>
         ))}
       </Span>
       {state.map((item, idx) => {
@@ -92,6 +95,7 @@ export const Home = () => {
             createdAt={item.createdAt}
             author={item.author}
           />
+        return null;
       })}
       <More>
         {

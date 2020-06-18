@@ -2,17 +2,36 @@ import createDataContext from './createDataContext.js';
 
 const LocationReducer = (state, action) => {
   switch (action.type) {
+    case 'approximate_locaiton':
+      return {
+        ...state,
+        approximateLongitude: action.payload.longitude,
+        approximateLatitude: action.payload.latitude,
+        community: action.payload.city, //TODO: will fine tune
+        city: action.payload.city,
+        region: action.payload.regionName,
+      }
     default:
       return state;
   }
 }
 
-const approximateLocation = dispatch => () => {
-  dispatch({ type: 'approximate_location' });
+const approximateLocation = dispatch => async () => {
+  const response = await fetch('http://ip-api.com/json');
+  const data = await response.json();
+  dispatch({ type: 'approximate_location', payload: data });
 }
 
 export const { Provider, Context } = createDataContext(
   LocationReducer,
   { approximateLocation },
-  {}
+  {
+    approximateLongitude: null,
+    approximateLatitude: null,
+    longitude: null,
+    latitude: null,
+    community: null,
+    city: null,
+    region: null
+  }
 )
