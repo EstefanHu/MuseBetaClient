@@ -5,6 +5,7 @@ import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
 import { Context as StoryContext } from '../providers/storyProvider.js';
 
 import styled from 'styled-components';
+import { withRouter } from 'react-router';
 
 const Container = styled.section`
   position: 'fixed';
@@ -131,9 +132,14 @@ const Submit = styled.button`
   border-radius: 5px;
 `;
 
-export const CreateWheel = () => {
+export const CreateWheel = withRouter(({ history }) => {
   const { state } = useContext(NewStoryContext);
   const { addStory } = useContext(StoryContext);
+
+  const publishStory = () => {
+    addStory(state);
+    history.push('/')
+  }
 
   return (
     <Container>
@@ -146,13 +152,13 @@ export const CreateWheel = () => {
       <Screen id='createPublish'>
         <H1>Well Done!</H1>
         <Span>
-          <Submit onClick={() => addStory(state)}>Publish</Submit>
+          <Submit onClick={publishStory}>Publish</Submit>
           <BackButton href='#createBody'>Back</BackButton>
         </Span>
       </Screen>
     </Container>
   )
-}
+});
 
 const TitleForm = () => {
   const { addTitle } = useContext(NewStoryContext);
@@ -253,7 +259,7 @@ const PitchForm = () => {
 }
 
 const CoordinatesForm = () => {
-  const { state: { coordinates } } = useContext(NewStoryContext);
+  const { state: { longitude, latitude } } = useContext(NewStoryContext);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -266,17 +272,17 @@ const CoordinatesForm = () => {
       <Screen id='createCoordinates'>
         <H1>Plot Coordinates.</H1>
         {
-          coordinates &&
+          longitude &&
           <>
             <p>Longitude:</p>
-            <p>{coordinates[0]}</p>
+            <p>{longitude}</p>
             <p>Latitude:</p>
-            <p>{coordinates[1]}</p>
+            <p>{latitude}</p>
           </>
         }
         <Span>
           {
-            coordinates ?
+            longitude ?
               <NextButton type='submit' value='Next' />
               : null
           }

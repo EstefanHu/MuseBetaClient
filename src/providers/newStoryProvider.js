@@ -3,7 +3,7 @@ import createDataContext from './createDataContext.js';
 const newStoryReducer = (state, action) => {
   switch (action.type) {
     case 'update_story':
-      return { ...state, status: action.payload.msg };
+      return { ...state, status: action.payload };
     case 'add_title':
       return { ...state, title: action.payload };
     case 'add_genre':
@@ -11,7 +11,11 @@ const newStoryReducer = (state, action) => {
     case 'add_pitch':
       return { ...state, pitch: action.payload };
     case 'add_coordinates':
-      return { ...state, coordinates: action.payload };
+      return {
+        ...state,
+        longitude: action.payload.longitude,
+        latitude: action.payload.latitude
+      };
     case 'add_body':
       return { ...state, body: action.payload };
     case 'add_error':
@@ -22,11 +26,11 @@ const newStoryReducer = (state, action) => {
 };
 
 const startStory = dispatch => () => {
-  dispatch({ type: 'update_story', payload: { msg: 'inProgress' } });
+  dispatch({ type: 'update_story', payload: 'inProgress' });
 }
 
 const endStory = dispatch => () => {
-  dispatch({ type: 'update_story', payload: { msg: 'inactive' } });
+  dispatch({ type: 'update_story', payload: 'inactive' });
 }
 
 const addTitle = dispatch => title => {
@@ -42,9 +46,12 @@ const addPitch = dispatch => pitch => {
 }
 
 const addCoordinates = dispatch => coordinates => {
-  let lng = coordinates[0];
-  let lat = coordinates[1];
-  dispatch({ type: 'add_coordinates', payload: [lng, lat] });
+  let longitude = coordinates[0];
+  let latitude = coordinates[1];
+  dispatch({
+    type: 'add_coordinates',
+    payload: { longitude, latitude }
+  });
 }
 
 const addBody = dispatch => body => {

@@ -7,11 +7,12 @@ const storyReducer = (state, action) => {
       return [
         ...state,
         {
-          id: Math.floor(Math.random() * 9999),
+          id: action.payload._id,
           title: action.payload.title,
           description: action.payload.description,
           genre: action.payload.genre,
-          coordinates: [action.payload.longitude, action.payload.latitude],
+          longitude: action.payload.longitude,
+          latitude: action.payload.latitude,
           body: action.payload.body
         }
       ];
@@ -28,8 +29,8 @@ const storyReducer = (state, action) => {
   }
 };
 
-const addStory = dispatch => async (state, callback) => {
-  console.log('Adding Story: ' + state);
+const addStory = dispatch => async story => {
+  console.log('Adding Story: ' + story);
   const response = await fetch(API + '/story/create', {
     credentials: 'include',
     method: 'POST',
@@ -37,12 +38,11 @@ const addStory = dispatch => async (state, callback) => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(state)
+    body: JSON.stringify(story)
   });
-  const data = JSON.parse(response);
+  const data = await response.json();
   console.log(data);
-  dispatch({ type: 'add_story', payload: { ...state, _id: data._id } });
-  callback();
+  dispatch({ type: 'add_story', payload: { ...story, _id: data._id } });
 }
 
 const editStory = dispatch => (id, title, description, genre, body, callback) => {
