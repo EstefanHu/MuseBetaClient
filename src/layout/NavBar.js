@@ -12,7 +12,7 @@ const Nav = styled.nav`
   top: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 50px;
   z-index: 10;
   color: var(--color);
   padding-left: 20px;

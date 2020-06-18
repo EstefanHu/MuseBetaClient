@@ -12,7 +12,7 @@ import styled from 'styled-components';
 
 const Main = styled.main`
   position: fixed;
-  top: 60px;
+  top: 50px;
   bottom: 0;
   left: 0;
   right: 0;
