@@ -24,7 +24,7 @@ const styles = {
     textDecoration: 'none',
     fontSize: '.9rem',
   },
-  description: {
+  pitch: {
     textIndent: '20px'
   },
   meta: {
@@ -54,14 +54,14 @@ const styles = {
   }
 }
 
-export const Pitch = ({ index, title, description, genre, createdAt, author, authorId }) => {
+export const Pitch = ({ index, title, pitch, genre, createdAt, author, authorId }) => {
   return (
     <article style={styles.container}>
       <header style={styles.header}>
         <h1 style={styles.title}>{index}. {title}</h1>
         <Link to={`/app/genre/${genre}`} style={styles.genre}>{genre}</Link>
       </header>
-      <p style={styles.description}>{description}</p>
+      <p style={styles.pitch}>{pitch}</p>
       <p style={styles.meta}><Link to={`/app/profile/${authorId}`} style={styles.author}>{author}&nbsp;</Link>-&nbsp;{createdAt}</p>
       <footer style={styles.actions}>
         <button style={styles.button}>

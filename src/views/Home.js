@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context as StoryContext } from '../providers/storyProvider.js';
 
 import { Filter } from '../components/filter.js';
 import { Pitch } from '../components/pitch.js';
@@ -32,6 +33,8 @@ const MoreButton = styled.button`
 `;
 
 export const Home = () => {
+  const { state } = useContext(StoryContext);
+
   const fetchStories = () => {
     console.log('hello')
   }
@@ -39,14 +42,17 @@ export const Home = () => {
   return (
     <Container className='noBar'>
       <Filter setGenre={item => console.log(item)} />
-      <Pitch
-        index={1}
-        title='Hello World'
-        description={'Industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the.'}
-        genre={'Fiction'}
-        createdAt={'October 17, 2019'}
-        author={'Estefan Hu'}
-      />
+      {state.map((item, idx) => (
+        <Pitch
+          key={item._id}
+          index={idx + 1}
+          title={item.title}
+          genre={item.genre}
+          pitch={item.pitch}
+          createdAt={item.createdAt}
+          author={item.author}
+        />
+      ))}
       <More>
         <MoreButton onClick={fetchStories}>See more results</MoreButton>
       </More>
