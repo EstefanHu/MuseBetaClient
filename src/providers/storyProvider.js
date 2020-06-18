@@ -31,18 +31,18 @@ const storyReducer = (state, action) => {
   }
 };
 
-const fetchStories = dispatch => async community => {
+const fetchStories = dispatch => async (community, callback) => {
   try {
     const response = await fetch(API + '/story/community/' + community);
     const data = await response.json();
     dispatch({ type: 'fetch_stories', payload: data.stories });
+    callback();
   } catch (err) {
     console.log(err);
   }
 }
 
 const addStory = dispatch => async story => {
-  console.log('Adding Story: ' + story);
   const response = await fetch(API + '/story/create', {
     credentials: 'include',
     method: 'POST',
@@ -53,7 +53,6 @@ const addStory = dispatch => async story => {
     body: JSON.stringify(story)
   });
   const data = await response.json();
-  console.log(data);
   dispatch({ type: 'add_story', payload: { ...story, _id: data._id } });
 }
 

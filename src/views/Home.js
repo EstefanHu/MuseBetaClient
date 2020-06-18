@@ -1,8 +1,9 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { Context as StoryContext } from '../providers/storyProvider.js';
 
 import { Filter } from '../components/filter.js';
 import { Pitch } from '../components/pitch.js';
+import { Loading } from '../components/loading.js';
 
 import styled from 'styled-components';
 
@@ -34,18 +35,20 @@ const MoreButton = styled.button`
 
 export const Home = () => {
   const { state, fetchStories } = useContext(StoryContext);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchStories('Seattle');
+    fetchStories('Seattle', () => setIsLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchMoreStories = () => {
+    setIsLoading(true);
     console.log('hello')
   }
 
   return (
-    <Container className='noBar'>
+    <Container>
       <Filter setGenre={item => console.log(item)} />
       {state.map((item, idx) => (
         <Pitch
@@ -59,7 +62,13 @@ export const Home = () => {
         />
       ))}
       <More>
-        <MoreButton onClick={fetchMoreStories}>See more results</MoreButton>
+        {
+          isLoading ?
+            <Loading />
+            : <MoreButton
+              onClick={fetchMoreStories}
+            >See more results</MoreButton>
+        }
       </More>
     </Container>
   )
