@@ -3,6 +3,8 @@ import { API } from '../constants/api.js';
 
 const storyReducer = (state, action) => {
   switch (action.type) {
+    case 'fetch_stories':
+      return action.payload;
     case 'add_story':
       return [
         ...state,
@@ -28,6 +30,16 @@ const storyReducer = (state, action) => {
       return state;
   }
 };
+
+const fetchStories = dispatch => async () => {
+  try {
+    const response = await fetch(API + '/story/community/Seattle');
+    const data = await response.json();
+    dispatch({ type: 'fetch_stories', payload: data.stories });
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 const addStory = dispatch => async story => {
   console.log('Adding Story: ' + story);
@@ -56,7 +68,7 @@ const deleteStory = dispatch => id => {
 
 export const { Context, Provider } = createDataContext(
   storyReducer,
-  { addStory, editStory, deleteStory },
+  { fetchStories, addStory, editStory, deleteStory },
   [{
     _id: 'ie4w9gee0rq',
     title: 'Hello World',

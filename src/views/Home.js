@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Context as StoryContext } from '../providers/storyProvider.js';
 
 import { Filter } from '../components/filter.js';
@@ -33,9 +33,13 @@ const MoreButton = styled.button`
 `;
 
 export const Home = () => {
-  const { state } = useContext(StoryContext);
+  const { state, fetchStories } = useContext(StoryContext);
 
-  const fetchStories = () => {
+  useEffect(() => {
+    fetchStories();
+  }, []);
+
+  const fetchMoreStories = () => {
     console.log('hello')
   }
 
@@ -54,7 +58,7 @@ export const Home = () => {
         />
       ))}
       <More>
-        <MoreButton onClick={fetchStories}>See more results</MoreButton>
+        <MoreButton onClick={fetchMoreStories}>See more results</MoreButton>
       </More>
     </Container>
   )
