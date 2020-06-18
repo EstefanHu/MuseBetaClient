@@ -1,7 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 
 import { CreateWheel } from '../components/createWheel.js';
-import { StoryCreateTracker } from '../components/storyCreateTracker.js';
 
 import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
 
@@ -29,7 +28,6 @@ export const New = () => {
   return (
     <>
       <CreateWheel />
-      {/* <StoryCreateTracker /> */}
       {!pitch && <Overlay />}
     </>
   )

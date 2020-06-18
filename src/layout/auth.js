@@ -3,8 +3,6 @@ import { withRouter, Link } from 'react-router-dom';
 import { API } from '../constants/api.js';
 
 import { GrClose } from 'react-icons/gr';
-import { FlipStateButton } from '../components/flipStateButton.js';
-
 import styled from 'styled-components';
 
 const styles = {
@@ -13,6 +11,12 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'flex-end',
     zIndex: 1,
+  },
+  button: {
+    border: 'none',
+    fontSize: '1rem',
+    background: 'transparent',
+    cursor: 'pointer',
   },
   close: {
     marginLeft: '40px',
@@ -138,11 +142,17 @@ export const Auth = () => {
   return isOpen ? (
     <Container>
       <header style={styles.header}>
-        <FlipStateButton
-          trueTitle={'Login'}
-          falseTitle={'Register'}
-          state={hasAccount}
-          action={setHasAccount} />
+        {
+          hasAccount ?
+            <button
+              onClick={() => setHasAccount(false)}
+              style={styles.button}
+            >Register</button>
+            : <button
+              onClick={() => setHasAccount(true)}
+              style={styles.button}
+            >Login</button>
+        }
         <GrClose
           style={styles.close}
           size={20}
@@ -242,7 +252,7 @@ const Register = withRouter(({ history }) => {
     e.preventDefault();
     if (password.length < 8) return alert('Password is not long enough');
     if (password !== confirmPassword) return alert('Passwords do not match');
-    
+
     fetch(API + '/auth/register', {
       credentials: 'include',
       method: 'POST',
