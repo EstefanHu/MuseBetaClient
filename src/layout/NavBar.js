@@ -53,16 +53,16 @@ export const NavBar = () => (
     <FaConnectdevelop size={35} color='black' />
     <Logo>:Muse</Logo>
     <span>
-      <Route exact path='/app/home'>
+      <Route exact path='/'>
         <>
           <Search placeholder='Search...' />
-          <Link to='/app/new'>
+          <Link to='/new'>
             <Button>New</Button>
           </Link>
         </>
       </Route>
-      <Route exact path='/app/new'>
-        <Link to='/app/home'>
+      <Route exact path='/new'>
+        <Link to='/'>
           <Button>Cancel</Button>
         </Link>
       </Route>
