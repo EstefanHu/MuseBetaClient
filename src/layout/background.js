@@ -16,7 +16,7 @@ export const Background = () => {
   useEffect(() => {
     console.log('looking for key');
 
-    const fetchKey = async setKey => {
+    const fetchKey = async () => {
       await fetch(API + '/auth/mapKey', {
         credentials: 'include'
       }).then(res => res.json())

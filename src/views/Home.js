@@ -13,68 +13,6 @@ const Container = styled.section`
   height: 100vh;
 `;
 
-const More = styled.div`
-  width: 100%;
-  height: 100px;
-  border-top: 1px solid lightgrey;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const MoreButton = styled.button`
-  background-color: var(--color);
-  height: 45px;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 8px 20px;
-`;
-
-export const Home = () => {
-  const { state, fetchStories } = useContext(StoryContext);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    fetchStories('Seattle', () => setIsLoading(false));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const fetchMoreStories = () => {
-    setIsLoading(true);
-    console.log('hello')
-  }
-
-  return (
-    <Container>
-      <Filter setGenre={item => console.log(item)} />
-      {state.map((item, idx) => (
-        <Intro
-          key={item._id}
-          index={idx + 1}
-          title={item.title}
-          genre={item.genre}
-          pitch={item.pitch}
-          createdAt={item.createdAt}
-          author={item.author}
-        />
-      ))}
-      <More>
-        {
-          isLoading ?
-            <Loading />
-            : <MoreButton
-              onClick={fetchMoreStories}
-            >See more results</MoreButton>
-        }
-      </More>
-    </Container>
-  )
-}
-
 const Span = styled.span`
   display: block;
   width: 100%;
@@ -99,11 +37,71 @@ const Button = styled.button`
   }
 `;
 
-const Filter = ({ setGenre }) => (
-  <Span className='noBar'>
-    <Button onClick={() => setGenre('All')}>All</Button>
-    {GENRES.map(item => (
-      <Button key={item.value} onClick={() => setGenre(item.value)}>{item.value}</Button>
-    ))}
-  </Span>
-)
+const More = styled.div`
+  width: 100%;
+  height: 100px;
+  border-top: 1px solid lightgrey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const MoreButton = styled.button`
+  background-color: var(--color);
+  height: 45px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 8px 20px;
+`;
+
+export const Home = () => {
+  const { state, fetchStories } = useContext(StoryContext);
+  const [isLoading, setIsLoading] = useState(true);
+  const [genre, setGenre] = useState('All');
+
+  useEffect(() => {
+    fetchStories('Seattle', () => setIsLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const fetchMoreStories = () => {
+    setIsLoading(true);
+    console.log('hello')
+  }
+
+  return (
+    <Container>
+      <Span className='noBar'>
+        <Button onClick={() => setGenre('All')}>All</Button>
+        {GENRES.map(item => (
+          <Button key={item.value} onClick={() => setGenre(item.value)}>{item.value}</Button>
+        ))}
+      </Span>
+      {state.map((item, idx) => {
+        if (genre === 'All' || genre === item.genre)
+          return <Intro
+            key={item._id}
+            index={idx + 1}
+            title={item.title}
+            genre={item.genre}
+            pitch={item.pitch}
+            createdAt={item.createdAt}
+            author={item.author}
+          />
+      })}
+      <More>
+        {
+          isLoading ?
+            <Loading />
+            : <MoreButton
+              onClick={fetchMoreStories}
+            >See more results</MoreButton>
+        }
+      </More>
+    </Container>
+  )
+}

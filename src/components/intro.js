@@ -74,7 +74,7 @@ const Button = styled.button`
   align-items: center;
 
   &:focus {
-
+    
   }
 `;
 
