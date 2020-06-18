@@ -180,7 +180,7 @@ const Login = withRouter(({ history, setHasAccount }) => {
   const launchLogin = e => {
     e.preventDefault();
     loginUser(email, password);
-    history.push('/app');
+    history.push('/app/home');
   }
 
   return (
@@ -225,7 +225,7 @@ const Register = withRouter(({ history }) => {
     if (password.length < 8) return alert('Password is not long enough');
     if (password !== confirmPassword) return alert('Passwords do not match');
     registerUser(firstName, lastName, email, password);
-    history.push('/app');
+    history.push('/app/home');
   }
 
   return (
