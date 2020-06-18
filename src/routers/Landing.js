@@ -13,10 +13,10 @@ export const Landing = () => {
     <>
       <header style={styles.header}>
         <FaConnectdevelop size={40} color='black' />&nbsp;
-        <Link style={{ color: 'white', textDecoration: 'none' }} to='/'>
+        <Link style={{ color: 'white', textDecoration: 'none' }} to='/landing/'>
           <h1>:Muse</h1>
         </Link>
-        <Route exact path='/'>
+        <Route exact path='/landing/'>
           <ul style={styles.links}>
             <li>
               <ScrollLink

@@ -12,7 +12,7 @@ const styles = {
 export const FourOhFour = () => {
   return (
     <main style={styles.container}>
-      <Link to='/app/home'>
+      <Link to='/'>
         <h1>404</h1>
       </Link>
     </main>

@@ -25,9 +25,9 @@ export const Primary = () => {
     <>
       <NavBar />
       <Main>
-        <Route exact path='/app/home' component={Home} />
-        <Route exact path='/app/new' component={New} />
-        <Route exact path='/app/profile' component={Profile} />
+        <Route exact path='/' component={Home} />
+        <Route exact path='/new' component={New} />
+        <Route exact path='/profile' component={Profile} />
         <Background />
       </Main>
     </>

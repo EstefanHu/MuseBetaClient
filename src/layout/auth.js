@@ -163,7 +163,7 @@ export const Auth = () => {
         <h1 style={styles.watermark}>:Muse</h1>
       </div>
       <div style={styles.content}>
-        <a href='/app/home'>to App</a>
+        <a href='/'>to App</a>
         {hasAccount ? <Login setHasAccount={setHasAccount} /> : <Register />}
       </div>
     </Container>
@@ -208,7 +208,7 @@ const Login = withRouter(({ history, setHasAccount }) => {
         return { status: 'success' };
       })
       .catch(console.error);
-    history.push('/app/home');
+    history.push('/');
   }
 
   return (
@@ -233,7 +233,7 @@ const Login = withRouter(({ history, setHasAccount }) => {
         value='Log in' />
       <span style={styles.endLinks}>
         <p>
-          <Link style={styles.link} to='/forgot'>Forgot Password?</Link> -&nbsp;
+          <Link style={styles.link} to='/landing/forgot'>Forgot Password?</Link> -&nbsp;
         <span style={styles.link} onClick={() => setHasAccount(false)}>Sign up for :Muse</span>
         </p>
       </span>
@@ -273,7 +273,7 @@ const Register = withRouter(({ history }) => {
         return { status: 'success' };
       })
       .catch(console.error);
-    history.push('/app/home');
+    history.push('/');
   }
 
   return (
@@ -326,8 +326,8 @@ const Register = withRouter(({ history }) => {
       <span style={styles.endLinks}>
         <p>Click "Register" above to accept Muse's</p>
         <p>
-          <Link style={styles.link} to='/terms'>Terms of Service</Link> &&nbsp;
-          <Link style={styles.link} to='/privacy'>Privacy Policy.</Link>
+          <Link style={styles.link} to='/landing/terms'>Terms of Service</Link> &&nbsp;
+          <Link style={styles.link} to='/landing/privacy'>Privacy Policy.</Link>
         </p>
       </span>
     </Form>
