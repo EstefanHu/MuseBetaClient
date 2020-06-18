@@ -6,16 +6,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const styles = {
-  container: {
-    width: '100%',
-    padding: '15px 20px 15px 20px',
-    borderTop: '1px solid lightgrey'
-  },
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    marginBottom: '3px',
-  },
   title: {
     fontSize: '1.5rem',
     color: 'var(--color)',
@@ -26,19 +16,33 @@ const styles = {
     textDecoration: 'none',
     fontSize: '.9rem',
   },
-  pitch: {
-    textIndent: '20px'
-  },
-  meta: {
-    marginTop: '5px',
-    fontSize: '.9rem',
-    color: 'grey',
-  },
   author: {
     color: 'grey',
     textDecoration: 'none',
   },
 }
+
+const Article = styled.article`
+  width: 100%;
+  padding: 15px 20px;
+  border-top: 1px solid lightgrey;
+`;
+
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3px;
+`;
+
+const Pitch = styled.p`
+  text-indent: 20px;
+`;
+
+const Meta = styled.p`
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: grey
+`;
 
 const Footer = styled.footer`
   display: flex;
@@ -67,15 +71,20 @@ const Button = styled.button`
   }
 `;
 
-export const Pitch = ({ index, title, pitch, genre, createdAt, author, authorId }) => {
+export const Intro = ({ index, title, pitch, genre, createdAt, author, authorId }) => {
   return (
-    <article style={styles.container}>
-      <header style={styles.header}>
+    <Article>
+      <Header>
         <h1 style={styles.title}>{index}. {title}</h1>
         <Link to={`/app/genre/${genre}`} style={styles.genre}>{genre}</Link>
-      </header>
-      <p style={styles.pitch}>{pitch}</p>
-      <p style={styles.meta}><Link to={`/app/profile/${authorId}`} style={styles.author}>{author}&nbsp;</Link>-&nbsp;{createdAt}</p>
+      </Header>
+      <Pitch>{pitch}</Pitch>
+      <Meta>
+        <Link to={`/app/profile/${authorId}`} style={styles.author}>
+          {author}&nbsp;
+        </Link>-&nbsp;
+        {createdAt}
+      </Meta>
       <Footer>
         <Span>
           <Button>
@@ -86,6 +95,6 @@ export const Pitch = ({ index, title, pitch, genre, createdAt, author, authorId 
           </Button>
         </Span>
       </Footer>
-    </article>
+    </Article>
   )
 }

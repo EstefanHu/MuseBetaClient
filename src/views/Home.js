@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from 'react';
 import { Context as StoryContext } from '../providers/storyProvider.js';
 
 import { Filter } from '../components/filter.js';
-import { Pitch } from '../components/pitch.js';
+import { Intro } from '../components/intro.js';
 import { Loading } from '../components/loading.js';
 
 import styled from 'styled-components';
@@ -52,7 +52,7 @@ export const Home = () => {
     <Container>
       <Filter setGenre={item => console.log(item)} />
       {state.map((item, idx) => (
-        <Pitch
+        <Intro
           key={item._id}
           index={idx + 1}
           title={item.title}
