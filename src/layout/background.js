@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getApiKey } from '../hooks/locationHooks';
+import { API } from '../constants/api.js';
 import { Map } from '../components/map.js';
 import { Triangulate } from '../components/triangulate.js'
 
@@ -16,13 +16,28 @@ export const Background = () => {
 
   useEffect(() => {
     console.log('looking for key');
-    getApiKey(setKey);
+
+    const fetchKey = async setKey => {
+      await fetch(API + '/auth/mapKey', {
+        credentials: 'include'
+      }).then(res => res.json())
+        .then(res => {
+          sessionStorage.setItem('key', res.key);
+          apiKey = res.key;
+        })
+        .catch(console.error);
+
+      setKey(apiKey);
+    };
+
+    let apiKey = sessionStorage.getItem('key');
+    apiKey === null ? fetchKey() : setKey(apiKey);
   }, []);
 
   return <div style={styles.container}>
     {key ?
-      <Map apikey={key} />
-      // <div style={{ position: 'fixed', backgroundColor: 'pink', height: '100%', width: '100%' }}></div>
+      // <Map apikey={key} />
+      <div style={{ position: 'fixed', backgroundColor: 'pink', height: '100%', width: '100%' }}></div>
       : <Triangulate />
     }
   </div>;
