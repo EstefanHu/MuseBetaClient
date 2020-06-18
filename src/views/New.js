@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 
 import { CreateWheel } from '../components/createWheel.js';
 import { StoryCreateTracker } from '../components/storyCreateTracker.js';
@@ -18,7 +18,13 @@ const Overlay = styled.div`
 `;
 
 export const New = () => {
-  const { state: { pitch } } = useContext(NewStoryContext);
+  const { state: { pitch }, startStory, endStory } = useContext(NewStoryContext);
+
+  useEffect(() => {
+    startStory();
+
+    return () => endStory();
+  }, []);
 
   return (
     <>

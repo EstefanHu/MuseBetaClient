@@ -132,6 +132,8 @@ const Submit = styled.button`
 export const CreateWheel = () => {
   const { state } = useContext(NewStoryContext);
 
+  console.log(state);
+
   return (
     <Container>
       <TitleForm />

@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FaConnectdevelop } from 'react-icons/fa';
 import { Route, Link } from 'react-router-dom';
-import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
@@ -49,28 +48,24 @@ const Button = styled.button`
   }
 `;
 
-export const NavBar = () => {
-  const { startStory, endStory } = useContext(NewStoryContext);
-
-  return (
-    <Nav>
-      <FaConnectdevelop size={35} color='black' />
-      <Logo>:Muse</Logo>
-      <span>
-        <Route exact path='/app/home'>
-          <>
-            <Search placeholder='Search...' />
-            <Link to='/app/new'>
-              <Button onClick={startStory}>New</Button>
-            </Link>
-          </>
-        </Route>
-        <Route exact path='/app/new'>
-          <Link to='/app/home'>
-            <Button onClick={endStory}>Cancel</Button>
+export const NavBar = () => (
+  <Nav>
+    <FaConnectdevelop size={35} color='black' />
+    <Logo>:Muse</Logo>
+    <span>
+      <Route exact path='/app/home'>
+        <>
+          <Search placeholder='Search...' />
+          <Link to='/app/new'>
+            <Button>New</Button>
           </Link>
-        </Route>
-      </span>
-    </Nav>
-  )
-}
+        </>
+      </Route>
+      <Route exact path='/app/new'>
+        <Link to='/app/home'>
+          <Button>Cancel</Button>
+        </Link>
+      </Route>
+    </span>
+  </Nav>
+)
