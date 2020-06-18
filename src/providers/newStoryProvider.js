@@ -5,15 +5,15 @@ const newStoryReducer = (state, action) => {
     case 'update_story':
       return { ...state, status: action.payload.msg };
     case 'add_title':
-      return { ...state, title: action.payload.title };
+      return { ...state, title: action.payload };
     case 'add_genre':
-      return { ...state, genre: action.payload.genre };
+      return { ...state, genre: action.payload };
     case 'add_pitch':
-      return { ...state, pitch: action.payload.pitch };
+      return { ...state, pitch: action.payload };
     case 'add_coordinates':
-      return { ...state, coordinates: action.payload.coordinates };
+      return { ...state, coordinates: action.payload };
     case 'add_body':
-      return { ...state, body: action.payload.body };
+      return { ...state, body: action.payload };
     case 'add_error':
       return { ...state, error: action.payload.error };
     default:
@@ -22,16 +22,17 @@ const newStoryReducer = (state, action) => {
 };
 
 const startStory = dispatch => () => {
+  console.log('Provider starting story');
   dispatch({ type: 'update_story', payload: { msg: 'inProgress' } });
 }
 
 const endStory = dispatch => () => {
+  console.log('Provider ending story');
   dispatch({ type: 'update_story', payload: { msg: 'inactive' } });
 }
 
 const addTitle = dispatch => title => {
-  let error;
-  dispatch({ type: 'add_title', payload: { title, error } });
+  dispatch({ type: 'add_title', payload: title });
 }
 
 const addGenre = dispatch => genre => {
@@ -43,9 +44,10 @@ const addPitch = dispatch => pitch => {
 }
 
 const addCoordinates = dispatch => coordinates => {
+  console.log('PROVIDER_LOG: ' + coordinates);
   let lng = coordinates[0];
   let lat = coordinates[1];
-  dispatch({ type: 'add_coordinates', payload: { lng, lat } });
+  dispatch({ type: 'add_coordinates', payload: [lng, lat] });
 }
 
 const addBody = dispatch => body => {
