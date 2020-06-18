@@ -31,9 +31,9 @@ const storyReducer = (state, action) => {
   }
 };
 
-const fetchStories = dispatch => async () => {
+const fetchStories = dispatch => async community => {
   try {
-    const response = await fetch(API + '/story/community/Seattle');
+    const response = await fetch(API + '/story/community/' + community);
     const data = await response.json();
     dispatch({ type: 'fetch_stories', payload: data.stories });
   } catch (err) {

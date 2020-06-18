@@ -36,7 +36,8 @@ export const Home = () => {
   const { state, fetchStories } = useContext(StoryContext);
 
   useEffect(() => {
-    fetchStories();
+    fetchStories('Seattle');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchMoreStories = () => {
