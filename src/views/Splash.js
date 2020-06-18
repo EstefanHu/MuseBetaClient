@@ -1,11 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BsArrowDown } from 'react-icons/bs';
 
 export const Splash = () => {
-  useEffect(() => {
-    console.log('hello');
-  }, [])
-
   return (
     <main style={styles.container}>
       <section style={styles.hero}>

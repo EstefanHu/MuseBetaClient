@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { loginUser, registerUser } from '../hooks/authHooks.js';
+import { API } from '../constants/api.js';
+
 import { GrClose } from 'react-icons/gr';
 import { FlipStateButton } from '../components/flipStateButton.js';
+
+import styled from 'styled-components';
 
 const styles = {
   header: {
@@ -179,7 +181,23 @@ const Login = withRouter(({ history, setHasAccount }) => {
 
   const launchLogin = e => {
     e.preventDefault();
-    loginUser(email, password);
+    fetch(API + '/auth/login', {
+      credentials: 'include',
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email,
+        password
+      })
+    }).then(res => res.json())
+      .then(res => {
+        if (res.err) return { status: 'failure', payload: res.err };
+        return { status: 'success' };
+      })
+      .catch(console.error);
     history.push('/app/home');
   }
 
@@ -224,7 +242,27 @@ const Register = withRouter(({ history }) => {
     e.preventDefault();
     if (password.length < 8) return alert('Password is not long enough');
     if (password !== confirmPassword) return alert('Passwords do not match');
-    registerUser(firstName, lastName, email, password);
+    
+    fetch(API + '/auth/register', {
+      credentials: 'include',
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        password,
+      })
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.err) return { status: 'failure', payload: res.err };
+        return { status: 'success' };
+      })
+      .catch(console.error);
     history.push('/app/home');
   }
 
