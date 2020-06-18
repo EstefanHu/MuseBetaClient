@@ -22,12 +22,10 @@ const newStoryReducer = (state, action) => {
 };
 
 const startStory = dispatch => () => {
-  console.log('Provider starting story');
   dispatch({ type: 'update_story', payload: { msg: 'inProgress' } });
 }
 
 const endStory = dispatch => () => {
-  console.log('Provider ending story');
   dispatch({ type: 'update_story', payload: { msg: 'inactive' } });
 }
 
@@ -44,7 +42,6 @@ const addPitch = dispatch => pitch => {
 }
 
 const addCoordinates = dispatch => coordinates => {
-  console.log('PROVIDER_LOG: ' + coordinates);
   let lng = coordinates[0];
   let lat = coordinates[1];
   dispatch({ type: 'add_coordinates', payload: [lng, lat] });

@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { GENRES } from '../constants/genre.js';
+
 import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
+import { Context as StoryContext } from '../providers/storyProvider.js';
 
 import styled from 'styled-components';
 
@@ -131,8 +133,7 @@ const Submit = styled.button`
 
 export const CreateWheel = () => {
   const { state } = useContext(NewStoryContext);
-
-  console.log(state);
+  const { addStory } = useContext(StoryContext);
 
   return (
     <Container>
@@ -145,7 +146,7 @@ export const CreateWheel = () => {
       <Screen id='createPublish'>
         <H1>Well Done!</H1>
         <Span>
-          <Submit value='Publish' onClick={() => console.log(state)} />
+          <Submit onClick={() => addStory(state)}>Publish</Submit>
           <BackButton href='#createBody'>Back</BackButton>
         </Span>
       </Screen>

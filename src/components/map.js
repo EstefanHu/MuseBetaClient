@@ -25,7 +25,6 @@ export const Map = memo(({ apikey }) => {
 
   const engageMap = e => {
     console.log(e.lngLat);
-    if (status === 'inProgress') console.log('inProgress');
     if (status === 'inProgress') return addCoordinates(e.lngLat);
   }
 

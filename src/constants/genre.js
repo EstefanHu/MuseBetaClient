@@ -1,4 +1,4 @@
-export const GENRES = [
+const GENRES = [
   { value: 'Fiction', label: 'Fiction' },
   { value: 'Poetry', label: 'Poetry' },
   { value: 'Narrative', label: 'Narrative' },
@@ -10,3 +10,7 @@ export const GENRES = [
   { value: 'Fantasy', label: 'Fantasy' },
   { value: 'Mystery', label: 'Mystery' },
 ]
+
+export {
+  GENRES
+};

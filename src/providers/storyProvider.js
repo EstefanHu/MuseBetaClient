@@ -1,4 +1,5 @@
 import createDataContext from './createDataContext.js';
+import { API } from '../constants/api.js';
 
 const storyReducer = (state, action) => {
   switch (action.type) {
@@ -27,10 +28,22 @@ const storyReducer = (state, action) => {
   }
 };
 
-const addStory = dispatch => (title, content, callback) => {
-    dispatch({ type: 'add_story', payload: { title, content } });
-    callback();
-  }
+const addStory = dispatch => async (state, callback) => {
+  console.log('Adding Story: ' + state);
+  const response = await fetch(API + '/story/create', {
+    credentials: 'include',
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(state)
+  });
+  const data = JSON.parse(response);
+  console.log(data);
+  dispatch({ type: 'add_story', payload: { ...state, _id: data._id } });
+  callback();
+}
 
 const editStory = dispatch => (id, title, description, genre, body, callback) => {
   dispatch({ type: 'edit_story', payload: { id, title, description, genre, body } });
@@ -38,8 +51,8 @@ const editStory = dispatch => (id, title, description, genre, body, callback) =>
 }
 
 const deleteStory = dispatch => id => {
-    dispatch({ type: 'delete_story', payload: id });
-  }
+  dispatch({ type: 'delete_story', payload: id });
+}
 
 export const { Context, Provider } = createDataContext(
   storyReducer,
