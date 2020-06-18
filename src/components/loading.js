@@ -1,5 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const idle = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+`;
 
 const Loader = styled.div`
   margin: 0 auto;
@@ -19,7 +28,7 @@ const Loader = styled.div`
     animation-timing-function: ease-in-out;
     animation-delay: 0s;
     animation-iteration-count: infinite;
-    animation-name: loading;
+    animation-name: ${idle};
     animation-direction: alternate;
     animation-play-state: running;
     position: absolute;
@@ -43,10 +52,8 @@ const Loader = styled.div`
   
 `;
 
-export const Loading = () => {
-  return (
-    <Loader>
-      <p></p>
-    </Loader>
-  )
-}
+export const Loading = () => (
+  <Loader>
+    <p></p>
+  </Loader>
+)

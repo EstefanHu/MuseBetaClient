@@ -18,6 +18,7 @@ const More = styled.div`
   height: 100px;
   border-top: 1px solid lightgrey;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
