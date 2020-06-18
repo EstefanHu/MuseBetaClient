@@ -6,11 +6,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const styles = {
-  title: {
-    fontSize: '1.5rem',
-    color: 'var(--color)',
-    marginRight: '5px',
-  },
   genre: {
     color: 'grey',
     textDecoration: 'none',
@@ -32,6 +27,18 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   margin-bottom: 3px;
+`;
+
+const Title = styled.h1`
+  font-size: 1.5rem;
+  color: var(--color);
+  margin-right: 5px
+`;
+
+const Genre = styled(Link)`
+  color: grey;
+  text-decoration: none;
+  font-size: 0.9rem;
 `;
 
 const Pitch = styled.p`
@@ -75,8 +82,10 @@ export const Intro = ({ index, title, pitch, genre, createdAt, author, authorId 
   return (
     <Article>
       <Header>
-        <h1 style={styles.title}>{index}. {title}</h1>
-        <Link to={`/app/genre/${genre}`} style={styles.genre}>{genre}</Link>
+        <Title>{index}. {title}</Title>
+        <Genre
+          to={`/app/genre/${genre}`}
+        >{genre}</Genre>
       </Header>
       <Pitch>{pitch}</Pitch>
       <Meta>
