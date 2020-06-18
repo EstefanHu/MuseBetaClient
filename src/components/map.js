@@ -19,7 +19,7 @@ export const Map = memo(({ apikey }) => {
     latitude: 47.6062,
     longitude: -122.315,
     width: '100vw',
-    height: 'calc(100vh - 60px)',
+    height: 'calc(100vh - 50px)',
     zoom: 12.5
   });
 

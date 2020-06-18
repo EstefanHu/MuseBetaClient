@@ -35,10 +35,10 @@ export const Landing = () => {
           </ul>
         </Route>
       </header>
-      <Route exact path='/' component={Splash} />
-      <Route exact path='/forgot' component={Forgot} />
-      <Route exact path='/terms' component={Terms} />
-      <Route exact path='/privacy' component={Privacy} />
+      <Route exact path='/landing/' component={Splash} />
+      <Route exact path='/landing/forgot' component={Forgot} />
+      <Route exact path='/landing/terms' component={Terms} />
+      <Route exact path='/landing/privacy' component={Privacy} />
       <Auth />
     </>
   )

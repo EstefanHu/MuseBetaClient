@@ -24,7 +24,7 @@ const AuthRoute = ({ component: Component, ...rest }) => (
     checkAuth() ? (
       <Component {...props} />
     ) : (
-        <Redirect to={{ pathname: '/' }} />
+        <Redirect to={{ pathname: '/landing' }} />
       )
   )} />
 )
@@ -40,8 +40,8 @@ export const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path='/(|terms|forgot|privacy)' component={Landing} />
-        <AuthRoute exact path='/app/(home|new|profile|settings)' component={Primary} />
+        <AuthRoute exact path='/(|new|profile|settings)' component={Primary} />
+        <Route exact path='/landing/(|terms|forgot|privacy)' component={Landing} />
         <Route component={FourOhFour} />
       </Switch>
     </Router>
