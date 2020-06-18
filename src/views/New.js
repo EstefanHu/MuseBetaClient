@@ -7,15 +7,6 @@ import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
 
 import styled from 'styled-components';
 
-const Container = styled.section`
-  position: 'fixed';
-  width: 500px;
-  height: calc(100vh - 60px);
-  z-index: 7;
-  background-color: white;
-  overflow-y: hidden;
-`;
-
 const Overlay = styled.div`
   z-index: 6;
   position: absolute;
@@ -31,9 +22,7 @@ export const New = () => {
 
   return (
     <>
-      <Container className='noBar'>
-        <CreateWheel />
-      </Container>
+      <CreateWheel />
       {/* <StoryCreateTracker /> */}
       {!pitch && <Overlay />}
     </>

@@ -4,6 +4,15 @@ import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
 
 import styled from 'styled-components';
 
+const Container = styled.section`
+  position: 'fixed';
+  width: 500px;
+  height: calc(100vh - 60px);
+  z-index: 7;
+  background-color: white;
+  overflow-y: hidden;
+`;
+
 const Screen = styled.article`
   min-height: calc(100vh - 60px);
   width: 100%;
@@ -87,11 +96,12 @@ const Span = styled.span`
   width: 190px;
 `;
 
-const NextButton = styled.a`
+const NextButton = styled.input`
   background-color: var(--color);
   color: white;
   font-size: 1.1rem;
   font-weight: bold;
+  border: none;
   border-radius: 5px;
   padding: 10px 15px;
   text-decoration: none;
@@ -123,7 +133,7 @@ export const CreateWheel = () => {
   const { state } = useContext(NewStoryContext);
 
   return (
-    <>
+    <Container>
       <TitleForm />
       <GenreForm />
       <PitchForm />
@@ -137,7 +147,7 @@ export const CreateWheel = () => {
           <BackButton href='#createBody'>Back</BackButton>
         </Span>
       </Screen>
-    </>
+    </Container>
   )
 }
 
@@ -148,6 +158,8 @@ const TitleForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     // TODO: Validate
+    document.getElementById('createGenre')
+      .scrollIntoView({ behavior: 'smooth' });
     addTitle(title);
   }
 
@@ -162,7 +174,7 @@ const TitleForm = () => {
           onChange={e => setTitle(e.target.value)}
           required
         />
-        <NextButton href='#createGenre'>Next</NextButton>
+        <NextButton type='submit' value='Next' />
       </Screen>
     </form>
   )
@@ -174,7 +186,8 @@ const GenreForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-
+    document.getElementById('createPitch')
+      .scrollIntoView({ behavior: 'smooth' });
     addGenre(genre);
   }
 
@@ -198,7 +211,7 @@ const GenreForm = () => {
           ))}
         </Select>
         <Span>
-          <NextButton href='#createPitch'>Next</NextButton>
+          <NextButton type='submit' value='Next' />
           <BackButton href='#createTitle'>Back</BackButton>
         </Span>
       </Screen>
@@ -212,7 +225,8 @@ const PitchForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-
+    document.getElementById('createCoordinates')
+      .scrollIntoView({ behavior: 'smooth' });
     addPitch(pitch);
   }
 
@@ -227,7 +241,7 @@ const PitchForm = () => {
           required
         />
         <Span>
-          <NextButton href='#createCoords'>Next</NextButton>
+          <NextButton type='submit' value='Next' />
           <BackButton href='#createGenre'>Back</BackButton>
         </Span>
       </Screen>
@@ -240,11 +254,13 @@ const CoordinatesForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    document.getElementById('createBody')
+      .scrollIntoView({ behavior: 'smooth' });
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <Screen id='createCoords'>
+      <Screen id='createCoordinates'>
         <H1>Plot Coordinates.</H1>
         {
           coordinates &&
@@ -258,7 +274,7 @@ const CoordinatesForm = () => {
         <Span>
           {
             coordinates ?
-              <NextButton href='#createBody'>Next</NextButton>
+              <NextButton type='submit' value='Next' />
               : null
           }
           <BackButton href='#createPitch'>Back</BackButton>
@@ -274,6 +290,8 @@ const BodyForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    document.getElementById('createPublish')
+      .scrollIntoView({ behavior: 'smooth' });
     addBody(body);
   }
 
@@ -288,8 +306,8 @@ const BodyForm = () => {
           required
         />
         <Span>
-          <NextButton href='#createPublish'>Next</NextButton>
-          <BackButton href='#createCoords'>Back</BackButton>
+          <NextButton type='submit' value='Next' />
+          <BackButton href='#createCoordinates'>Back</BackButton>
         </Span>
       </Screen>
     </form>
