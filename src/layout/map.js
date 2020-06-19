@@ -1,6 +1,6 @@
 import React, { useState, useContext, memo } from 'react';
 import { Route } from 'react-router-dom';
-import ReactMapGl, { Marker } from 'react-map-gl';
+import ReactMapGl, { Marker, Popup } from 'react-map-gl';
 import { PIN } from '../constants/svg.js';
 
 import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
@@ -27,6 +27,7 @@ const MapboxView = styled.div`
 
 export const Map = memo(({ apikey, longitude, latitude }) => {
   const { state: { status }, addCoordinates } = useContext(NewStoryContext);
+  const { state: storyState } = useContext(StoryContext);
 
   const [viewport, setViewport] = useState({
     longitude: longitude,
@@ -37,8 +38,6 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
   });
 
   const engageMap = e => {
-    console.log(e.lngLat);
-    if (status === 'inProgress') console.log('inProgress');
     if (status === 'inProgress') return addCoordinates(e.lngLat);
   }
 
@@ -54,7 +53,17 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
         onClick={engageMap}
       >
 
-        <Route exact path='/' component={HomeMarkers} />
+        <Route exact path='/'>
+          {storyState &&
+            storyState.map((item, idx) => (
+              <StoryMarker
+                key={idx}
+                title={item.title}
+                longitude={item.longitude}
+                latitude={item.latitude}
+              />
+            ))}
+        </Route>
         <Route exact path='/new' component={NewMarker} />
 
       </ReactMapGl>
@@ -62,32 +71,36 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
   )
 });
 
-const HomeMarkers = () => {
-  const { state: storyState } = useContext(StoryContext);
+const StoryMarker = ({ title, longitude, latitude }) => {
+  const [showPopup, setShowPopup] = useState(false);
   const SIZE = 30;
 
   return (
-    <>
+    <Marker
+      longitude={longitude}
+      latitude={latitude}
+    >
+      <Pin
+        height={SIZE}
+        viewBox="0 0 24 24"
+        style={{ transform: `translate(${-SIZE / 2}px,${-SIZE}px)` }}
+        onClick={() => setShowPopup(true)}
+      >
+        <path d={PIN} />
+      </Pin>
       {
-        storyState ? storyState.map((item, idx) => (
-          <Marker
-            key={idx}
-            latitude={item.latitude}
-            longitude={item.longitude}
-          >
-            <Pin
-              height={SIZE}
-              viewBox="0 0 24 24"
-              style={{ transform: `translate(${-SIZE / 2}px,${-SIZE}px)` }}
-              onClick={() => null}
-            >
-              <path d={PIN} />
-            </Pin>
-          </Marker>
-
-        )) : null
+        showPopup &&
+        <Popup
+          longitude={longitude}
+          latitude={latitude}
+          closeButton={true}
+          closeOnClick={true}
+          onClose={() => setShowPopup(false)}
+        >
+          <div>{title}</div>
+        </Popup>
       }
-    </>
+    </Marker>
   )
 }
 
