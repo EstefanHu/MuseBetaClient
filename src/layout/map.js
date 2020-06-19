@@ -3,8 +3,6 @@ import { Route } from 'react-router-dom';
 import ReactMapGl, { Marker } from 'react-map-gl';
 import { PIN } from '../constants/svg.js';
 
-import { MdLocationOn } from 'react-icons/md';
-
 import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
 import { Context as StoryContext } from '../providers/storyProvider.js';
 
@@ -66,6 +64,7 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
 
 const HomeMarkers = () => {
   const { state: storyState } = useContext(StoryContext);
+  const SIZE = 30;
 
   return (
     <>
@@ -75,10 +74,15 @@ const HomeMarkers = () => {
             key={idx}
             latitude={item.latitude}
             longitude={item.longitude}
-            offsetLeft={-17}
-            offsetTop={-35}
           >
-            <MdLocationOn size='35' />
+            <Pin
+              height={SIZE}
+              viewBox="0 0 24 24"
+              style={{ transform: `translate(${-SIZE / 2}px,${-SIZE}px)` }}
+              onClick={() => null}
+            >
+              <path d={PIN} />
+            </Pin>
           </Marker>
 
         )) : null
@@ -89,7 +93,7 @@ const HomeMarkers = () => {
 
 const NewMarker = () => {
   const { state: { longitude, latitude } } = useContext(NewStoryContext);
-  const SIZE = 35
+  const SIZE = 35;
 
   return (
     <>
