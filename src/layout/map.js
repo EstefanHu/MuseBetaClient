@@ -12,8 +12,8 @@ import styled from 'styled-components';
 
 const Pin = styled.svg`
   cursor: pointer;
-  fill: var(--color);
-  stroke: none;  
+  // fill: var(--color);
+  stroke: none;
 `;
 
 
@@ -99,7 +99,6 @@ const NewMarker = () => {
           latitude={latitude}
           longitude={longitude}
         >
-          {/* <MdLocationOn size='45' /> */}
           <Pin
             height={SIZE}
             viewBox="0 0 24 24"
