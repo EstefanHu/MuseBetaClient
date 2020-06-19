@@ -42,6 +42,7 @@ const Button = styled.button`
   font-size: .9rem;
   font-weight: bold;
   color: white;
+  outline: 0;
 
   &:hover {
     background-color: rgba(0,0,0,.1);

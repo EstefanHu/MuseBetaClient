@@ -14,7 +14,7 @@ const Container = styled.section`
   padding-bottom: 20px;
 `;
 
-const Span = styled.span`
+const Filter = styled.span`
   display: block;
   width: 100%;
   overflow: auto;
@@ -32,6 +32,7 @@ const Button = styled.button`
   padding: 6px 12px;
   cursor: pointer;
   margin: 0 5px;
+  outline: 0;
 
   &:hover {
     background: rgb(237,237,237);
@@ -75,7 +76,7 @@ export const Home = () => {
 
   return (
     <Container className='noBar'>
-      <Span>
+      <Filter className='noBar'>
         <Button onClick={() => setGenre('All')}>All</Button>
         {GENRES.map(item => (
           <Button
@@ -83,7 +84,7 @@ export const Home = () => {
             onClick={() => setGenre(item.value)}
           >{item.value}</Button>
         ))}
-      </Span>
+      </Filter>
       {state.map(item => {
         if (genre === 'All' || genre === item.genre)
           return <Intro
