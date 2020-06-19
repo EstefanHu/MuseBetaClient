@@ -1,6 +1,13 @@
 import React, { useState, useContext, memo } from 'react';
 import { Route } from 'react-router-dom';
-import ReactMapGl, { Marker, Popup } from 'react-map-gl';
+import ReactMapGl, {
+  Marker,
+  Popup,
+  NavigationControl,
+  FullscreenControl,
+  ScaleControl,
+  GeolocateControl
+} from 'react-map-gl';
 import { PIN } from '../constants/svg.js';
 
 import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
@@ -13,7 +20,6 @@ const Pin = styled.svg`
   // fill: var(--color);
   stroke: none;
 `;
-
 
 const MapboxView = styled.div`
   position: absolute;
@@ -66,6 +72,9 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
         </Route>
         <Route exact path='/new' component={NewMarker} />
 
+        <NavigationControl />
+        <GeolocateControl />
+        <ScaleControl />
       </ReactMapGl>
     </MapboxView >
   )
@@ -76,31 +85,38 @@ const StoryMarker = ({ title, longitude, latitude }) => {
   const SIZE = 30;
 
   return (
-    <Marker
-      longitude={longitude}
-      latitude={latitude}
-    >
-      <Pin
-        height={SIZE}
-        viewBox="0 0 24 24"
-        style={{ transform: `translate(${-SIZE / 2}px,${-SIZE}px)` }}
-        onClick={() => setShowPopup(true)}
+    <>
+      <Marker
+        longitude={longitude}
+        latitude={latitude}
+        style={{ position: 'relative' }}
       >
-        <path d={PIN} />
-      </Pin>
+        <Pin
+          height={SIZE}
+          viewBox="0 0 24 24"
+          style={{ transform: `translate(${-SIZE / 2}px,${-SIZE}px)` }}
+          onClick={() => setShowPopup(true)}
+        >
+          <path d={PIN} />
+        </Pin>
+      </Marker>
       {
         showPopup &&
         <Popup
+          tipSize={5}
           longitude={longitude}
           latitude={latitude}
+          altitude={0}
           closeButton={true}
-          closeOnClick={true}
+          closeOnClick={false}
           onClose={() => setShowPopup(false)}
+          anchor='bottom'
+          style={{ backgroundColor: 'red' }}
         >
           <div>{title}</div>
         </Popup>
       }
-    </Marker>
+    </>
   )
 }
 
