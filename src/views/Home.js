@@ -71,7 +71,6 @@ export const Home = () => {
 
   const fetchMoreStories = () => {
     setIsLoading(true);
-    console.log('hello')
   }
 
   return (

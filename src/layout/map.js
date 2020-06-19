@@ -1,6 +1,7 @@
 import React, { useState, useContext, memo } from 'react';
 import { Route } from 'react-router-dom';
 import ReactMapGl, { Marker } from 'react-map-gl';
+import { PIN } from '../constants/svg.js';
 
 import { MdLocationOn } from 'react-icons/md';
 
@@ -8,6 +9,13 @@ import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
 import { Context as StoryContext } from '../providers/storyProvider.js';
 
 import styled from 'styled-components';
+
+const Pin = styled.svg`
+  cursor: pointer;
+  fill: var(--color);
+  stroke: none;  
+`;
+
 
 const MapboxView = styled.div`
   position: absolute;
@@ -72,6 +80,7 @@ const HomeMarkers = () => {
           >
             <MdLocationOn size='35' />
           </Marker>
+
         )) : null
       }
     </>
@@ -80,6 +89,7 @@ const HomeMarkers = () => {
 
 const NewMarker = () => {
   const { state: { longitude, latitude } } = useContext(NewStoryContext);
+  const SIZE = 35
 
   return (
     <>
@@ -88,10 +98,16 @@ const NewMarker = () => {
         <Marker
           latitude={latitude}
           longitude={longitude}
-          offsetLeft={-25}
-          offsetTop={-50}
         >
-          <MdLocationOn size='45' />
+          {/* <MdLocationOn size='45' /> */}
+          <Pin
+            height={SIZE}
+            viewBox="0 0 24 24"
+            style={{ transform: `translate(${-SIZE / 2}px,${-SIZE}px)` }}
+            onClick={() => null}
+          >
+            <path d={PIN} />
+          </Pin>
         </Marker>
       }
     </>
