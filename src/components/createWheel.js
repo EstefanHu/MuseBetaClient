@@ -145,10 +145,10 @@ export const CreateWheel = withRouter(({ history }) => {
 
   return (
     <Container>
+      <CoordinatesForm />
       <TitleForm />
       <GenreForm />
       <PitchForm />
-      <CoordinatesForm />
       <BodyForm />
 
       <Screen id='createPublish'>
@@ -270,13 +270,15 @@ const PitchForm = () => {
 }
 
 const CoordLabel = styled.label`
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: grey;
 `;
 
-const Coord = styled.h1`
-  font-size: 1.3rem;
+const Coord = styled.input`
+  font-size: 1.4rem;
   margin-bottom: 10px;
+  border: none;
+  background: white;
 `;
 
 const CoordinatesForm = () => {
@@ -293,15 +295,21 @@ const CoordinatesForm = () => {
       <Screen id='createCoordinates'>
         <H1>Plot Coordinates.</H1>
         <CoordLabel>Longitude:</CoordLabel>
-        <Coord>{longitude ? `${longitude}` : '00.00'}</Coord>
+        <Coord
+          type='text'
+          placeholder='00.00'
+          value={longitude}
+          requried
+        />
         <CoordLabel>Latitude:</CoordLabel>
-        <Coord>{latitude ? `${latitude}` : '00.00'}</Coord>
+        <Coord
+          type='text'
+          placeholder='00.00'
+          value={latitude}
+          required
+        />
         <Span>
-          {
-            longitude ?
-              <NextButton type='submit' value='Next' />
-              : null
-          }
+          <NextButton type='submit' value='Next' />
           <BackButton href='#createPitch'>Back</BackButton>
         </Span>
       </Screen>

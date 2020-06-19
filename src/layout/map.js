@@ -88,8 +88,8 @@ const NewMarker = () => {
         <Marker
           latitude={latitude}
           longitude={longitude}
-          offsetLeft={-18}
-          offsetTop={-35}
+          offsetLeft={-25}
+          offsetTop={-50}
         >
           <MdLocationOn size='45' />
         </Marker>
