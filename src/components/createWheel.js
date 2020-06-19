@@ -150,10 +150,10 @@ export const CreateWheel = withRouter(({ history }) => {
 
   return (
     <Container>
-      <CoordinatesForm />
       <TitleForm />
       <GenreForm />
       <PitchForm />
+      <CoordinatesForm />
       <BodyForm />
 
       <Screen id='createPublish'>
@@ -186,7 +186,7 @@ const TitleForm = () => {
         <Input
           type='text'
           placeholder='Enter a Title...'
-          value={title}
+          value={title || ''}
           onChange={e => setTitle(e.target.value)}
           required
         />
@@ -279,12 +279,21 @@ const Coord = styled.input`
   margin-bottom: 10px;
   border: none;
   background: white;
+  outline: 0;
+  padding: 4px 8px;
 `;
 
-const ExplainButton = styled.a`
+const ExplainButton = styled.button`
   border: none;
   background: transparent;
   cursor: pointer;
+  font-size: 1rem;
+  color: grey;
+  outline: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const CoordinatesForm = () => {
@@ -296,12 +305,15 @@ const CoordinatesForm = () => {
       .scrollIntoView({ behavior: 'smooth' });
   }
 
+  const explainForm = () => alert('Click on the Map to set the storys location');
+
   return (
     <form onSubmit={handleSubmit}>
       <Screen id='createCoordinates'>
         <H1>Plot Coordinates.</H1>
         <CoordLabel>Longitude:</CoordLabel>
         <Coord
+          disabled
           type='text'
           placeholder='00.00'
           value={longitude || ''}
@@ -310,6 +322,7 @@ const CoordinatesForm = () => {
         />
         <CoordLabel>Latitude:</CoordLabel>
         <Coord
+          disabled
           type='text'
           placeholder='00.00'
           value={latitude || ''}
@@ -317,7 +330,10 @@ const CoordinatesForm = () => {
           required
         />
         <Details>
-          <ExplainButton>What is this?</ExplainButton>
+          <ExplainButton
+            type='button'
+            onClick={explainForm}
+          >What is this?</ExplainButton>
         </Details>
         <Span>
           <NextButton type='submit' value='Next' />
