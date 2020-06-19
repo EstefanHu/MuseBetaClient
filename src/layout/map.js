@@ -31,6 +31,25 @@ const MapboxView = styled.div`
   height: 100%;
 `;
 
+const MapMetaInfo = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50px;
+  padding: 10px;
+`;
+
+const MapActions = styled.span`
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 export const Map = memo(({ apikey, longitude, latitude }) => {
   const { state: { status }, addCoordinates } = useContext(NewStoryContext);
   const { state: storyState } = useContext(StoryContext);
@@ -58,6 +77,14 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
         }}
         onClick={engageMap}
       >
+        <MapMetaInfo>
+          <MapActions>
+            <FullscreenControl />
+            <NavigationControl />
+            <GeolocateControl />
+          </MapActions>
+          <ScaleControl />
+        </MapMetaInfo>
 
         <Route exact path='/'>
           {storyState &&
@@ -72,9 +99,6 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
         </Route>
         <Route exact path='/new' component={NewMarker} />
 
-        <NavigationControl />
-        <GeolocateControl />
-        <ScaleControl />
       </ReactMapGl>
     </MapboxView >
   )
