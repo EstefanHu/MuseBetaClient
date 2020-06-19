@@ -2,11 +2,11 @@ import createDataContext from './createDataContext.js';
 
 const LocationReducer = (state, action) => {
   switch (action.type) {
-    case 'approximate_locaiton':
+    case 'approximate_location':
       return {
         ...state,
-        approximateLongitude: action.payload.longitude,
-        approximateLatitude: action.payload.latitude,
+        approximateLongitude: action.payload.lon,
+        approximateLatitude: action.payload.lat,
         community: action.payload.city, //TODO: will fine tune
         city: action.payload.city,
         region: action.payload.regionName,

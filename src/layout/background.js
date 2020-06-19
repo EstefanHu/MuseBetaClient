@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { API } from '../constants/api.js';
+
+import { Context as LocationContext } from '../providers/locationProvider.js';
+
 import { Map } from './map.js';
 import { Triangulate } from '../components/triangulate.js';
 import styled from 'styled-components';
@@ -11,6 +14,11 @@ const Container = styled.div`
 `;
 
 export const Background = () => {
+  const { state: {
+    approximateLongitude,
+    approximateLatitude,
+  } } = useContext(LocationContext);
+
   const [key, setKey] = useState('');
 
   useEffect(() => {
@@ -35,8 +43,12 @@ export const Background = () => {
 
   return <Container>
     {
-      key ?
-        <Map apikey={key} />
+      key && approximateLongitude ?
+        <Map
+          apikey={key}
+          approximateLongitude={approximateLongitude}
+          approximateLatitude={approximateLatitude}
+        />
         // <div style={{ position: 'fixed', backgroundColor: 'pink', height: '100%', width: '100%' }}></div>
         : <Triangulate />
     }

@@ -1,9 +1,10 @@
-import React, { useState, useContext, memo } from 'react';
+import React, { useState, useEffect, useContext, memo } from 'react';
 import { Route } from 'react-router-dom';
 import ReactMapGl, { Marker } from 'react-map-gl';
 
 import { MdLocationOn } from 'react-icons/md';
 
+import { Context as LocationContext } from '../providers/locationProvider.js';
 import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
 import { Context as StoryContext } from '../providers/storyProvider.js';
 
@@ -19,23 +20,28 @@ const MapboxView = styled.div`
   height: 100%;
 `;
 
-export const Map = memo(({ apikey }) => {
-  const { state: stories } = useContext(StoryContext);
+export const Map = memo(({ apikey, approximateLongitude, approximateLatitude }) => {
   const { state: {
-    status,
     longitude,
-    latitude
-  },
-    addCoordinates
-  } = useContext(NewStoryContext);
+    latitude,
+  } } = useContext(LocationContext);
+  const { state: { status }, addCoordinates } = useContext(NewStoryContext);
 
   const [viewport, setViewport] = useState({
-    latitude: 47.6062,
-    longitude: -122.315,
+    longitude: approximateLongitude,
+    latitude: approximateLatitude,
     width: '100vw',
     height: 'calc(100vh - 50px)',
-    zoom: 12.5
+    zoom: 12
   });
+
+  useEffect(() => {
+    if (longitude) setViewport({
+      ...viewport,
+      longitude: longitude,
+      latitude: latitude,
+    });
+  }, [viewport, longitude, latitude]);
 
   const engageMap = e => {
     console.log(e.lngLat);
@@ -55,35 +61,52 @@ export const Map = memo(({ apikey }) => {
         onClick={engageMap}
       >
 
-        <Route exact path='/'>
-          {stories ? stories.map((item, idx) => (
-            <Marker
-              key={idx}
-              latitude={item.latitude}
-              longitude={item.longitude}
-              offsetLeft={-25}
-              offsetTop={-47}
-            >
-              <MdLocationOn size='35' />
-            </Marker>
-          )) : null}
-        </Route>
-
-        <Route exact path='/new'>
-          {
-            longitude &&
-            <Marker
-              latitude={latitude}
-              longitude={longitude}
-              offsetLeft={-25}
-              offsetRight={-47}
-            >
-              <MdLocationOn size='45' />
-            </Marker>
-          }
-        </Route>
+        <Route exact path='/' component={HomeMarkers} />
+        <Route exact path='/new' component={NewMarker} />
 
       </ReactMapGl>
     </MapboxView >
   )
 });
+
+const HomeMarkers = () => {
+  const { state: storyState } = useContext(StoryContext);
+
+  return (
+    <>
+      {
+        storyState ? storyState.map((item, idx) => (
+          <Marker
+            key={idx}
+            latitude={item.latitude}
+            longitude={item.longitude}
+            offsetLeft={-25}
+            offsetTop={-47}
+          >
+            <MdLocationOn size='35' />
+          </Marker>
+        )) : null
+      }
+    </>
+  )
+}
+
+const NewMarker = () => {
+  const { state: { longitude, latitude } } = useContext(NewStoryContext);
+
+  return (
+    <>
+      {
+        longitude &&
+        <Marker
+          latitude={latitude}
+          longitude={longitude}
+          offsetLeft={-25}
+          offsetRight={-47}
+        >
+          <MdLocationOn size='45' />
+        </Marker>
+      }
+    </>
+  )
+}
