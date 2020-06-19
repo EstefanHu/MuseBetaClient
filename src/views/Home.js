@@ -75,8 +75,8 @@ export const Home = () => {
   }
 
   return (
-    <Container>
-      <Span className='noBar'>
+    <Container className='noBar'>
+      <Span>
         <Button onClick={() => setGenre('All')}>All</Button>
         {GENRES.map(item => (
           <Button
