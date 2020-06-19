@@ -52,7 +52,6 @@ const MapActions = styled.span`
 
 export const Map = memo(({ apikey, longitude, latitude }) => {
   const { state: { status }, addCoordinates } = useContext(NewStoryContext);
-  const { state: storyState } = useContext(StoryContext);
 
   const [viewport, setViewport] = useState({
     longitude: longitude,
@@ -86,17 +85,7 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
           <ScaleControl />
         </MapMetaInfo>
 
-        <Route exact path='/'>
-          {storyState &&
-            storyState.map((item, idx) => (
-              <StoryMarker
-                key={idx}
-                title={item.title}
-                longitude={item.longitude}
-                latitude={item.latitude}
-              />
-            ))}
-        </Route>
+        <Route exact path='/' component={HomeMarkers} />
         <Route exact path='/new' component={NewMarker} />
 
       </ReactMapGl>
@@ -104,44 +93,48 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
   )
 });
 
-const StoryMarker = ({ title, longitude, latitude }) => {
+const HomeMarkers = () => {
+  const { state: storyState } = useContext(StoryContext);
   const [showPopup, setShowPopup] = useState(false);
   const SIZE = 30;
 
-  return (
-    <>
-      <Marker
-        longitude={longitude}
-        latitude={latitude}
-        style={{ position: 'relative' }}
+  return storyState &&
+    storyState.map((item, idx) => (
+      <React.Fragment
+        key={item._id}
       >
-        <Pin
-          height={SIZE}
-          viewBox="0 0 24 24"
-          style={{ transform: `translate(${-SIZE / 2}px,${-SIZE}px)` }}
-          onClick={() => setShowPopup(true)}
+        <Marker
+          longitude={item.longitude}
+          latitude={item.latitude}
+          style={{ position: 'relative' }}
         >
-          <path d={PIN} />
-        </Pin>
-      </Marker>
-      {
-        showPopup &&
-        <Popup
-          tipSize={5}
-          longitude={longitude}
-          latitude={latitude}
-          altitude={0}
-          closeButton={true}
-          closeOnClick={false}
-          onClose={() => setShowPopup(false)}
-          anchor='bottom'
-          style={{ backgroundColor: 'red' }}
-        >
-          <div>{title}</div>
-        </Popup>
-      }
-    </>
-  )
+          <Pin
+            height={SIZE}
+            viewBox="0 0 24 24"
+            style={{ transform: `translate(${-SIZE / 2}px,${-SIZE}px)` }}
+            onClick={() => setShowPopup(true)}
+          >
+            <path d={PIN} />
+          </Pin>
+        </Marker>
+        {
+          showPopup &&
+          <Popup
+            tipSize={5}
+            longitude={item.longitude}
+            latitude={item.latitude}
+            altitude={0}
+            closeButton={true}
+            closeOnClick={false}
+            onClose={() => setShowPopup(false)}
+            anchor='bottom'
+            style={{ backgroundColor: 'red' }}
+          >
+            <div>{item.title}</div>
+          </Popup>
+        }
+      </React.Fragment>
+    ))
 }
 
 const NewMarker = () => {
