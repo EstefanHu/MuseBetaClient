@@ -133,6 +133,11 @@ const Submit = styled.button`
   border-radius: 5px;
 `;
 
+const Details = styled.p`
+  color: grey;
+  text-align: right;
+`;
+
 export const CreateWheel = withRouter(({ history }) => {
   const { state: { community } } = useContext(LocationContext);
   const { state } = useContext(NewStoryContext);
@@ -230,11 +235,6 @@ const GenreForm = () => {
   )
 }
 
-const CharCount = styled.p`
-  color: grey;
-  text-align: right;
-`;
-
 const PitchForm = () => {
   const { addPitch } = useContext(NewStoryContext);
   const [pitch, setPitch] = useState('');
@@ -257,9 +257,9 @@ const PitchForm = () => {
           maxLength={140}
           required
         />
-        <CharCount>
+        <Details>
           {140 - String(pitch).length} Characters
-          </CharCount>
+        </Details>
         <Span>
           <NextButton type='submit' value='Next' />
           <BackButton href='#createGenre'>Back</BackButton>
@@ -281,6 +281,12 @@ const Coord = styled.input`
   background: white;
 `;
 
+const ExplainButton = styled.a`
+  border: none;
+  background: transparent;
+  cursor: pointer;
+`;
+
 const CoordinatesForm = () => {
   const { state: { longitude, latitude } } = useContext(NewStoryContext);
 
@@ -298,16 +304,21 @@ const CoordinatesForm = () => {
         <Coord
           type='text'
           placeholder='00.00'
-          value={longitude}
+          value={longitude || ''}
+          onChange={() => null}
           requried
         />
         <CoordLabel>Latitude:</CoordLabel>
         <Coord
           type='text'
           placeholder='00.00'
-          value={latitude}
+          value={latitude || ''}
+          onChange={() => null}
           required
         />
+        <Details>
+          <ExplainButton>What is this?</ExplainButton>
+        </Details>
         <Span>
           <NextButton type='submit' value='Next' />
           <BackButton href='#createPitch'>Back</BackButton>
