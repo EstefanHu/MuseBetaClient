@@ -256,9 +256,9 @@ const PitchForm = () => {
           onChange={e => setPitch(e.target.value)}
           maxLength={140}
           required
-          />
-          <CharCount>
-            {140 - String(pitch).length} Characters
+        />
+        <CharCount>
+          {140 - String(pitch).length} Characters
           </CharCount>
         <Span>
           <NextButton type='submit' value='Next' />
@@ -268,6 +268,16 @@ const PitchForm = () => {
     </form>
   )
 }
+
+const CoordLabel = styled.label`
+  font-size: 1rem;
+  color: grey;
+`;
+
+const Coord = styled.h1`
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+`;
 
 const CoordinatesForm = () => {
   const { state: { longitude, latitude } } = useContext(NewStoryContext);
@@ -282,15 +292,10 @@ const CoordinatesForm = () => {
     <form onSubmit={handleSubmit}>
       <Screen id='createCoordinates'>
         <H1>Plot Coordinates.</H1>
-        {
-          longitude &&
-          <>
-            <p>Longitude:</p>
-            <p>{longitude}</p>
-            <p>Latitude:</p>
-            <p>{latitude}</p>
-          </>
-        }
+        <CoordLabel>Longitude:</CoordLabel>
+        <Coord>{longitude ? `${longitude}` : '00.00'}</Coord>
+        <CoordLabel>Latitude:</CoordLabel>
+        <Coord>{latitude ? `${latitude}` : '00.00'}</Coord>
         <Span>
           {
             longitude ?

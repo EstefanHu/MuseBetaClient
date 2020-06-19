@@ -28,7 +28,7 @@ export const New = () => {
   return (
     <>
       <CreateWheel />
-      {!pitch && <Overlay />}
+      {/* {!pitch && <Overlay />} */}
     </>
   )
 }
