@@ -21,7 +21,7 @@ export const Background = () => {
     latitude,
   } } = useContext(LocationContext);
 
-  const [key, setKey] = useState('');
+  const [key, setKey] = useState();
 
   useEffect(() => {
     console.log('looking for key');

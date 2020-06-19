@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, memo } from 'react';
+import React, { useState, useContext, memo } from 'react';
 import { Route } from 'react-router-dom';
 import ReactMapGl, { Marker } from 'react-map-gl';
 
@@ -29,14 +29,6 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
     height: 'calc(100vh - 50px)',
     zoom: 12
   });
-
-  useEffect(() => {
-    if (longitude) setViewport({
-      ...viewport,
-      longitude: longitude,
-      latitude: latitude,
-    });
-  }, [viewport, longitude, latitude]);
 
   const engageMap = e => {
     console.log(e.lngLat);
@@ -75,8 +67,8 @@ const HomeMarkers = () => {
             key={idx}
             latitude={item.latitude}
             longitude={item.longitude}
-            offsetLeft={-25}
-            offsetTop={-47}
+            offsetLeft={-17}
+            offsetTop={-35}
           >
             <MdLocationOn size='35' />
           </Marker>
@@ -96,8 +88,8 @@ const NewMarker = () => {
         <Marker
           latitude={latitude}
           longitude={longitude}
-          offsetLeft={-25}
-          offsetRight={-47}
+          offsetLeft={-18}
+          offsetTop={-35}
         >
           <MdLocationOn size='45' />
         </Marker>

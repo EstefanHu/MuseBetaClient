@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { GENRES } from '../constants/genre.js';
 
+import { Context as LocationContext } from '../providers/locationProvider.js';
 import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
 import { Context as StoryContext } from '../providers/storyProvider.js';
 
@@ -133,11 +134,12 @@ const Submit = styled.button`
 `;
 
 export const CreateWheel = withRouter(({ history }) => {
+  const { state: { community } } = useContext(LocationContext);
   const { state } = useContext(NewStoryContext);
   const { addStory } = useContext(StoryContext);
 
   const publishStory = () => {
-    addStory(state);
+    addStory({ ...state, community });
     history.push('/')
   }
 
