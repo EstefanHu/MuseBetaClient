@@ -57,7 +57,7 @@ const Textarea = styled.textarea`
   padding: 12px 10px;
   outline: 0;
   font-size: 1.2rem;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   border: 1px solid lightgrey;
   border-radius: 5px;
   font-family: Arial, Helvetica, sans-serif;
@@ -145,9 +145,9 @@ export const CreateWheel = withRouter(({ history }) => {
 
   return (
     <Container>
+      <PitchForm />
       <TitleForm />
       <GenreForm />
-      <PitchForm />
       <CoordinatesForm />
       <BodyForm />
 
@@ -230,9 +230,14 @@ const GenreForm = () => {
   )
 }
 
+const CharCount = styled.p`
+  color: grey;
+  text-align: right;
+`;
+
 const PitchForm = () => {
   const { addPitch } = useContext(NewStoryContext);
-  const [pitch, setPitch] = useState();
+  const [pitch, setPitch] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -249,8 +254,12 @@ const PitchForm = () => {
           placeholder='Enter a Pitch...'
           value={pitch}
           onChange={e => setPitch(e.target.value)}
+          maxLength={140}
           required
-        />
+          />
+          <CharCount>
+            {140 - String(pitch).length} Characters
+          </CharCount>
         <Span>
           <NextButton type='submit' value='Next' />
           <BackButton href='#createGenre'>Back</BackButton>
