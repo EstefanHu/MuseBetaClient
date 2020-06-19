@@ -6,11 +6,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const styles = {
-  genre: {
-    color: 'grey',
-    textDecoration: 'none',
-    fontSize: '.9rem',
-  },
   author: {
     color: 'grey',
     textDecoration: 'none',
@@ -32,7 +27,7 @@ const Header = styled.header`
 const Title = styled.h1`
   font-size: 1.5rem;
   color: var(--color);
-  margin-right: 5px
+  margin-bottom: 5px;
 `;
 
 const Genre = styled(Link)`
@@ -43,6 +38,7 @@ const Genre = styled(Link)`
 
 const Pitch = styled.p`
   text-indent: 20px;
+  margin-bottom: 8px;
 `;
 
 const Meta = styled.p`
@@ -74,7 +70,7 @@ const Button = styled.button`
   align-items: center;
 
   &:focus {
-    
+
   }
 `;
 
@@ -82,7 +78,7 @@ export const Intro = ({ index, title, pitch, genre, createdAt, author, authorId 
   return (
     <Article>
       <Header>
-        <Title>{index}. {title}</Title>
+        <Title>{title}</Title>
         <Genre
           to={`/app/genre/${genre}`}
         >{genre}</Genre>

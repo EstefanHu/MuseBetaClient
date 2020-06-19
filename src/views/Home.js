@@ -85,11 +85,10 @@ export const Home = () => {
           >{item.value}</Button>
         ))}
       </Span>
-      {state.map((item, idx) => {
+      {state.map(item => {
         if (genre === 'All' || genre === item.genre)
           return <Intro
             key={item._id}
-            index={idx + 1}
             title={item.title}
             genre={item.genre}
             pitch={item.pitch}
