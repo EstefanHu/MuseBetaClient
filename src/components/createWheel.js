@@ -145,9 +145,9 @@ export const CreateWheel = withRouter(({ history }) => {
 
   return (
     <Container>
-      <PitchForm />
       <TitleForm />
       <GenreForm />
+      <PitchForm />
       <CoordinatesForm />
       <BodyForm />
 
