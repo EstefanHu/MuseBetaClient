@@ -4,7 +4,6 @@ import ReactMapGl, { Marker } from 'react-map-gl';
 
 import { MdLocationOn } from 'react-icons/md';
 
-import { Context as LocationContext } from '../providers/locationProvider.js';
 import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
 import { Context as StoryContext } from '../providers/storyProvider.js';
 
@@ -20,16 +19,12 @@ const MapboxView = styled.div`
   height: 100%;
 `;
 
-export const Map = memo(({ apikey, approximateLongitude, approximateLatitude }) => {
-  const { state: {
-    longitude,
-    latitude,
-  } } = useContext(LocationContext);
+export const Map = memo(({ apikey, longitude, latitude }) => {
   const { state: { status }, addCoordinates } = useContext(NewStoryContext);
 
   const [viewport, setViewport] = useState({
-    longitude: approximateLongitude,
-    latitude: approximateLatitude,
+    longitude: longitude,
+    latitude: latitude,
     width: '100vw',
     height: 'calc(100vh - 50px)',
     zoom: 12

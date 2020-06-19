@@ -16,7 +16,9 @@ const Container = styled.div`
 export const Background = () => {
   const { state: {
     approximateLongitude,
+    longitude,
     approximateLatitude,
+    latitude,
   } } = useContext(LocationContext);
 
   const [key, setKey] = useState('');
@@ -43,11 +45,11 @@ export const Background = () => {
 
   return <Container>
     {
-      key && approximateLongitude ?
+      key && (approximateLongitude || longitude) ?
         <Map
           apikey={key}
-          approximateLongitude={approximateLongitude}
-          approximateLatitude={approximateLatitude}
+          longitude={longitude ? longitude : approximateLongitude}
+          latitude={latitude ? latitude : approximateLatitude}
         />
         // <div style={{ position: 'fixed', backgroundColor: 'pink', height: '100%', width: '100%' }}></div>
         : <Triangulate />
