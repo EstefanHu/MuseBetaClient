@@ -83,6 +83,7 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
         onViewportChange={viewport => {
           setViewport(viewport)
         }}
+        getCursor={() => { return 'default' }}
         onClick={engageMap}
       >
         <MapMetaInfo>
@@ -137,8 +138,8 @@ const HomeMarkers = () => {
           altitude={0}
           closeButton={true}
           closeOnClick={false}
-          onClose={() => null}
-          anchor='bottom'
+          onClose={() => setPopupInfo(null)}
+          anchor='top'
         >
           <InfoPopup>{popupInfo.title}</InfoPopup>
         </Popup>
