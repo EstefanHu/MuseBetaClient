@@ -104,51 +104,43 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
 
 const HomeMarkers = () => {
   const { state: storyState } = useContext(StoryContext);
-
-  return storyState &&
-    storyState.map(item => (
-      <HomeMarker
-        key={item._id}
-        title={item.title}
-        longitude={item.longitude}
-        latitude={item.latitude}
-      />
-    ))
-}
-
-const HomeMarker = ({ title, longitude, latitude }) => {
-  const [showPopup, setShowPopup] = useState(false);
+  const [popupInfo, setPopupInfo] = useState(null);
   const SIZE = 30;
 
-  return (
+  return storyState && (
     <>
-      <Marker
-        longitude={longitude}
-        latitude={latitude}
-        style={{ position: 'relative' }}
-      >
-        <Pin
-          height={SIZE}
-          viewBox="0 0 24 24"
-          style={{ transform: `translate(${-SIZE / 2}px,${-SIZE}px)` }}
-          onClick={() => setShowPopup(true)}
-        >
-          <path d={PIN} />
-        </Pin>
-      </Marker>
       {
-        showPopup &&
+        storyState.map(item => (
+          <Marker
+            key={item._id}
+            longitude={item.longitude}
+            latitude={item.latitude}
+            style={{ position: 'relative' }}
+          >
+            <Pin
+              height={SIZE}
+              viewBox="0 0 24 24"
+              style={{ transform: `translate(${-SIZE / 2}px,${-SIZE}px)` }}
+              onClick={() => setPopupInfo(item)}
+            >
+              <path d={PIN} />
+            </Pin>
+          </Marker>
+        ))
+      }
+      {
+        popupInfo &&
         <Popup
           tipSize={5}
-          longitude={longitude}
-          latitude={latitude}
+          longitude={popupInfo.longitude}
+          latitude={popupInfo.latitude}
           altitude={0}
           closeButton={true}
           closeOnClick={false}
-          onClose={() => setShowPopup(false)}
+          onClose={() => null}
           anchor='bottom'
         >
-          <InfoPopup>{title}</InfoPopup>
+          <InfoPopup>{popupInfo.title}</InfoPopup>
         </Popup>
       }
     </>
