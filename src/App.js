@@ -26,7 +26,7 @@ const AuthRoute = ({ component: Component, ...rest }) => (
     checkAuth() ? (
       <Component {...props} />
     ) : (
-        <Redirect to={{ pathname: '/landing' }} />
+        <Redirect to={{ pathname: '/landing/' }} />
       )
   )} />
 )

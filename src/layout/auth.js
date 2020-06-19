@@ -204,11 +204,10 @@ const Login = withRouter(({ history, setHasAccount }) => {
       })
     }).then(res => res.json())
       .then(res => {
-        if (res.err) return { status: 'failure', payload: res.err };
-        return { status: 'success' };
+        if (res.err) return alert({ status: 'failure', payload: res.err });
+        history.push('/');
       })
       .catch(console.error);
-    history.push('/');
   }
 
   return (
@@ -269,11 +268,10 @@ const Register = withRouter(({ history }) => {
     })
       .then(res => res.json())
       .then(res => {
-        if (res.err) return { status: 'failure', payload: res.err };
-        return { status: 'success' };
+        if (res.err) return alert({ status: 'failure', payload: res.err });
+        history.push('/');
       })
       .catch(console.error);
-    history.push('/');
   }
 
   return (
