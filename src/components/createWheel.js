@@ -302,6 +302,8 @@ const CoordinatesForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (!longitude || !latitude) return alert('Plot Story to continue');
+
     updateStatus('inProgress');
     document.getElementById('createBody')
       .scrollIntoView({ behavior: 'smooth' });
