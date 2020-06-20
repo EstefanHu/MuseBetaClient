@@ -5,6 +5,8 @@ const storyReducer = (state, action) => {
   switch (action.type) {
     case 'set_genre':
       return { ...state, genre: action.payload };
+    case 'set_focused_story':
+      return { ...state, focusedStoryId: action.payload }
     case 'fetch_stories':
       return { ...state, stories: action.payload };
     case 'add_story':
@@ -37,6 +39,10 @@ const storyReducer = (state, action) => {
 
 const setGenre = dispatch => genre => {
   dispatch({ type: 'set_genre', payload: genre });
+}
+
+const setFocusedStory = dispatch => storyId => {
+  dispatch({ type: 'set_focused_story', payload: storyId });
 }
 
 const fetchStories = dispatch => async (community, callback) => {
@@ -79,6 +85,7 @@ export const { Context, Provider } = createDataContext(
   { setGenre, fetchStories, addStory, editStory, deleteStory },
   {
     genre: 'All',
+    focusedStoryId: null,
     stories: []
   }
 );

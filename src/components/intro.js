@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context as StoryContext } from '../providers/storyProvider.js';
 import { RiBookmarkLine } from 'react-icons/ri';
 import { BsBook } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
@@ -74,7 +75,9 @@ const Button = styled.button`
   }
 `;
 
-export const Intro = ({ index, title, pitch, genre, createdAt, author, authorId }) => {
+export const Intro = ({ title, pitch, genre, createdAt, author, authorId }) => {
+  const { state } = useContext(StoryContext);
+
   return (
     <Article>
       <Header>
