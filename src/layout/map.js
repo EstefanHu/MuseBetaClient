@@ -132,7 +132,7 @@ const HomeMarkers = () => {
                 height={SIZE}
                 viewBox="0 0 24 24"
                 style={{
-                  fill: focusedStoryId === item._id ? 'var(--color)': 'black',
+                  fill: focusedStoryId === item._id ? 'var(--color)' : 'black',
                   transform: `translate(${-SIZE / 2}px,${-SIZE}px)`
                 }}
                 onMouseEnter={() => setPopupInfo(item)}
