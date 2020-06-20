@@ -61,9 +61,8 @@ const MoreButton = styled.button`
 `;
 
 export const Home = () => {
-  const { state: { stories }, fetchStories } = useContext(StoryContext);
+  const { state: { genre, stories }, setGenre, fetchStories } = useContext(StoryContext);
   const [isLoading, setIsLoading] = useState(true);
-  const [genre, setGenre] = useState('All');
 
   useEffect(() => {
     fetchStories('Seattle', () => setIsLoading(false));

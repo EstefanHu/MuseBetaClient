@@ -3,6 +3,8 @@ import { API } from '../constants/api.js';
 
 const storyReducer = (state, action) => {
   switch (action.type) {
+    case 'set_genre':
+      return { ...state, genre: action.payload };
     case 'fetch_stories':
       return { ...state, stories: action.payload };
     case 'add_story':
@@ -32,6 +34,10 @@ const storyReducer = (state, action) => {
       return state;
   }
 };
+
+const setGenre = dispatch => genre => {
+  dispatch({ type: 'set_genre', payload: genre });
+}
 
 const fetchStories = dispatch => async (community, callback) => {
   try {
@@ -70,7 +76,7 @@ const deleteStory = dispatch => id => {
 
 export const { Context, Provider } = createDataContext(
   storyReducer,
-  { fetchStories, addStory, editStory, deleteStory },
+  { setGenre, fetchStories, addStory, editStory, deleteStory },
   {
     genre: 'All',
     stories: []
