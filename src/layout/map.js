@@ -114,7 +114,7 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
 });
 
 const HomeMarkers = () => {
-  const { state: { stories } } = useContext(StoryContext);
+  const { state: { genre, stories } } = useContext(StoryContext);
   const [popupInfo, setPopupInfo] = useState(null);
   const SIZE = 30;
 
@@ -122,23 +122,23 @@ const HomeMarkers = () => {
     <>
       {
         stories.map(item => {
-          // if (genre === 'All' || genre === item.genre)
-          return <Marker
-            key={item._id}
-            longitude={item.longitude}
-            latitude={item.latitude}
-            style={{ position: 'relative' }}
-          >
-            <Pin
-              height={SIZE}
-              viewBox="0 0 24 24"
-              style={{ transform: `translate(${-SIZE / 2}px,${-SIZE}px)` }}
-              onMouseEnter={() => setPopupInfo(item)}
-              onMouseLeave={() => setPopupInfo(null)}
+          if (genre === 'All' || genre === item.genre)
+            return <Marker
+              key={item._id}
+              longitude={item.longitude}
+              latitude={item.latitude}
+              style={{ position: 'relative' }}
             >
-              <path d={PIN} />
-            </Pin>
-          </Marker>
+              <Pin
+                height={SIZE}
+                viewBox="0 0 24 24"
+                style={{ transform: `translate(${-SIZE / 2}px,${-SIZE}px)` }}
+                onMouseEnter={() => setPopupInfo(item)}
+                onMouseLeave={() => setPopupInfo(null)}
+              >
+                <path d={PIN} />
+              </Pin>
+            </Marker>
         })
       }
       {

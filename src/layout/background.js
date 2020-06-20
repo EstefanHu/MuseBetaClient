@@ -46,12 +46,12 @@ export const Background = () => {
   return <Container>
     {
       key && (approximateLongitude || longitude) ?
-        // <Map
-        //   apikey={key}
-        //   longitude={longitude ? longitude : approximateLongitude}
-        //   latitude={latitude ? latitude : approximateLatitude}
-        // />
-        <div style={{ position: 'fixed', backgroundColor: 'pink', height: '100%', width: '100%' }}></div>
+        <Map
+          apikey={key}
+          longitude={longitude ? longitude : approximateLongitude}
+          latitude={latitude ? latitude : approximateLatitude}
+        />
+        // <div style={{ position: 'fixed', backgroundColor: 'pink', height: '100%', width: '100%' }}></div>
         : <Triangulate />
     }
   </Container>;
