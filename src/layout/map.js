@@ -22,8 +22,18 @@ const Pin = styled.svg`
   z-index: 5;
 `;
 
+const PopupContainer = styled(Popup)`
+  & > div:first-child {
+    border-top: 5px solid white;
+  }
+
+  & > div:last-child {
+    border: 3px solid var(--color);
+    border-radius: 5px;
+  }
+`;
+
 const InfoPopup = styled.div`
-  z-index: 10;
 `;
 
 const MapboxView = styled.div`
@@ -122,7 +132,8 @@ const HomeMarkers = () => {
               height={SIZE}
               viewBox="0 0 24 24"
               style={{ transform: `translate(${-SIZE / 2}px,${-SIZE}px)` }}
-              onClick={() => setPopupInfo(item)}
+              onMouseEnter={() => setPopupInfo(item)}
+              onMouseLeave={() => setPopupInfo(null)}
             >
               <path d={PIN} />
             </Pin>
@@ -131,18 +142,16 @@ const HomeMarkers = () => {
       }
       {
         popupInfo &&
-        <Popup
-          tipSize={5}
+        <PopupContainer
+          tipSize={0}
           longitude={popupInfo.longitude}
           latitude={popupInfo.latitude}
-          altitude={0}
-          closeButton={true}
-          closeOnClick={false}
-          onClose={() => setPopupInfo(null)}
-          anchor='top'
+          closeButton={false}
+          anchor='bottom'
+          offsetTop={-35}
         >
           <InfoPopup>{popupInfo.title}</InfoPopup>
-        </Popup>
+        </PopupContainer>
       }
     </>
   )
