@@ -139,6 +139,7 @@ const HomeMarkers = () => {
                 <path d={PIN} />
               </Pin>
             </Marker>
+          return null;
         })
       }
       {
