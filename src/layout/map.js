@@ -17,7 +17,6 @@ import styled from 'styled-components';
 
 const Pin = styled.svg`
   cursor: pointer;
-  // fill: var(--color);
   stroke: none;
   z-index: 5;
 `;
@@ -114,7 +113,7 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
 });
 
 const HomeMarkers = () => {
-  const { state: { genre, stories } } = useContext(StoryContext);
+  const { state: { genre, focusedStoryId, stories } } = useContext(StoryContext);
   const [popupInfo, setPopupInfo] = useState(null);
   const SIZE = 30;
 
@@ -132,7 +131,10 @@ const HomeMarkers = () => {
               <Pin
                 height={SIZE}
                 viewBox="0 0 24 24"
-                style={{ transform: `translate(${-SIZE / 2}px,${-SIZE}px)` }}
+                style={{
+                  fill: focusedStoryId === item._id ? 'var(--color)': 'black',
+                  transform: `translate(${-SIZE / 2}px,${-SIZE}px)`
+                }}
                 onMouseEnter={() => setPopupInfo(item)}
                 onMouseLeave={() => setPopupInfo(null)}
               >

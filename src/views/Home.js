@@ -88,6 +88,7 @@ export const Home = () => {
         if (genre === 'All' || genre === item.genre)
           return <Intro
             key={item._id}
+            _id={item._id}
             title={item.title}
             genre={item.genre}
             pitch={item.pitch}

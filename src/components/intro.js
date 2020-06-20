@@ -75,11 +75,14 @@ const Button = styled.button`
   }
 `;
 
-export const Intro = ({ title, pitch, genre, createdAt, author, authorId }) => {
-  const { state } = useContext(StoryContext);
+export const Intro = ({ _id, title, pitch, genre, createdAt, author, authorId }) => {
+  const { setFocusedStoryId } = useContext(StoryContext);
 
   return (
-    <Article>
+    <Article
+      onMouseEnter={() => setFocusedStoryId(_id)}
+      onMouseLeave={() => setFocusedStoryId(null)}
+    >
       <Header>
         <Title>{title}</Title>
         <Genre

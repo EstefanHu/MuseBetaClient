@@ -41,7 +41,7 @@ const setGenre = dispatch => genre => {
   dispatch({ type: 'set_genre', payload: genre });
 }
 
-const setFocusedStory = dispatch => storyId => {
+const setFocusedStoryId = dispatch => storyId => {
   dispatch({ type: 'set_focused_story', payload: storyId });
 }
 
@@ -82,7 +82,7 @@ const deleteStory = dispatch => id => {
 
 export const { Context, Provider } = createDataContext(
   storyReducer,
-  { setGenre, fetchStories, addStory, editStory, deleteStory },
+  { setGenre, setFocusedStoryId, fetchStories, addStory, editStory, deleteStory },
   {
     genre: 'All',
     focusedStoryId: null,
