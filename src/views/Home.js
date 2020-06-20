@@ -61,7 +61,7 @@ const MoreButton = styled.button`
 `;
 
 export const Home = () => {
-  const { state, fetchStories } = useContext(StoryContext);
+  const { state: { stories }, fetchStories } = useContext(StoryContext);
   const [isLoading, setIsLoading] = useState(true);
   const [genre, setGenre] = useState('All');
 
@@ -85,7 +85,7 @@ export const Home = () => {
           >{item.value}</Button>
         ))}
       </Filter>
-      {state.map(item => {
+      {stories.map(item => {
         if (genre === 'All' || genre === item.genre)
           return <Intro
             key={item._id}

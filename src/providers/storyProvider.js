@@ -4,20 +4,22 @@ import { API } from '../constants/api.js';
 const storyReducer = (state, action) => {
   switch (action.type) {
     case 'fetch_stories':
-      return action.payload;
+      return { ...state, stories: action.payload };
     case 'add_story':
-      return [
+      return {
         ...state,
-        {
-          id: action.payload._id,
-          title: action.payload.title,
-          description: action.payload.description,
-          genre: action.payload.genre,
-          longitude: action.payload.longitude,
-          latitude: action.payload.latitude,
-          body: action.payload.body
-        }
-      ];
+        stories: [
+          ...state.stories, {
+            id: action.payload._id,
+            title: action.payload.title,
+            description: action.payload.description,
+            genre: action.payload.genre,
+            longitude: action.payload.longitude,
+            latitude: action.payload.latitude,
+            body: action.payload.body
+          }
+        ]
+      };
     case 'edit_story':
       return state.map(story => {
         return story.id === action.payload.id
@@ -42,6 +44,7 @@ const fetchStories = dispatch => async (community, callback) => {
   }
 }
 
+// TODO: buggy
 const addStory = dispatch => async story => {
   const response = await fetch(API + '/story/create', {
     credentials: 'include',
@@ -68,7 +71,10 @@ const deleteStory = dispatch => id => {
 export const { Context, Provider } = createDataContext(
   storyReducer,
   { fetchStories, addStory, editStory, deleteStory },
-  []
+  {
+    genre: 'All',
+    stories: []
+  }
 );
 
 // {

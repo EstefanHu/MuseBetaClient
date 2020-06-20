@@ -114,15 +114,16 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
 });
 
 const HomeMarkers = () => {
-  const { state: storyState } = useContext(StoryContext);
+  const { state: { stories } } = useContext(StoryContext);
   const [popupInfo, setPopupInfo] = useState(null);
   const SIZE = 30;
 
-  return storyState && (
+  return stories && (
     <>
       {
-        storyState.map(item => (
-          <Marker
+        stories.map(item => {
+          // if (genre === 'All' || genre === item.genre)
+          return <Marker
             key={item._id}
             longitude={item.longitude}
             latitude={item.latitude}
@@ -138,7 +139,7 @@ const HomeMarkers = () => {
               <path d={PIN} />
             </Pin>
           </Marker>
-        ))
+        })
       }
       {
         popupInfo &&
