@@ -17,18 +17,18 @@ const Overlay = styled.div`
 `;
 
 export const New = () => {
-  const { state: { pitch }, startStory, endStory } = useContext(NewStoryContext);
+  const { state: { status }, updateStatus } = useContext(NewStoryContext);
 
   useEffect(() => {
-    startStory();
-    return () => endStory();
+    updateStatus('inProgress');
+    return () => updateStatus('inactive');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
       <CreateWheel />
-      {!pitch && <Overlay />}
+      {status !== 'isPlotting' && <Overlay />}
     </>
   )
 }

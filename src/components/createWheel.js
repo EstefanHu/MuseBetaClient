@@ -236,11 +236,12 @@ const GenreForm = () => {
 }
 
 const PitchForm = () => {
-  const { addPitch } = useContext(NewStoryContext);
+  const { updateStatus, addPitch } = useContext(NewStoryContext);
   const [pitch, setPitch] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
+    updateStatus('isPlotting');
     document.getElementById('createCoordinates')
       .scrollIntoView({ behavior: 'smooth' });
     addPitch(pitch);
@@ -297,10 +298,11 @@ const ExplainButton = styled.button`
 `;
 
 const CoordinatesForm = () => {
-  const { state: { longitude, latitude } } = useContext(NewStoryContext);
+  const { state: { longitude, latitude }, updateStatus } = useContext(NewStoryContext);
 
   const handleSubmit = e => {
     e.preventDefault();
+    updateStatus('inProgress');
     document.getElementById('createBody')
       .scrollIntoView({ behavior: 'smooth' });
   }
@@ -337,7 +339,10 @@ const CoordinatesForm = () => {
         </Details>
         <Span>
           <NextButton type='submit' value='Next' />
-          <BackButton href='#createPitch'>Back</BackButton>
+          <BackButton
+            href='#createPitch'
+            onClick={() => updateStatus('inProgress')}
+          >Back</BackButton>
         </Span>
       </Screen>
     </form>
@@ -345,7 +350,7 @@ const CoordinatesForm = () => {
 }
 
 const BodyForm = () => {
-  const { addBody } = useContext(NewStoryContext);
+  const { updateStatus, addBody } = useContext(NewStoryContext);
   const [body, setBody] = useState();
 
   const handleSubmit = e => {
@@ -367,7 +372,10 @@ const BodyForm = () => {
         />
         <Span>
           <NextButton type='submit' value='Next' />
-          <BackButton href='#createCoordinates'>Back</BackButton>
+          <BackButton
+            href='#createCoordinates'
+            onClick={() => updateStatus('isPlotting')}
+          >Back</BackButton>
         </Span>
       </Screen>
     </form>

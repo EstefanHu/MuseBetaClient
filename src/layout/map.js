@@ -80,7 +80,7 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
   });
 
   const engageMap = e => {
-    if (status === 'inProgress') return addCoordinates(e.lngLat);
+    if (status === 'isPlotting') return addCoordinates(e.lngLat);
   }
 
   return (
