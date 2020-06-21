@@ -5,7 +5,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import Cookie from 'js-cookie';
+import decode from 'jwt-decode';
 
 import { Context as LocationContext } from './providers/locationProvider.js';
 
@@ -16,8 +16,18 @@ import { FourOhFour } from './views/FourOhFour';
 import './App.css';
 
 const checkAuth = () => {
-  const cookie = Cookie.get('museCookie');
-  if (!cookie) return false;
+  const token = localStorage.getItem('token');
+  const refreshToken = localStorage.getItem('refreshToken');
+  if (!token || !refreshToken) return false;
+
+  try {
+    const expDate = decode(refreshToken);
+    if (expDate < new Date().getTime() / 1000)
+      return false;
+  } catch (error) {
+    return false;
+  }
+
   return true;
 }
 
