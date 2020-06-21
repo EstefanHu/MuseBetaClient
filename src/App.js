@@ -17,11 +17,10 @@ import './App.css';
 
 const checkAuth = () => {
   const token = localStorage.getItem('token');
-  const refreshToken = localStorage.getItem('refreshToken');
-  if (!token || !refreshToken) return false;
+  if (!token) return false;
 
   try {
-    const expDate = decode(refreshToken);
+    const expDate = decode(token);
     if (expDate < new Date().getTime() / 1000)
       return false;
   } catch (error) {
