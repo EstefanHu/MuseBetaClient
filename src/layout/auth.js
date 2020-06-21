@@ -206,7 +206,8 @@ const Login = withRouter(({ history, setHasAccount }) => {
       })
     }).then(res => res.json())
       .then(res => {
-        if (res.err) return alert({ status: 'failure', payload: res.err });
+        if (res.status === 'failure') return alert(res);
+        localStorage.setItem('token', res.payload);
         history.push('/');
       })
       .catch(console.error);
@@ -272,7 +273,8 @@ const Register = withRouter(({ history }) => {
     })
       .then(res => res.json())
       .then(res => {
-        if (res.err) return alert({ status: 'failure', payload: res.err });
+        if (res.status === 'failure') return alert(res);
+        localStorage.setItem('token', res.payload);
         history.push('/');
       })
       .catch(console.error);
