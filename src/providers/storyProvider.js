@@ -61,6 +61,7 @@ const fetchStories = dispatch => async (community, callback) => {
       }
     });
     const data = await response.json();
+    if (data.status === 'failure') return dispatch({ type: 'add_error', payload: data.payload });
     dispatch({ type: 'fetch_stories', payload: data.payload });
     callback();
   } catch (err) {
@@ -68,7 +69,6 @@ const fetchStories = dispatch => async (community, callback) => {
   }
 }
 
-// TODO: buggy
 const addStory = dispatch => async story => {
   const token = localStorage.getItem('token');
   const response = await fetch(API + '/story', {
