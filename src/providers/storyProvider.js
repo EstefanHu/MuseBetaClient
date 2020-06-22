@@ -48,9 +48,16 @@ const setFocusedStoryId = dispatch => storyId => {
 const fetchStories = dispatch => async (community, callback) => {
   try {
     const token = localStorage.getItem('token');
-    const response = await fetch(API + '/story/community/' + community, { Authorization: token });
+    const response = await fetch(API + '/story/community/' + community, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }
+    });
     const data = await response.json();
-    dispatch({ type: 'fetch_stories', payload: data.stories });
+    dispatch({ type: 'fetch_stories', payload: data.payload });
     callback();
   } catch (err) {
     console.log(err);
@@ -60,10 +67,10 @@ const fetchStories = dispatch => async (community, callback) => {
 // TODO: buggy
 const addStory = dispatch => async story => {
   const token = localStorage.getItem('token');
-  const response = await fetch(API + '/story/create', {
-    Authorization: token,
+  const response = await fetch(API + '/story', {
     method: 'POST',
     headers: {
+      Authorization: 'Bearer ' + token,
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },

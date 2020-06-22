@@ -27,12 +27,17 @@ export const Background = () => {
     console.log('looking for key');
 
     const fetchKey = async () => {
-      await fetch(API + '/auth/mapKey', {
-        credentials: 'include'
+      const token = localStorage.getItem('token');
+      console.log('fetching');
+      fetch(API + '/config/', {
+        method: 'GET',
+        headers: { Authorization: `Bearer ${token}` }
       }).then(res => res.json())
         .then(res => {
-          sessionStorage.setItem('key', res.key);
-          apiKey = res.key;
+          console.log(res);
+          if (res.status === 'failure') return alert('Please login');
+          sessionStorage.setItem('key', res.payload);
+          apiKey = res.payload;
         })
         .catch(console.error);
 
@@ -40,7 +45,7 @@ export const Background = () => {
     };
 
     let apiKey = sessionStorage.getItem('key');
-    apiKey === null ? fetchKey() : setKey(apiKey);
+    apiKey ? fetchKey() : setKey(apiKey);
   }, []);
 
   return <Container>
