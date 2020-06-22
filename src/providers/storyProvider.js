@@ -52,7 +52,7 @@ const setFocusedStoryId = dispatch => storyId => {
 const fetchStories = dispatch => async (community, callback) => {
   try {
     const token = localStorage.getItem('token');
-    const response = await fetch(API + '/story/community/' + community, {
+    const response = await fetch(API + `/story?community=${community}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,

@@ -1,4 +1,4 @@
-import React, { useState, useContext, memo } from 'react';
+import React, { useState, useEffect, useContext, memo } from 'react';
 import { Route } from 'react-router-dom';
 import ReactMapGl, {
   Marker,
@@ -77,6 +77,10 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
     width: '100vw',
     height: 'calc(100vh - 50px)',
     zoom: 12
+  });
+
+  useEffect(() => {
+    console.log('mounting')
   });
 
   const engageMap = e => {
