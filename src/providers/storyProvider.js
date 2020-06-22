@@ -32,6 +32,10 @@ const storyReducer = (state, action) => {
       });
     case 'delete_story':
       return state.filter(story => story.id !== action.payload);
+    case 'add_error':
+      return { ...state, error: action.payload };
+    case 'remove_error':
+      return { ...state, error: null };
     default:
       return state;
   }
@@ -77,7 +81,8 @@ const addStory = dispatch => async story => {
     body: JSON.stringify(story)
   });
   const data = await response.json();
-  dispatch({ type: 'add_story', payload: { ...story, _id: data._id } });
+  if (data.status === 'failure') return dispatch({ type: 'add_error', payload: data.payload });
+  dispatch({ type: 'add_story', payload: { ...story, _id: data.payload } });
 }
 
 const editStory = dispatch => (id, title, description, genre, body, callback) => {
@@ -95,6 +100,7 @@ export const { Context, Provider } = createDataContext(
   {
     genre: 'All',
     focusedStoryId: null,
+    error: null,
     stories: []
   }
 );
