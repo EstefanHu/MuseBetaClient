@@ -191,18 +191,15 @@ const Login = withRouter(({ history, setHasAccount }) => {
 
   const launchLogin = e => {
     e.preventDefault();
-    fetch(API + '/auth', {
+    fetch(API + '/user/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        type: 'login',
-        payload: {
-          email,
-          password
-        }
+        email,
+        password
       })
     }).then(res => res.json())
       .then(res => {
@@ -255,20 +252,17 @@ const Register = withRouter(({ history }) => {
     if (password.length < 8) return alert('Password is not long enough');
     if (password !== confirmPassword) return alert('Passwords do not match');
 
-    fetch(API + '/auth', {
+    fetch(API + '/user/register', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        type: 'register',
-        payload: {
-          firstName,
-          lastName,
-          email,
-          password,
-        }
+        firstName,
+        lastName,
+        email,
+        password,
       })
     })
       .then(res => res.json())
