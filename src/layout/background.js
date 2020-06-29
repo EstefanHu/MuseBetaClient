@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { API } from '../constants/api.js';
+import { API } from '../constants/network.js';
 
 import { Context as LocationContext } from '../providers/locationProvider.js';
 

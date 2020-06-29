@@ -1,5 +1,5 @@
 import createDataContext from './createDataContext.js';
-import { API } from '../constants/api.js';
+import { API } from '../constants/network.js';
 
 const storyReducer = (state, action) => {
   switch (action.type) {

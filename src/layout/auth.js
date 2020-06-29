@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import { API } from '../constants/api.js';
+import { API } from '../constants/network.js';
 
 import { GrClose } from 'react-icons/gr';
 import styled from 'styled-components';
@@ -194,23 +194,7 @@ const Login = withRouter(({ history, setHasAccount }) => {
 
   const launchLogin = e => {
     e.preventDefault();
-    fetch(API + '/api/v1/user/login', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email,
-        password
-      })
-    }).then(res => res.json())
-      .then(res => {
-        if (res.status !== 'success') return alert(res.payload);
-        localStorage.setItem('token', res.token);
-        history.push('/');
-      })
-      .catch(console.error);
+    login(email, password, () => history.push('/'));
   }
 
   return (
@@ -244,6 +228,7 @@ const Login = withRouter(({ history, setHasAccount }) => {
 });
 
 const Register = withRouter(({ history }) => {
+  const { register } = useContext(AuthContext);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -252,29 +237,14 @@ const Register = withRouter(({ history }) => {
 
   const launchRegister = e => {
     e.preventDefault();
-    if (password.length < 8) return alert('Password is not long enough');
-    if (password !== confirmPassword) return alert('Passwords do not match');
-
-    fetch(API + '/api/v1/user/register', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: `${firstName} ${lastName}`,
-        email,
-        password,
-        confirmPassword
-      })
-    })
-      .then(res => res.json())
-      .then(res => {
-        if (res.status !== 'success') return alert(res.payload);
-        localStorage.setItem('token', res.token);
-        history.push('/');
-      })
-      .catch(console.error);
+    register(
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
+      () => history.push('/')
+    );
   }
 
   return (

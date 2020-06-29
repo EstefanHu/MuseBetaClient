@@ -1,5 +1,5 @@
 import createDataContext from './createDataContext.js';
-import { API } from '../constants/api.js';
+import { API } from '../constants/network.js';
 
 const profileReducer = (state, action) => {
   switch (action.type) {

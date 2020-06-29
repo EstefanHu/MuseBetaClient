@@ -23,7 +23,7 @@ const clearErrorMessage = dispatch => () => {
 
 const login = dispatch => async ({ email, password }) => {
   try {
-    const response = await museApi.post('/signup', { email, password });
+    const response = await authApi.post('/signup', { email, password });
     await localStorage.setItem('token', response.data.token);
     dispatch({ type: 'register', payload: response.data.token });
   } catch (err) {
@@ -33,7 +33,7 @@ const login = dispatch => async ({ email, password }) => {
 
 const register = dispatch => async ({ email, password }) => {
   try {
-    const response = await museApi.post('/signin', { email, password });
+    const response = await authApi.post('/signin', { email, password });
     await localStorage.setItem('token', response.data.token);
     dispatch({ type: 'login', payload: response.data.token });
   } catch (err) {
