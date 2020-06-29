@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import { API } from '../constants/network.js';
 
 import { GrClose } from 'react-icons/gr';
 import styled from 'styled-components';

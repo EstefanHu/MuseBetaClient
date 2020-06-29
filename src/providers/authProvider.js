@@ -1,4 +1,6 @@
 import createDataContext from './createDataContext.js';
+import { useFetch } from './../hooks/useFetch.js';
+import { loginUrl, registerUrl } from './../constants/network.js';
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -21,21 +23,26 @@ const clearErrorMessage = dispatch => () => {
   dispatch({ type: 'clear_error_message' })
 };
 
-const login = dispatch => async ({ email, password }) => {
+const login = dispatch => async data => {
+  console.log('logging in');
   try {
-    const response = await authApi.post('/signup', { email, password });
-    await localStorage.setItem('token', response.data.token);
-    dispatch({ type: 'register', payload: response.data.token });
+    const response = await useFetch(loginUrl, 'POST', data);
+    console.log(response);
+    await localStorage.setItem('token', response.token);
+    dispatch({ type: 'register', payload: response.token });
   } catch (err) {
     dispatch({ type: 'add_error', payload: 'Something went wrong with sign up' });
   }
 };
 
-const register = dispatch => async ({ email, password }) => {
+const register = dispatch => async ({ firstName, lastName, email, password, confirmPassword }) => {
   try {
-    const response = await authApi.post('/signin', { email, password });
-    await localStorage.setItem('token', response.data.token);
-    dispatch({ type: 'login', payload: response.data.token });
+    if (password.length < 8) return alert('Password is not long enough');
+    if (password !== confirmPassword) return alert('Passwords do not match');
+
+    const response = await useFetch(registerUrl, 'POST', { firstName, lastName, email, password, confirmPassword });
+    await localStorage.setItem('token', response.token);
+    dispatch({ type: 'login', payload: response.token });
   } catch (err) {
     console.log(err);
     dispatch({ type: 'add_error', payload: 'Something went wrong with sign in' });
