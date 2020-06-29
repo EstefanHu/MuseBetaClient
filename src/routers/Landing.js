@@ -13,10 +13,10 @@ export const Landing = () => {
     <>
       <header style={styles.header}>
         <FaConnectdevelop size={40} color='black' />&nbsp;
-        <Link style={{ color: 'white', textDecoration: 'none' }} to='/landing/'>
+        <Link style={{ color: 'white', textDecoration: 'none' }} to='/'>
           <h1>:Muse</h1>
         </Link>
-        <Route exact path='/landing/'>
+        <Route exact path='/'>
           <ul style={styles.links}>
             <li>
               <ScrollLink
@@ -35,10 +35,10 @@ export const Landing = () => {
           </ul>
         </Route>
       </header>
-      <Route exact path='/landing/' component={Splash} />
-      <Route exact path='/landing/forgot' component={Forgot} />
-      <Route exact path='/landing/terms' component={Terms} />
-      <Route exact path='/landing/privacy' component={Privacy} />
+      <Route exact path='/' component={Splash} />
+      <Route exact path='/forgot' component={Forgot} />
+      <Route exact path='/terms' component={Terms} />
+      <Route exact path='/privacy' component={Privacy} />
       <Auth />
     </>
   )

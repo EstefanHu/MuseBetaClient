@@ -236,7 +236,7 @@ const Login = withRouter(({ history, setHasAccount }) => {
         value='Log in' />
       <span style={styles.endLinks}>
         <p>
-          <Link style={styles.link} to='/landing/forgot'>Forgot Password?</Link> -&nbsp;
+          <Link style={styles.link} to='/forgot'>Forgot Password?</Link> -&nbsp;
         <span style={styles.link} onClick={() => setHasAccount(false)}>Sign up for :Muse</span>
         </p>
       </span>
@@ -315,8 +315,8 @@ const Register = withRouter(({ history }) => {
       <span style={styles.endLinks}>
         <p>Click "Register" above to accept Muse's</p>
         <p>
-          <Link style={styles.link} to='/landing/terms'>Terms of Service</Link> &&nbsp;
-          <Link style={styles.link} to='/landing/privacy'>Privacy Policy.</Link>
+          <Link style={styles.link} to='/terms'>Terms of Service</Link> &&nbsp;
+          <Link style={styles.link} to='/privacy'>Privacy Policy.</Link>
         </p>
       </span>
     </Form>
