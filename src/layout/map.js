@@ -128,8 +128,8 @@ const HomeMarkers = () => {
           if (genre === 'All' || genre === item.genre)
             return <Marker
               key={item._id}
-              longitude={item.longitude}
-              latitude={item.latitude}
+              longitude={item.startLocation.coordinates[0]}
+              latitude={item.startLocation.coordinates[1]}
               style={{ position: 'relative' }}
             >
               <Pin
@@ -152,8 +152,8 @@ const HomeMarkers = () => {
         popupInfo &&
         <PopupContainer
           tipSize={0}
-          longitude={popupInfo.longitude}
-          latitude={popupInfo.latitude}
+          longitude={popupInfo.startLocation.coordinates[0]}
+          latitude={popupInfo.startLocation.coordinates[1]}
           closeButton={false}
           anchor='bottom'
           offsetTop={-35}

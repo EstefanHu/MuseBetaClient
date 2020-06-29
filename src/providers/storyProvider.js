@@ -18,7 +18,7 @@ const storyReducer = (state, action) => {
             title: action.payload.title,
             pitch: action.payload.pitch,
             genre: action.payload.genre,
-            startingLocation: action.payload.startingLocation,
+            startLocation: action.payload.startLocation,
             body: action.payload.body
           }
         ]
