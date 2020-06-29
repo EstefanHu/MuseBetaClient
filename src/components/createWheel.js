@@ -157,13 +157,13 @@ export const CreateWheel = withRouter(({ history }) => {
       <BodyForm />
 
       <Screen id='createPublish'>
-        <H1>Well Done!</H1>
+        <H1>Story Completed!</H1>
         <Span>
           <Submit onClick={publishStory}>Publish</Submit>
           <BackButton href='#createBody'>Back</BackButton>
         </Span>
       </Screen>
-    </Container>
+    </Container >
   )
 });
 
