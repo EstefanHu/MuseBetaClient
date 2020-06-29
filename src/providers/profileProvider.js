@@ -12,6 +12,8 @@ const login = async dispatch => () => {
 
 }
 
+const register = async 
+
 export const {Context, Provider} = createDataContext(
   profileReducer,
   {login},
