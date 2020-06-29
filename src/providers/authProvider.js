@@ -23,24 +23,26 @@ const clearErrorMessage = dispatch => () => {
   dispatch({ type: 'clear_error_message' })
 };
 
-const login = dispatch => async ({payload, callback}) => {
+const login = dispatch => async ({ payload, callback }) => {
   try {
     const response = await useFetch(loginUrl, 'POST', payload);
     await localStorage.setItem('token', response.token);
     dispatch({ type: 'register', payload: response.token });
+    callback();
   } catch (err) {
     dispatch({ type: 'add_error', payload: 'Something went wrong with sign up' });
   }
 };
 
-const register = dispatch => async ({ firstName, lastName, email, password, confirmPassword }) => {
+const register = dispatch => async ({ payload, callback }) => {
   try {
-    if (password.length < 8) return alert('Password is not long enough');
-    if (password !== confirmPassword) return alert('Passwords do not match');
+    if (payload.password.length < 8) return alert('Password is not long enough');
+    if (payload.password !== payload.confirmPassword) return alert('Passwords do not match');
 
-    const response = await useFetch(registerUrl, 'POST', { firstName, lastName, email, password, confirmPassword });
+    const response = await useFetch(registerUrl, 'POST', payload);
     await localStorage.setItem('token', response.token);
     dispatch({ type: 'login', payload: response.token });
+    callback();
   } catch (err) {
     console.log(err);
     dispatch({ type: 'add_error', payload: 'Something went wrong with sign in' });

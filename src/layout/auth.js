@@ -239,15 +239,16 @@ const Register = withRouter(({ history }) => {
 
   const launchRegister = e => {
     e.preventDefault();
-    register(
-      firstName,
-      lastName,
-      email,
-      password,
-      confirmPassword,
-      () => history.push('/')
-    );
-  }
+    register({
+      payload: {
+        name: `${firstName} ${lastName}`,
+        email,
+        password,
+        confirmPassword
+      },
+      callback: () => history.push('/')
+    });
+  };
 
   return (
     <Form onSubmit={launchRegister}>
