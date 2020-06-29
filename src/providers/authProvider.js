@@ -62,13 +62,13 @@ const tryLocalLogin = dispatch => async () => {
   if (token) dispatch({ type: 'login', payload: token });
 };
 
-const signout = dispatch => async () => {
+const logout = dispatch => async () => {
   await localStorage.removeItem('token');
   dispatch({ type: 'logout' });
 };
 
 export const { Provider, Context } = createDataContext(
   authReducer,
-  { login, register, signout, clearErrorMessage, tryLocalLogin },
+  { login, register, logout, clearErrorMessage, tryLocalLogin },
   { token: null, errorMessage: '' }
 );

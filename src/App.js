@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,40 +16,48 @@ import { FourOhFour } from './views/FourOhFour';
 
 import './App.css';
 
-const checkAuth = () => {
-  const token = localStorage.getItem('token');
-  if (!token) return false;
+const AuthRoute = ({ component: Component, ...rest }) => {
+  const { state: { token }, logout } = useContext(AuthContext);
+  const [isValid, setIsValid] = useState(true);
 
-  try {
-    const expDate = decode(token);
-    if (expDate < new Date().getTime() / 1000)
-      return false;
-  } catch (error) {
-    return false;
-  }
+  useEffect(() => {
+    try {
+      const expDate = decode(token);
+      if (expDate < new Date().getTime() / 1000)
+        setIsValid(false);
+    } catch (error) {
+      setIsValid(false);
+    }
 
-  return true;
-}
+    if (!isValid) logout();
+  }, []);
 
-const AuthRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={props => (
-    checkAuth() ? (
-      <Component {...props} />
-    ) : (
-        <Redirect to={{ pathname: '/' }} />
-      )
-  )} />
-)
+  return (
+    <Route {...rest} render={props => (
+      isValid ? (
+        <Component {...props} />
+      ) : (
+          <Redirect to={{ pathname: '/' }} />
+        )
+    )} />
+  );
+};
 
 export const App = () => {
   const { state: { token }, tryLocalLogin } = useContext(AuthContext);
   const { approximateLocation } = useContext(LocationContext);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    approximateLocation();
-    tryLocalLogin();
+    (async () => {
+      await approximateLocation();
+      await tryLocalLogin();
+      setIsLoading(false);
+    })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (isLoading) return null;
 
   return (
     <Router>
@@ -63,4 +71,4 @@ export const App = () => {
       </Switch>
     </Router>
   );
-}
+};
