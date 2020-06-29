@@ -96,6 +96,14 @@ const Container = styled.section`
   z-index: 1;
 `;
 
+const ErrorMessage = styled.p`
+  text-transform: uppercase;
+  color: red;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+`;
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -137,6 +145,7 @@ const Input = styled.input`
 `;
 
 export const Auth = () => {
+  const { state: { errorMessage }, clearErrorMessage } = useContext(AuthContext);
   const [hasAccount, setHasAccount] = useState(true);
   const [isOpen, setIsOpen] = useState(true);
 
@@ -146,11 +155,17 @@ export const Auth = () => {
         {
           hasAccount ?
             <button
-              onClick={() => setHasAccount(false)}
+              onClick={() => {
+                clearErrorMessage();
+                setHasAccount(false);
+              }}
               style={styles.button}
             >Register</button>
             : <button
-              onClick={() => setHasAccount(true)}
+              onClick={() => {
+                clearErrorMessage();
+                setHasAccount(true);
+              }}
               style={styles.button}
             >Login</button>
         }
@@ -164,7 +179,7 @@ export const Auth = () => {
         <h1 style={styles.watermark}>:Muse</h1>
       </div>
       <div style={styles.content}>
-        <a href='/'>to App</a>
+        {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         {hasAccount ? <Login setHasAccount={setHasAccount} /> : <Register />}
       </div>
     </Container>

@@ -26,6 +26,9 @@ const clearErrorMessage = dispatch => () => {
 const login = dispatch => async ({ payload, callback }) => {
   try {
     const response = await useFetch(loginUrl, 'POST', payload);
+    if (response.status !== 'success')
+      return dispatch({ type: 'add_error', payload: response.payload });
+
     await localStorage.setItem('token', response.token);
     dispatch({ type: 'register', payload: response.token });
     callback();
@@ -36,10 +39,15 @@ const login = dispatch => async ({ payload, callback }) => {
 
 const register = dispatch => async ({ payload, callback }) => {
   try {
-    if (payload.password.length < 8) return alert('Password is not long enough');
-    if (payload.password !== payload.confirmPassword) return alert('Passwords do not match');
+    if (payload.password.length < 8)
+      return dispatch({ type: 'add_error', payload: 'Password is not long enough' });
+    if (payload.password !== payload.confirmPassword)
+      return dispatch({ type: 'add_error', payload: 'Passwords do not match' });
 
     const response = await useFetch(registerUrl, 'POST', payload);
+    if (response.status !== 'success')
+      return dispatch({ type: 'add_error', payload: response.payload });
+
     await localStorage.setItem('token', response.token);
     dispatch({ type: 'login', payload: response.token });
     callback();
