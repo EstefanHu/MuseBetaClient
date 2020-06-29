@@ -30,7 +30,8 @@ const AuthRoute = ({ component: Component, ...rest }) => {
     }
 
     if (!isValid) logout();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
 
   return (
     <Route {...rest} render={props => (
