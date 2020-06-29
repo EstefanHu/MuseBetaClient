@@ -144,7 +144,7 @@ export const CreateWheel = withRouter(({ history }) => {
   const { addStory } = useContext(StoryContext);
 
   const publishStory = () => {
-    addStory({ ...state, city });
+    addStory({ ...state, city, community: city });
     history.push('/')
   }
 
