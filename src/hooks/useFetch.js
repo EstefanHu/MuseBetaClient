@@ -1,6 +1,6 @@
 exports.useFetch = async (url, method, payload) => {
   try {
-    const header = {
+    const params = {
       method,
       headers: {
         Accept: 'application/json',
@@ -9,7 +9,7 @@ exports.useFetch = async (url, method, payload) => {
       body: JSON.stringify(payload)
     }
 
-    const response = await fetch(url, header);
+    const response = await fetch(url, params);
     const data = await response.json();
 
     return data;

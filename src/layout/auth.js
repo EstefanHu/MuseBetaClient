@@ -193,7 +193,10 @@ const Login = withRouter(({ history, setHasAccount }) => {
 
   const launchLogin = e => {
     e.preventDefault();
-    login(email, password, () => history.push('/'));
+    login({
+      payload: { email, password },
+      callback: () => history.push('/')
+    });
   }
 
   return (

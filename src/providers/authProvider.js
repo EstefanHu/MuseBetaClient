@@ -23,11 +23,9 @@ const clearErrorMessage = dispatch => () => {
   dispatch({ type: 'clear_error_message' })
 };
 
-const login = dispatch => async data => {
-  console.log('logging in');
+const login = dispatch => async ({payload, callback}) => {
   try {
-    const response = await useFetch(loginUrl, 'POST', data);
-    console.log(response);
+    const response = await useFetch(loginUrl, 'POST', payload);
     await localStorage.setItem('token', response.token);
     dispatch({ type: 'register', payload: response.token });
   } catch (err) {
