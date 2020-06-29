@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import decode from 'jwt-decode';
 
+import { Context as AuthContext } from './providers/authProvider.js';
 import { Context as LocationContext } from './providers/locationProvider.js';
 
 import { Landing } from './routers/Landing.js';
@@ -35,24 +36,29 @@ const AuthRoute = ({ component: Component, ...rest }) => (
     checkAuth() ? (
       <Component {...props} />
     ) : (
-        <Redirect to={{ pathname: '/landing/' }} />
+        <Redirect to={{ pathname: '/' }} />
       )
   )} />
 )
 
 export const App = () => {
+  const { state: { token }, tryLocalLogin } = useContext(AuthContext);
   const { approximateLocation } = useContext(LocationContext);
 
   useEffect(() => {
     approximateLocation();
+    tryLocalLogin();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Router>
       <Switch>
-        <AuthRoute exact path='/(|new|profile|settings)' component={Primary} />
-        <Route exact path='/landing/(|terms|forgot|privacy)' component={Landing} />
+        {
+          token ?
+            <AuthRoute exact path='/(|new|profile|settings)' component={Primary} />
+            : <Route exact path='/(|terms|forgot|privacy)' component={Landing} />
+        }
         <Route component={FourOhFour} />
       </Switch>
     </Router>

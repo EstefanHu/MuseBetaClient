@@ -57,7 +57,7 @@ const register = dispatch => async ({ payload, callback }) => {
   }
 };
 
-const tryLocalSignin = dispatch => async () => {
+const tryLocalLogin = dispatch => async () => {
   const token = await localStorage.getItem('token');
   if (token) dispatch({ type: 'login', payload: token });
 };
@@ -69,6 +69,6 @@ const signout = dispatch => async () => {
 
 export const { Provider, Context } = createDataContext(
   authReducer,
-  { login, register, signout, clearErrorMessage, tryLocalSignin },
+  { login, register, signout, clearErrorMessage, tryLocalLogin },
   { token: null, errorMessage: '' }
 );
