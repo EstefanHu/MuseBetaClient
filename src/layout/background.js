@@ -29,7 +29,7 @@ export const Background = () => {
     const fetchKey = async () => {
       console.log('fetching map key');
       const token = localStorage.getItem('token');
-      const response = await fetch(API + '/config/', {
+      const response = await fetch(API + '/api/v1/config/', {
         method: 'GET',
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -40,7 +40,6 @@ export const Background = () => {
     };
 
     let apiKey = sessionStorage.getItem('key');
-    console.log(apiKey === null);
     apiKey === null ? fetchKey() : setKey(apiKey);
   }, []);
 

@@ -139,12 +139,12 @@ const Details = styled.p`
 `;
 
 export const CreateWheel = withRouter(({ history }) => {
-  const { state: { community } } = useContext(LocationContext);
+  const { state: { city } } = useContext(LocationContext);
   const { state } = useContext(NewStoryContext);
   const { addStory } = useContext(StoryContext);
 
   const publishStory = () => {
-    addStory({ ...state, community });
+    addStory({ ...state, city });
     history.push('/')
   }
 

@@ -16,10 +16,9 @@ const storyReducer = (state, action) => {
           ...state.stories, {
             id: action.payload._id,
             title: action.payload.title,
-            description: action.payload.description,
+            pitch: action.payload.pitch,
             genre: action.payload.genre,
-            longitude: action.payload.longitude,
-            latitude: action.payload.latitude,
+            startingLocation: action.payload.startingLocation,
             body: action.payload.body
           }
         ]
@@ -49,10 +48,10 @@ const setFocusedStoryId = dispatch => storyId => {
   dispatch({ type: 'set_focused_story', payload: storyId });
 }
 
-const fetchStories = dispatch => async (community, callback) => {
+const fetchStories = dispatch => async (city, callback) => {
   try {
     const token = localStorage.getItem('token');
-    const response = await fetch(API + `/api/v1/story?community=${community}`, {
+    const response = await fetch(API + `/api/v1/story?city=${city}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -61,8 +60,8 @@ const fetchStories = dispatch => async (community, callback) => {
       }
     });
     const data = await response.json();
-    if (data.status === 'failure') return dispatch({ type: 'add_error', payload: data.payload });
-    dispatch({ type: 'fetch_stories', payload: data.payload });
+    if (data.status !== 'success') return dispatch({ type: 'add_error', payload: data.payload });
+    dispatch({ type: 'fetch_stories', payload: data.payload.data });
     callback();
   } catch (err) {
     console.log(err);

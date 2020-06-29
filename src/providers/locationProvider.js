@@ -7,7 +7,6 @@ const LocationReducer = (state, action) => {
         ...state,
         approximateLongitude: action.payload.lon,
         approximateLatitude: action.payload.lat,
-        community: action.payload.city, //TODO: will fine tune
         city: action.payload.city,
         region: action.payload.regionName,
       }
@@ -30,7 +29,6 @@ export const { Provider, Context } = createDataContext(
     approximateLatitude: null,
     longitude: null,
     latitude: null,
-    community: null,
     city: null,
     region: null
   }
