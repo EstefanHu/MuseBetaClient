@@ -191,7 +191,7 @@ const Login = withRouter(({ history, setHasAccount }) => {
 
   const launchLogin = e => {
     e.preventDefault();
-    fetch(API + '/user/login', {
+    fetch(API + '/api/v1/user/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -203,7 +203,7 @@ const Login = withRouter(({ history, setHasAccount }) => {
       })
     }).then(res => res.json())
       .then(res => {
-        if (res.status === 'failure') return alert(res);
+        if (res.status !== 'success') return alert(res.payload);
         localStorage.setItem('token', res.payload);
         history.push('/');
       })
@@ -252,22 +252,22 @@ const Register = withRouter(({ history }) => {
     if (password.length < 8) return alert('Password is not long enough');
     if (password !== confirmPassword) return alert('Passwords do not match');
 
-    fetch(API + '/user/register', {
+    fetch(API + '/api/v1/user/register', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        firstName,
-        lastName,
+        name: `${firstName} ${lastName}`,
         email,
         password,
+        confirmPassword
       })
     })
       .then(res => res.json())
       .then(res => {
-        if (res.status === 'failure') return alert(res);
+        if (res.status !== 'success') return alert(res.payload);
         localStorage.setItem('token', res.payload);
         history.push('/');
       })
