@@ -13,8 +13,11 @@ const newStoryReducer = (state, action) => {
     case 'add_coordinates':
       return {
         ...state,
-        longitude: action.payload.longitude,
-        latitude: action.payload.latitude
+        startingLocation: {
+          coordinates: [action.payload.longitude, action.payload.latitude],
+          address: "", // TODO: FILL OUT META DATA
+          description: "",
+        }
       };
     case 'add_body':
       return { ...state, body: action.payload };
