@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { API } from '../constants/api.js';
 
 import { GrClose } from 'react-icons/gr';
 import styled from 'styled-components';
+
+import { Context as AuthContext } from '../providers/authProvider.js';
 
 const styles = {
   header: {
@@ -186,6 +188,7 @@ export const Auth = () => {
 }
 
 const Login = withRouter(({ history, setHasAccount }) => {
+  const { login } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
