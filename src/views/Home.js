@@ -93,7 +93,7 @@ export const Home = () => {
             genre={item.genre}
             pitch={item.pitch}
             createdAt={item.createdAt}
-            author={item.author}
+            authorName={item.authorName}
           />
         return null;
       })}

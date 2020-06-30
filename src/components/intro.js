@@ -75,7 +75,7 @@ const Button = styled.button`
   }
 `;
 
-export const Intro = ({ _id, title, pitch, genre, createdAt, author, authorId }) => {
+export const Intro = ({ _id, title, pitch, genre, createdAt, authorName, authorId }) => {
   const { setFocusedStoryId } = useContext(StoryContext);
 
   return (
@@ -92,7 +92,7 @@ export const Intro = ({ _id, title, pitch, genre, createdAt, author, authorId })
       <Pitch>{pitch}</Pitch>
       <Meta>
         <Link to={`/app/profile/${authorId}`} style={styles.author}>
-          {author}&nbsp;
+          {authorName}&nbsp;
         </Link>-&nbsp;
         {createdAt}
       </Meta>
