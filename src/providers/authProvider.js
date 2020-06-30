@@ -52,7 +52,6 @@ const register = dispatch => async ({ payload, callback }) => {
     dispatch({ type: 'login', payload: response.token });
     callback();
   } catch (err) {
-    console.log(err);
     dispatch({ type: 'add_error', payload: 'Something went wrong with sign in' });
   }
 };
