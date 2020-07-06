@@ -1,5 +1,6 @@
 import createDataContext from './createDataContext.js';
-import { API } from '../constants/network.js';
+import { useFetch } from './../hooks/useFetch.js';
+import { storyUrl } from '../constants/network.js';
 
 const storyReducer = (state, action) => {
   switch (action.type) {
@@ -48,37 +49,20 @@ const setFocusedStoryId = dispatch => storyId => {
   dispatch({ type: 'set_focused_story', payload: storyId });
 }
 
-const fetchStories = dispatch => async (city, callback) => {
+const fetchStories = dispatch => async city => {
   try {
-    const token = localStorage.getItem('token');
-    const response = await fetch(API + `/api/v1/story?city=${city}`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      }
-    });
-    const data = await response.json();
-    if (data.status !== 'success') return dispatch({ type: 'add_error', payload: data.payload });
-    dispatch({ type: 'fetch_stories', payload: data.payload });
-    callback();
-  } catch (err) {
-    console.log(err);
+    const token = await localStorage.getItem('token');
+    const response = await useFetch(`${storyUrl}?city=${city}`, 'GET', null, token);
+    if (response.status !== 'success') return dispatch({ type: 'add_error', payload: response.payload });
+    dispatch({ type: 'fetch_stories', payload: response.payload });
+  } catch (error) {
+    console.log(error);
   }
 }
 
 const addStory = dispatch => async story => {
   const token = localStorage.getItem('token');
-  const response = await fetch(API + '/api/v1/story', {
-    method: 'POST',
-    headers: {
-      Authorization: 'Bearer ' + token,
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(story)
-  });
+  const response = await useFetch(storyUrl, 'POST', story, token);
   const data = await response.json();
   if (data.status === 'failure') return dispatch({ type: 'add_error', payload: data.payload });
   dispatch({ type: 'add_story', payload: { ...story, _id: data.payload } });
@@ -103,12 +87,3 @@ export const { Context, Provider } = createDataContext(
     stories: []
   }
 );
-
-// {
-//   _id: 'ie4w9gee0rq',
-//   title: 'Hello World',
-//   genre: 'Non-Fiction',
-//   pitch: 'Industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the.',
-//   createdAt: 'October 17, 2019',
-//   author: 'Estefan Hu'
-// }
