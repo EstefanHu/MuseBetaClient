@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { GENRES } from '../constants/genre.js';
+import { CHANNELS } from '../constants/channel.js';
 
 import { Context as LocationContext } from '../providers/locationProvider.js';
 import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
@@ -219,7 +219,7 @@ const GenreForm = () => {
           required
         >
           <option value='' >Select a Genre...</option>
-          {GENRES.map(item => (
+          {CHANNELS.map(item => (
             <option
               key={item.value}
               value={item.value}

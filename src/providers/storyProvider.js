@@ -61,7 +61,7 @@ const fetchStories = dispatch => async (city, callback) => {
     });
     const data = await response.json();
     if (data.status !== 'success') return dispatch({ type: 'add_error', payload: data.payload });
-    dispatch({ type: 'fetch_stories', payload: data.payload.data });
+    dispatch({ type: 'fetch_stories', payload: data.payload });
     callback();
   } catch (err) {
     console.log(err);

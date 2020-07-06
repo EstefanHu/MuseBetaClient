@@ -1,9 +1,9 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { GENRES } from '../constants/genre.js';
-import { Context as StoryContext } from '../providers/storyProvider.js';
+import { CHANNELS } from './../constants/channel.js';
+import { Context as StoryContext } from './../providers/storyProvider.js';
 
-import { Intro } from '../components/intro.js';
-import { Loading } from '../components/loading.js';
+import { Intro } from './../components/intro.js';
+import { Loading } from './../components/loading.js';
 
 import styled from 'styled-components';
 
@@ -61,7 +61,7 @@ const MoreButton = styled.button`
 `;
 
 export const Home = () => {
-  const { state: { genre, stories }, setGenre, fetchStories } = useContext(StoryContext);
+  const { state: { channel, stories }, setChannel, fetchStories } = useContext(StoryContext);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -76,27 +76,31 @@ export const Home = () => {
   return (
     <Container className='noBar'>
       <Filter className='noBar'>
-        <Button onClick={() => setGenre('All')}>All</Button>
-        {GENRES.map(item => (
-          <Button
-            key={item.value}
-            onClick={() => setGenre(item.value)}
-          >{item.value}</Button>
-        ))}
+        <Button onClick={() => setChannel('All')}>All</Button>
+        {
+          CHANNELS.map(item => (
+            <Button
+              key={item.value}
+              onClick={() => setChannel(item.value)}
+            >{item.value}</Button>
+          ))
+        }
       </Filter>
-      {stories.map(item => {
-        if (genre === 'All' || genre === item.genre)
-          return <Intro
-            key={item._id}
-            _id={item._id}
-            title={item.title}
-            genre={item.genre}
-            pitch={item.pitch}
-            createdAt={item.createdAt}
-            authorName={item.authorName}
-          />
-        return null;
-      })}
+      {
+        stories.map(item => {
+          if (channel === 'All' || channel === item.channel)
+            return <Intro
+              key={item._id}
+              _id={item._id}
+              title={item.title}
+              channel={item.channel}
+              pitch={item.pitch}
+              createdAt={item.createdAt}
+              authorName={item.authorName}
+            />
+          return null;
+        })
+      }
       <More>
         {
           isLoading ?

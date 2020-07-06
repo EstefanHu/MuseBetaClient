@@ -28,7 +28,6 @@ const login = dispatch => async ({ payload, callback }) => {
     const response = await useFetch(loginUrl, 'POST', payload);
     if (response.status !== 'success')
       return dispatch({ type: 'add_error', payload: response.payload });
-
     await localStorage.setItem('token', response.token);
     dispatch({ type: 'register', payload: response.token });
     callback();
