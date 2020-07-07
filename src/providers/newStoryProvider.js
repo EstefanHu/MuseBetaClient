@@ -6,8 +6,8 @@ const newStoryReducer = (state, action) => {
       return { ...state, status: action.payload };
     case 'add_title':
       return { ...state, title: action.payload };
-    case 'add_genre':
-      return { ...state, genre: action.payload };
+    case 'add_channel':
+      return { ...state, channel: action.payload };
     case 'add_pitch':
       return { ...state, pitch: action.payload };
     case 'add_coordinates':
@@ -38,8 +38,8 @@ const addTitle = dispatch => title => {
   dispatch({ type: 'add_title', payload: title });
 }
 
-const addGenre = dispatch => genre => {
-  dispatch({ type: 'add_genre', payload: genre });
+const addChannel = dispatch => channel => {
+  dispatch({ type: 'add_channel', payload: channel });
 }
 
 const addPitch = dispatch => pitch => {
@@ -61,7 +61,7 @@ const addBody = dispatch => body => {
 
 export const { Context, Provider } = createDataContext(
   newStoryReducer,
-  { updateStatus, addTitle, addGenre, addPitch, addCoordinates, addBody },
+  { updateStatus, addTitle, addChannel, addPitch, addCoordinates, addBody },
   {
     status: 'inactive',
     error: null,

@@ -151,7 +151,7 @@ export const CreateWheel = withRouter(({ history }) => {
   return (
     <Container>
       <TitleForm />
-      <GenreForm />
+      <ChannelForm />
       <PitchForm />
       <CoordinatesForm />
       <BodyForm />
@@ -174,7 +174,7 @@ const TitleForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     // TODO: Validate
-    document.getElementById('createGenre')
+    document.getElementById('createChannel')
       .scrollIntoView({ behavior: 'smooth' });
     addTitle(title);
   }
@@ -196,29 +196,29 @@ const TitleForm = () => {
   )
 }
 
-const GenreForm = () => {
-  const { addGenre } = useContext(NewStoryContext);
-  const [genre, setGenrea] = useState();
+const ChannelForm = () => {
+  const { addChannel } = useContext(NewStoryContext);
+  const [channel, setChannel] = useState();
 
   const handleSubmit = e => {
     e.preventDefault();
     document.getElementById('createPitch')
       .scrollIntoView({ behavior: 'smooth' });
-    addGenre(genre);
+    addChannel(channel);
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <Screen id='createGenre'>
+      <Screen id='createChannel'>
         <div id='test'></div>
-        <H1>Choose a Genre.</H1>
+        <H1>Choose a Channel.</H1>
         <Select
           type='text'
-          value={genre}
-          onChange={e => setGenrea(e.currentTarget.value)}
+          value={channel}
+          onChange={e => setChannel(e.currentTarget.value)}
           required
         >
-          <option value='' >Select a Genre...</option>
+          <option value='' >Select a Channel...</option>
           {CHANNELS.map(item => (
             <option
               key={item.value}
@@ -263,7 +263,7 @@ const PitchForm = () => {
         </Details>
         <Span>
           <NextButton type='submit' value='Next' />
-          <BackButton href='#createGenre'>Back</BackButton>
+          <BackButton href='#createChannel'>Back</BackButton>
         </Span>
       </Screen>
     </form>

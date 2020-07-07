@@ -63,9 +63,8 @@ const fetchStories = dispatch => async city => {
 const addStory = dispatch => async story => {
   const token = localStorage.getItem('token');
   const response = await useFetch(storyUrl, 'POST', story, token);
-  const data = await response.json();
-  if (data.status === 'failure') return dispatch({ type: 'add_error', payload: data.payload });
-  dispatch({ type: 'add_story', payload: { ...story, _id: data.payload } });
+  if (response.status === 'failure') return dispatch({ type: 'add_error', payload: response.payload });
+  dispatch({ type: 'add_story', payload: { ...story, _id: response.payload } });
 }
 
 const editStory = dispatch => (id, title, description, channel, body, callback) => {
