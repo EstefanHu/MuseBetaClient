@@ -4,8 +4,8 @@ import { storyUrl } from '../constants/network.js';
 
 const storyReducer = (state, action) => {
   switch (action.type) {
-    case 'set_genre':
-      return { ...state, genre: action.payload };
+    case 'set_channel':
+      return { ...state, channel: action.payload };
     case 'set_focused_story':
       return { ...state, focusedStoryId: action.payload }
     case 'fetch_stories':
@@ -18,7 +18,7 @@ const storyReducer = (state, action) => {
             id: action.payload._id,
             title: action.payload.title,
             pitch: action.payload.pitch,
-            genre: action.payload.genre,
+            channel: action.payload.channel,
             startLocation: action.payload.startLocation,
             body: action.payload.body
           }
@@ -41,8 +41,8 @@ const storyReducer = (state, action) => {
   }
 };
 
-const setGenre = dispatch => genre => {
-  dispatch({ type: 'set_genre', payload: genre });
+const setChannel = dispatch => channel => {
+  dispatch({ type: 'set_channel', payload: channel });
 }
 
 const setFocusedStoryId = dispatch => storyId => {
@@ -68,8 +68,8 @@ const addStory = dispatch => async story => {
   dispatch({ type: 'add_story', payload: { ...story, _id: data.payload } });
 }
 
-const editStory = dispatch => (id, title, description, genre, body, callback) => {
-  dispatch({ type: 'edit_story', payload: { id, title, description, genre, body } });
+const editStory = dispatch => (id, title, description, channel, body, callback) => {
+  dispatch({ type: 'edit_story', payload: { id, title, description, channel, body } });
   callback();
 }
 
@@ -79,9 +79,9 @@ const deleteStory = dispatch => id => {
 
 export const { Context, Provider } = createDataContext(
   storyReducer,
-  { setGenre, setFocusedStoryId, fetchStories, addStory, editStory, deleteStory },
+  { setChannel, setFocusedStoryId, fetchStories, addStory, editStory, deleteStory },
   {
-    genre: 'All',
+    channel: 'All',
     focusedStoryId: null,
     error: null,
     stories: []

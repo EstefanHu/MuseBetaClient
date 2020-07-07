@@ -43,7 +43,6 @@ export const Background = () => {
     apiKey === null ? fetchKey() : setKey(apiKey);
   }, []);
 
-
   return <Container>
     {
       key && (approximateLongitude || longitude) ?

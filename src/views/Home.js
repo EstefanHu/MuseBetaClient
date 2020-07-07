@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { CHANNELS } from './../constants/channel.js';
+import { Context as LocationContext } from './../providers/locationProvider.js';
 import { Context as StoryContext } from './../providers/storyProvider.js';
 
 import { Intro } from './../components/intro.js';
@@ -61,13 +62,15 @@ const MoreButton = styled.button`
 `;
 
 export const Home = () => {
+  const { state: { city } } = useContext(LocationContext);
   const { state: { channel, stories }, setChannel, fetchStories } = useContext(StoryContext);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    fetchStories('Seattle', () => setIsLoading(false));
+    if (city)
+      fetchStories(city, () => setIsLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [city]);
 
   const fetchMoreStories = () => {
     setIsLoading(true);
