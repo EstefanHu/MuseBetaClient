@@ -20,8 +20,9 @@ const AuthRoute = ({ component: Component, ...rest }) => {
   const { state: { token }, logout } = useContext(AuthContext);
   const [isValid, setIsValid] = useState(true);
 
+  console.log(isValid)
+
   useEffect(() => {
-    console.log('testing==========')
     try {
       const expDate = decode(token);
       if (expDate.exp < new Date().getTime() / 1000)
@@ -32,7 +33,7 @@ const AuthRoute = ({ component: Component, ...rest }) => {
 
     if (!isValid) logout();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token]);
+  }, [token, isValid]);
 
   return (
     <Route {...rest} render={props => (
