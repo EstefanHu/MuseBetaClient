@@ -57,7 +57,6 @@ const register = dispatch => async ({ payload, callback }) => {
 
 const tryLocalLogin = dispatch => async () => {
   const token = await localStorage.getItem('token');
-  console.log(token)
   if (token) dispatch({ type: 'login', payload: token });
 };
 

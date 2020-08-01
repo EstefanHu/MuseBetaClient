@@ -76,8 +76,6 @@ export const Home = () => {
     setIsLoading(true);
   }
 
-  console.log('home')
-
   return (
     <Container className='noBar'>
       <Filter className='noBar'>

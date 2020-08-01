@@ -20,8 +20,6 @@ const AuthRoute = ({ component: Component, ...rest }) => {
   const { state: { token }, logout } = useContext(AuthContext);
   const [isValid, setIsValid] = useState(true);
 
-  console.log(isValid)
-
   useEffect(() => {
     try {
       const expDate = decode(token);

@@ -24,8 +24,6 @@ export const Background = () => {
   const [key, setKey] = useState();
 
   useEffect(() => {
-    console.log('looking for key');
-
     const fetchKey = async () => {
       console.log('fetching map key');
       const token = localStorage.getItem('token');

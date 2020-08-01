@@ -31,5 +31,5 @@ export const Primary = () => {
         <Background />
       </Main>
     </>
-  )
-}
+  );
+};
