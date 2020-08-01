@@ -54,15 +54,19 @@ export const Profile = () => {
   const { state: { id, photo, stories }, fetchStories } = React.useContext(ProfileContext);
 
   React.useEffect(() => {
-    if (stories === null)
+    if (stories === null && id)
       fetchStories(id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, stories]);
 
+  const uploadImage = () => {
+    console.log('hello world');
+  }
+
   return (
     <Container>
       <Info>
-        <ImgWrapper>
+        <ImgWrapper onClick={uploadImage}>
           <Img
             src={
               photo ? getProfileImage + '/' + photo
