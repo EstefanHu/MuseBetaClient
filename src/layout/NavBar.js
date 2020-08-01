@@ -18,6 +18,15 @@ const Nav = styled.nav`
   padding-left: 20px;
 `;
 
+const Div = styled.div`
+  display: flex;
+  flex: 1;
+`;
+
+const LinkDiv = styled.div`
+  padding-right: 20px
+`;
+
 const Logo = styled.h1`
   font-family: Heebo;
   margin: 0 25px 0 10px;
@@ -43,6 +52,7 @@ const Button = styled.button`
   font-weight: bold;
   color: white;
   outline: 0;
+  margin-left: 10px;
 
   &:hover {
     background-color: rgba(0,0,0,.1);
@@ -51,22 +61,29 @@ const Button = styled.button`
 
 export const NavBar = () => (
   <Nav>
-    <FaConnectdevelop size={35} color='black' />
-    <Logo>:Muse</Logo>
-    <span>
-      <Route exact path='/'>
-        <>
-          <Search placeholder='Search...' />
-          <Link to='/new'>
-            <Button>New</Button>
+    <Div>
+      <FaConnectdevelop size={35} color='black' />
+      <Logo>:Muse</Logo>
+      <span>
+        <Route exact path='/'>
+          <>
+            <Search placeholder='Search...' />
+            <Link to='/new'>
+              <Button>New</Button>
+            </Link>
+          </>
+        </Route>
+        <Route exact path='/new'>
+          <Link to='/'>
+            <Button>Cancel</Button>
           </Link>
-        </>
-      </Route>
-      <Route exact path='/new'>
-        <Link to='/'>
-          <Button>Cancel</Button>
-        </Link>
-      </Route>
-    </span>
+        </Route>
+      </span>
+    </Div>
+
+    <LinkDiv>
+      <Button>Profile</Button>
+      <Button>Settings</Button>
+    </LinkDiv>
   </Nav>
-)
+);

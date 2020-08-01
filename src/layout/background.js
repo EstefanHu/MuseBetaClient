@@ -25,7 +25,6 @@ export const Background = () => {
 
   useEffect(() => {
     const fetchKey = async () => {
-      console.log('fetching map key');
       const token = localStorage.getItem('token');
       const response = await fetch(API + '/api/v1/config/', {
         method: 'GET',
@@ -38,7 +37,7 @@ export const Background = () => {
     };
 
     let apiKey = sessionStorage.getItem('key');
-    apiKey === null ? fetchKey() : setKey(apiKey);
+    apiKey === null || apiKey.length < 20 ? fetchKey() : setKey(apiKey);
   }, []);
 
   return <Container>
