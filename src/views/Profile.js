@@ -13,13 +13,17 @@ const Container = styled.section`
 export const Profile = () => {
   const { state: { id, stories }, fetchStories } = React.useContext(ProfileContext);
 
-  // React.useEffect(() => {  if (stories === null) fetchStories(id) }, [id, stories, fetchStories]);
+  React.useEffect(() => {
+    if (stories === null)
+      fetchStories(id)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, stories]);
 
   return (
     <Container>
 
       {
-        stories.map(item => (
+        stories?.map(item => (
           <Intro
             key={item._id}
             _id={item._id}

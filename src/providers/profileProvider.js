@@ -31,7 +31,7 @@ const getMe = dispatch => async () => {
     if (response.status !== 'success')
       return dispatch({ type: 'add_error', payload: response.payload });
 
-    dispatch({ type: 'get_me', payload: response });
+    dispatch({ type: 'get_me', payload: response.payload });
   } catch (error) {
     console.log(error);
   }
@@ -43,7 +43,7 @@ const fetchStories = dispatch => async authorId => {
     if (response.status !== 'success')
       return dispatch({ type: 'add_error', payload: response.payload });
 
-    dispatch({ type: 'fetch_stories', payload: response });
+    dispatch({ type: 'fetch_stories', payload: response.payload });
   } catch (error) {
     console.log(error);
   };
@@ -64,7 +64,7 @@ export const { Context, Provider } = createDataContext(
     links: [],
     libraryIds: [],
     library: [],
-    stories: [],
+    stories: null,
     credibility: null,
     photo: null,
     bio: null,

@@ -25,10 +25,11 @@ const Main = styled.main`
 export const Primary = () => {
   const { state: { id }, getMe } = React.useContext(ProfileContext);
 
-  // React.useEffect(() => {
-    // getMe(id)
+  React.useEffect(() => {
+    if (!id)
+      getMe(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  }, [id]);
 
   return (
     <>
