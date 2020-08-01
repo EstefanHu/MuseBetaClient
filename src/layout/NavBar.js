@@ -20,6 +20,7 @@ const Nav = styled.nav`
 
 const Div = styled.div`
   display: flex;
+  align-items: center;
   flex: 1;
 `;
 
@@ -64,25 +65,28 @@ export const NavBar = () => (
     <Div>
       <FaConnectdevelop size={35} color='black' />
       <Logo>:Muse</Logo>
-      <span>
-        <Route exact path='/'>
-          <>
-            <Search placeholder='Search...' />
-            <Link to='/new'>
-              <Button>New</Button>
-            </Link>
-          </>
-        </Route>
-        <Route exact path='/new'>
-          <Link to='/'>
-            <Button>Cancel</Button>
+      <Route exact path='/'>
+        <>
+          <Search placeholder='Search...' />
+          <Link to='/new'>
+            <Button>New</Button>
           </Link>
-        </Route>
-      </span>
+        </>
+      </Route>
+      <Route exact path='/new'>
+        <Link to='/'>
+          <Button>Cancel</Button>
+        </Link>
+      </Route>
     </Div>
 
     <LinkDiv>
-      <Button>Profile</Button>
+      <Link to='/'>
+        <Button>Home</Button>
+      </Link>
+      <Link to='/profile'>
+        <Button>Profile</Button>
+      </Link>
       <Button>Settings</Button>
     </LinkDiv>
   </Nav>

@@ -67,7 +67,7 @@ export const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (city)
+    if (city && stories === null)
       fetchStories(city, () => setIsLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [city]);
@@ -90,7 +90,7 @@ export const Home = () => {
         }
       </Filter>
       {
-        stories.map(item => {
+        stories?.map(item => {
           if (channel === 'All' || channel === item.channel)
             return <Intro
               key={item._id}

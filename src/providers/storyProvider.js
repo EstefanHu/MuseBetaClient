@@ -81,6 +81,6 @@ export const { Context, Provider } = createDataContext(
     channel: 'All',
     focusedStoryId: null,
     error: null,
-    stories: []
+    stories: null
   }
 );

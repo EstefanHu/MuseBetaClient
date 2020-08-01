@@ -8,6 +8,8 @@ import { Home } from '../views/Home.js';
 import { New } from '../views/New.js';
 import { Profile } from '../views/Profile.js';
 
+import { Context as ProfileContext } from './../providers/profileProvider.js';
+
 import styled from 'styled-components';
 
 const Main = styled.main`
@@ -21,6 +23,13 @@ const Main = styled.main`
 `;
 
 export const Primary = () => {
+  const { state: { id }, getMe } = React.useContext(ProfileContext);
+
+  // React.useEffect(() => {
+    // getMe(id)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
   return (
     <>
       <NavBar />
