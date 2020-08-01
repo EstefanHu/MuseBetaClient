@@ -1,14 +1,18 @@
-exports.useFetch = async (url, method, body, token) => {
+exports.useFetch = async (url, method, body) => {
   try {
+    const token = await localStorage.getItem('token');
+    const bodyIsFormData = body instanceof FormData;
     const params = { method }
 
     method === 'GET' ? params.headers = {}
       : params.headers = {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': bodyIsFormData ?
+          'multipart/form-data' :
+          'application/json',
       }
     if (token) params.headers.Authorization = `Bearer ${token}`;
-    if (body) params.body = JSON.stringify(body);
+    if (body) params.body = bodyIsFormData ? body : JSON.stringify(body);
 
     const response = await fetch(url, params);
     const data = await response.json();

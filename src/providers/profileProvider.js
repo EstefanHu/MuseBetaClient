@@ -17,7 +17,7 @@ const profileReducer = (state, action) => {
 
 const getMe = dispatch => async () => {
   try {
-    const response = await useFetch(profileUrl, 'GET');
+    const response = await useFetch(profileUrl, 'GET', null);
     dispatch({ type: 'get_me', payload: response.payload });
   } catch (error) {
     console.log(error);

@@ -21,6 +21,7 @@ const AuthRoute = ({ component: Component, ...rest }) => {
   const [isValid, setIsValid] = useState(true);
 
   useEffect(() => {
+    console.log('testing==========')
     try {
       const expDate = decode(token);
       if (expDate.exp < new Date().getTime() / 1000)
@@ -38,7 +39,7 @@ const AuthRoute = ({ component: Component, ...rest }) => {
       isValid ? (
         <Component {...props} />
       ) : (
-          <Redirect to={{ pathname: '/login' }} />
+          <Redirect to={{ pathname: '/' }} />
         )
     )} />
   )

@@ -51,8 +51,7 @@ const setFocusedStoryId = dispatch => storyId => {
 
 const fetchStories = dispatch => async city => {
   try {
-    const token = await localStorage.getItem('token');
-    const response = await useFetch(`${storyUrl}?city=${city}`, 'GET', null, token);
+    const response = await useFetch(`${storyUrl}?city=${city}`, 'GET', null);
     if (response.status !== 'success') return dispatch({ type: 'add_error', payload: response.payload });
     dispatch({ type: 'fetch_stories', payload: response.payload });
   } catch (error) {
@@ -61,8 +60,7 @@ const fetchStories = dispatch => async city => {
 }
 
 const addStory = dispatch => async story => {
-  const token = localStorage.getItem('token');
-  const response = await useFetch(storyUrl, 'POST', story, token);
+  const response = await useFetch(storyUrl, 'POST', story);
   if (response.status === 'failure') return dispatch({ type: 'add_error', payload: response.payload });
   dispatch({ type: 'add_story', payload: { ...story, _id: response.payload } });
 }

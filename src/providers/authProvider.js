@@ -25,7 +25,7 @@ const clearErrorMessage = dispatch => () => {
 
 const login = dispatch => async ({ payload, callback }) => {
   try {
-    const response = await useFetch(loginUrl, 'POST', payload, null);
+    const response = await useFetch(loginUrl, 'POST', payload);
     if (response.status !== 'success')
       return dispatch({ type: 'add_error', payload: response.payload });
     await localStorage.setItem('token', response.token);
@@ -43,7 +43,7 @@ const register = dispatch => async ({ payload, callback }) => {
     if (payload.password !== payload.confirmPassword)
       return dispatch({ type: 'add_error', payload: 'Passwords do not match' });
 
-    const response = await useFetch(registerUrl, 'POST', payload, null);
+    const response = await useFetch(registerUrl, 'POST', payload);
     if (response.status !== 'success')
       return dispatch({ type: 'add_error', payload: response.payload });
 
