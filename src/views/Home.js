@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React from 'react';
 import { CHANNELS } from './../constants/channel.js';
 import { Context as LocationContext } from './../providers/locationProvider.js';
 import { Context as StoryContext } from './../providers/storyProvider.js';
@@ -62,11 +62,11 @@ const MoreButton = styled.button`
 `;
 
 export const Home = () => {
-  const { state: { city } } = useContext(LocationContext);
-  const { state: { channel, stories }, setChannel, fetchStories } = useContext(StoryContext);
-  const [isLoading, setIsLoading] = useState(false);
+  const { state: { city } } = React.useContext(LocationContext);
+  const { state: { channel, stories }, setChannel, fetchStories } = React.useContext(StoryContext);
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (city && stories === null)
       fetchStories(city, () => setIsLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps

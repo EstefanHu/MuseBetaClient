@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Context as StoryContext } from '../providers/storyProvider.js';
 import { RiBookmarkLine } from 'react-icons/ri';
 import { BsBook } from 'react-icons/bs';
@@ -76,7 +76,7 @@ const Button = styled.button`
 `;
 
 export const Intro = ({ _id, title, pitch, genre, createdAt, authorName, authorId }) => {
-  const { setFocusedStoryId } = useContext(StoryContext);
+  const { setFocusedStoryId } = React.useContext(StoryContext);
 
   return (
     <Article

@@ -1,4 +1,4 @@
-import React, { useState, useContext, memo } from 'react';
+import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
 import ReactMapGl, {
   Marker,
@@ -12,6 +12,7 @@ import { PIN } from '../constants/svg.js';
 
 import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
 import { Context as StoryContext } from '../providers/storyProvider.js';
+import { Context as RefContext } from './../providers/refProvider.js';
 
 import styled from 'styled-components';
 
@@ -68,8 +69,9 @@ const MapActions = styled.span`
   }
 `;
 
-export const Map = memo(({ apikey, longitude, latitude }) => {
-  const { state: { status }, addCoordinates } = useContext(NewStoryContext);
+export const Map = React.memo(({ apikey, longitude, latitude }) => {
+  const { state: { status }, addCoordinates } = React.useContext(NewStoryContext);
+  const { setMapRef } = React.useContext(RefContext);
 
   const [viewport, setViewport] = useState({
     longitude: longitude,
@@ -79,6 +81,8 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
     zoom: 12
   });
 
+  const mapRef = React.useRef(null);
+
   const engageMap = e => {
     if (status === 'isPlotting') return addCoordinates(e.lngLat);
   }
@@ -87,6 +91,7 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
     <MapboxView>
       <ReactMapGl
         {...viewport}
+        ref={mapRef}
         mapboxApiAccessToken={apikey}
         mapStyle='mapbox://styles/estefan074/ck002rku546481cnq4hc1buof'
         onViewportChange={viewport => {
@@ -113,7 +118,7 @@ export const Map = memo(({ apikey, longitude, latitude }) => {
 });
 
 const HomeMarkers = () => {
-  const { state: { genre, focusedStoryId, stories } } = useContext(StoryContext);
+  const { state: { genre, focusedStoryId, stories } } = React.useContext(StoryContext);
   const [popupInfo, setPopupInfo] = useState(null);
   const SIZE = 30;
 
@@ -162,7 +167,7 @@ const HomeMarkers = () => {
 }
 
 const NewMarker = () => {
-  const { state: { longitude, latitude } } = useContext(NewStoryContext);
+  const { state: { longitude, latitude } } = React.useContext(NewStoryContext);
   const SIZE = 35;
 
   return (

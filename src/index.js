@@ -8,6 +8,7 @@ import { Provider as LocationProvider } from './providers/locationProvider.js';
 import { Provider as StoryProvider } from './providers/storyProvider.js';
 import { Provider as NewStoryProvider } from './providers/newStoryProvider.js';
 import { Provider as ProfileProvider } from './providers/profileProvider.js';
+import { Provider as RefProvider } from './providers/refProvider.js';
 
 ReactDOM.render(
   <AuthProvider>
@@ -15,9 +16,11 @@ ReactDOM.render(
       <StoryProvider>
         <NewStoryProvider>
           <ProfileProvider>
-            <React.StrictMode>
-              <App />
-            </React.StrictMode>
+            <RefProvider>
+              <React.StrictMode>
+                <App />
+              </React.StrictMode>
+            </RefProvider>
           </ProfileProvider>
         </NewStoryProvider>
       </StoryProvider>
