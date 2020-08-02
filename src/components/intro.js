@@ -82,6 +82,7 @@ export const Intro = ({ _id, title, pitch, genre, createdAt, authorName, authorI
     <Article
       onMouseEnter={() => setFocusedStoryId(_id)}
       onMouseLeave={() => setFocusedStoryId(null)}
+      onClick={() => true}
     >
       <Header>
         <Title>{title}</Title>
