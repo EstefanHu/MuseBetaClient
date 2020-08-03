@@ -81,11 +81,15 @@ const Button = styled.button`
 
 export const Intro = ({ item }) => {
   const { setFocusedStoryId } = React.useContext(StoryContext);
-  const { mapRef } = React.useContext(RefContext);
+  const { state: { viewport }, setViewport } = React.useContext(RefContext);
 
   const focusStory = () => {
-    mapRef.updateViewport()
-  }
+    setViewport({
+      ...viewport,
+      longitude: item.startLocation.coordinates[0],
+      latitude: item.startLocation.coordinates[1]
+    })
+  };
 
   return (
     <Article

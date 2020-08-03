@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { API } from '../constants/network.js';
 
 import { Context as LocationContext } from '../providers/locationProvider.js';
+import { Context as RefContext } from './../providers/refProvider.js';
 
 import { Map } from './map.js';
 import { Triangulate } from '../components/triangulate.js';
@@ -20,6 +21,7 @@ export const Background = () => {
     approximateLatitude,
     latitude,
   } } = useContext(LocationContext);
+  const { setViewport } = React.useContext(RefContext);
 
   const [key, setKey] = useState();
 
@@ -40,14 +42,21 @@ export const Background = () => {
     apiKey === null || apiKey.length < 20 ? fetchKey() : setKey(apiKey);
   }, []);
 
+  React.useEffect(() => {
+    setViewport({
+      longitude: longitude ? longitude : approximateLongitude,
+      latitude: latitude ? latitude : approximateLatitude,
+      width: '100vw',
+      height: 'calc(100vh - 50px)',
+      zoom: 12
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [longitude, latitude]);
+
   return <Container>
     {
       key && (approximateLongitude || longitude) ?
-        <Map
-          apikey={key}
-          longitude={longitude ? longitude : approximateLongitude}
-          latitude={latitude ? latitude : approximateLatitude}
-        />
+        <Map apikey={key} />
         // <div style={{ position: 'fixed', backgroundColor: 'pink', height: '100%', width: '100%' }}></div>
         : <Triangulate />
     }

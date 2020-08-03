@@ -71,15 +71,7 @@ const MapActions = styled.span`
 
 export const Map = React.memo(({ apikey, longitude, latitude }) => {
   const { state: { status }, addCoordinates } = React.useContext(NewStoryContext);
-  const { setMapRef } = React.useContext(RefContext);
-
-  const [viewport, setViewport] = useState({
-    longitude: longitude,
-    latitude: latitude,
-    width: '100vw',
-    height: 'calc(100vh - 50px)',
-    zoom: 12
-  });
+  const { state: { viewport }, setMapRef, setViewport } = React.useContext(RefContext);
 
   const mapRef = React.useRef(null);
   React.useEffect(() => {
@@ -98,9 +90,7 @@ export const Map = React.memo(({ apikey, longitude, latitude }) => {
         ref={mapRef}
         mapboxApiAccessToken={apikey}
         mapStyle='mapbox://styles/estefan074/ck002rku546481cnq4hc1buof'
-        onViewportChange={viewport => {
-          setViewport(viewport)
-        }}
+        onViewportChange={viewport => setViewport(viewport)}
         getCursor={() => { return 'default' }}
         onClick={engageMap}
       >
