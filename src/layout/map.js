@@ -82,6 +82,10 @@ export const Map = React.memo(({ apikey, longitude, latitude }) => {
   });
 
   const mapRef = React.useRef(null);
+  React.useEffect(() => {
+    setMapRef(mapRef);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const engageMap = e => {
     if (status === 'isPlotting') return addCoordinates(e.lngLat);

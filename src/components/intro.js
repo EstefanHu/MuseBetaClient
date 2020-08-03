@@ -4,6 +4,10 @@ import { RiBookmarkLine } from 'react-icons/ri';
 import { BsBook } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
+import { Context as RefContext } from './../providers/refProvider.js';
+
+import { useDateFormat } from './../hooks/useDateFormat.js';
+
 import styled from 'styled-components';
 
 const styles = {
@@ -31,7 +35,7 @@ const Title = styled.h1`
   margin-bottom: 5px;
 `;
 
-const Genre = styled(Link)`
+const Channel = styled(Link)`
   color: grey;
   text-decoration: none;
   font-size: 0.9rem;
@@ -75,38 +79,42 @@ const Button = styled.button`
   }
 `;
 
-export const Intro = ({ _id, title, pitch, genre, createdAt, authorName, authorId }) => {
+export const Intro = ({ item }) => {
   const { setFocusedStoryId } = React.useContext(StoryContext);
+  const { mapRef } = React.useContext(RefContext);
+
+  const focusStory = () => {
+    mapRef.updateViewport()
+  }
 
   return (
     <Article
-      onMouseEnter={() => setFocusedStoryId(_id)}
+      onMouseEnter={() => setFocusedStoryId(item._id)}
       onMouseLeave={() => setFocusedStoryId(null)}
-      onClick={() => true}
     >
       <Header>
-        <Title>{title}</Title>
-        <Genre
-          to={`/app/genre/${genre}`}
-        >{genre}</Genre>
+        <Title>{item.title}</Title>
+        <Channel
+          to={`/app/channel/${item.channel}`}
+        >{item.channel}</Channel>
       </Header>
-      <Pitch>{pitch}</Pitch>
+      <Pitch>{item.pitch}</Pitch>
       <Meta>
-        <Link to={`/app/profile/${authorId}`} style={styles.author}>
-          {authorName}&nbsp;
+        <Link to={`/app/profile/${item.authorId}`} style={styles.author}>
+          {item.authorName}&nbsp;
         </Link>-&nbsp;
-        {createdAt}
+        {useDateFormat(item.createdAt)}
       </Meta>
       <Footer>
         <Span>
           <Button>
             <RiBookmarkLine size={20} color='grey' />&nbsp;&nbsp;Save
           </Button>
-          <Button>
+          <Button onClick={focusStory}>
             <BsBook size={20} color='grey' />&nbsp;&nbsp;Read
           </Button>
         </Span>
       </Footer>
     </Article>
-  )
-}
+  );
+};

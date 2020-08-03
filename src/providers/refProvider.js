@@ -9,10 +9,8 @@ const refProvider = (state, action) => {
   };
 };
 
-const setMapRef = dispatch => ref => {
-  console.log('mapRef', ref)
+const setMapRef = dispatch => ref =>
   dispatch({ type: 'set_map_ref', payload: ref });
-}
 
 export const { Provider, Context } = createDataContext(
   refProvider,

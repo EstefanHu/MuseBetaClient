@@ -83,12 +83,7 @@ export const Profile = () => {
         stories?.map(item => (
           <Intro
             key={item._id}
-            _id={item._id}
-            title={item.title}
-            channel={item.channel}
-            pitch={item.pitch}
-            createdAt={item.createdAt}
-            authorName={item.authorName}
+            item={item}
           />
         ))
       }

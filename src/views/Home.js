@@ -94,12 +94,7 @@ export const Home = () => {
           if (channel === 'All' || channel === item.channel)
             return <Intro
               key={item._id}
-              _id={item._id}
-              title={item.title}
-              channel={item.channel}
-              pitch={item.pitch}
-              createdAt={item.createdAt}
-              authorName={item.authorName}
+              item={item}
             />
           return null;
         })
