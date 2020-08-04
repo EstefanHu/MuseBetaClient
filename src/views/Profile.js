@@ -13,8 +13,10 @@ const Container = styled.section`
   padding-bottom: 20px;
 `;
 
-const Info = styled.div`
+const InfoWrapper = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: row;
 `;
 
 const ImgWrapper = styled.div`
@@ -50,6 +52,11 @@ const UploadButton = styled.span`
   align-items: center;
 `;
 
+const Info = styled.div`
+  padding-top: 20px;
+`;
+
+
 export const Profile = () => {
   const { state: { id, photo, stories }, fetchStories } = React.useContext(ProfileContext);
 
@@ -65,7 +72,7 @@ export const Profile = () => {
 
   return (
     <Container>
-      <Info>
+      <InfoWrapper>
         <ImgWrapper onClick={uploadImage}>
           <Img
             src={
@@ -78,7 +85,10 @@ export const Profile = () => {
             <RiCamera2Line size={60} color={'grey'} />
           </UploadButton>
         </ImgWrapper>
-      </Info>
+        <Info>
+          <EditName />
+        </Info>
+      </InfoWrapper>
       {
         stories?.map(item => (
           <Intro
