@@ -1,61 +1,53 @@
 import React from 'react';
 import { Context as ProfileContext } from './../providers/profileProvider.js';
 import { Intro } from './../components/intro.js';
-import styled from 'styled-components';
 import { RiCamera2Line } from 'react-icons/ri';
+import './../styles/profile.css';
 
 import { getProfileImage } from './../constants/network.js';
 
-const Container = styled.section`
-  background: white;
-  width: 500px;
-  overflow-y: scroll;
-  padding-bottom: 20px;
-`;
-
-const InfoWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-`;
-
-const ImgWrapper = styled.div`
-  margin: 20px;
-  background-color: rgb(240,240,240);
-  height: 180px;
-  width: 180px;
-  border-radius: 90px;
-  border: 1px solid lightgrey;
-  overflow: hidden;
-  cursor: pointer;
-  position: relative;
-
-  &:hover > span {
-    opacity: 0.6;
+const styles = {
+  container: {
+    background: 'white',
+    width: '500px',
+    overflowY: 'scroll',
+    paddingBottom: '20px',
+  },
+  infoWrapper: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row'
+  },
+  imgWrapper: {
+    margin: '20px',
+    backgroundColor: 'rgb(240,240,240)',
+    height: '180px',
+    width: '180px',
+    borderRadius: '90px',
+    border: '1px solid lightgrey',
+    overflow: 'hidden',
+    cursor: 'pointer',
+    position: 'relative',
+  },
+  img: {
+    height: 'inherit',
+    width: 'inherit'
+  },
+  uploadButton: {
+    width: 'inherit',
+    height: '60px',
+    opacity: 0,
+    backgroundColor: 'rgb(220,220,220)',
+    position: 'absolute',
+    bottom: 0,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  profileInfo: {
+    paddingTop: '20px',
   }
-`;
-
-const Img = styled.img`
-  height: inherit;
-  width: inherit;
-`;
-
-const UploadButton = styled.span`
-  width: inherit;
-  height: 60px;
-  opacity: 0;
-  background-color: rgb(220,220,220);
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Info = styled.div`
-  padding-top: 20px;
-`;
-
+};
 
 export const Profile = () => {
   const { state: { id, photo, stories }, fetchStories } = React.useContext(ProfileContext);
@@ -71,24 +63,30 @@ export const Profile = () => {
   }
 
   return (
-    <Container>
-      <InfoWrapper>
-        <ImgWrapper onClick={uploadImage}>
-          <Img
+    <section style={styles.container}>
+      <div style={styles.infoWrapper}>
+        <div
+          style={styles.imgWrapper}
+          onClick={uploadImage}
+        >
+          <img
+            style={styles.img}
             src={
               photo ? getProfileImage + '/' + photo
                 : require('./../images/StockProfile.png')
             }
             alt='profile'
           />
-          <UploadButton>
+          <span
+            id='profile_update_overlay'
+            style={styles.uploadButton}
+          >
             <RiCamera2Line size={60} color={'grey'} />
-          </UploadButton>
-        </ImgWrapper>
-        <Info>
-          <EditName />
-        </Info>
-      </InfoWrapper>
+          </span>
+        </div>
+        <div style={styles.profileInfo}>
+        </div>
+      </div>
       {
         stories?.map(item => (
           <Intro
@@ -97,6 +95,6 @@ export const Profile = () => {
           />
         ))
       }
-    </Container>
+    </section>
   );
 };
