@@ -2,7 +2,7 @@ import React from 'react';
 import { Context as ProfileContext } from './../providers/profileProvider.js';
 import { Intro } from './../components/intro.js';
 import { RiCamera2Line } from 'react-icons/ri';
-import './../styles/profile.css';
+import styled from 'styled-components';
 
 import { getProfileImage } from './../constants/network.js';
 
@@ -18,17 +18,6 @@ const styles = {
     display: 'flex',
     flexDirection: 'row'
   },
-  imgWrapper: {
-    margin: '20px',
-    backgroundColor: 'rgb(240,240,240)',
-    height: '180px',
-    width: '180px',
-    borderRadius: '90px',
-    border: '1px solid lightgrey',
-    overflow: 'hidden',
-    cursor: 'pointer',
-    position: 'relative',
-  },
   img: {
     height: 'inherit',
     width: 'inherit'
@@ -36,7 +25,6 @@ const styles = {
   uploadButton: {
     width: 'inherit',
     height: '60px',
-    opacity: 0,
     backgroundColor: 'rgb(220,220,220)',
     position: 'absolute',
     bottom: 0,
@@ -48,6 +36,26 @@ const styles = {
     paddingTop: '20px',
   }
 };
+
+const ImageWrapper = styled.div`
+  margin: 20px;
+  background-color: rgb(240,240,240);
+  height: 180px;
+  width: 180px;
+  border-radius: 90px;
+  border: 1px solid lightgrey;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+
+  & > span {
+    opacity: 0;
+  }
+
+  &:hover > span {
+    opacity: 0.6;
+  }
+`;
 
 export const Profile = () => {
   const { state: { id, photo, stories }, fetchStories } = React.useContext(ProfileContext);
@@ -65,10 +73,7 @@ export const Profile = () => {
   return (
     <section style={styles.container}>
       <div style={styles.infoWrapper}>
-        <div
-          style={styles.imgWrapper}
-          onClick={uploadImage}
-        >
+        <ImageWrapper onClick={uploadImage}>
           <img
             style={styles.img}
             src={
@@ -83,7 +88,7 @@ export const Profile = () => {
           >
             <RiCamera2Line size={60} color={'grey'} />
           </span>
-        </div>
+        </ImageWrapper>
         <div style={styles.profileInfo}>
         </div>
       </div>
