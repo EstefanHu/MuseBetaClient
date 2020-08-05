@@ -34,15 +34,15 @@ const Logo = styled.h1`
   color: white;
 `;
 
-const Search = styled.input`
-  font-size: 1rem;
-  border: none;
-  border-radius: 3px;
-  padding: 8px 12px;
-  outline: none;
-  margin-right: 10px;
-  width: 200px;
-`;
+// const Search = styled.input`
+//   font-size: 1rem;
+//   border: none;
+//   border-radius: 3px;
+//   padding: 8px 12px;
+//   outline: none;
+//   margin-right: 10px;
+//   width: 200px;
+// `;
 
 const Button = styled.button`
   border: none;
@@ -65,7 +65,7 @@ export const NavBar = () => (
     <Div>
       <FaConnectdevelop size={35} color='black' />
       <Logo>:Muse</Logo>
-      <Route exact path='/'>
+      <Route exact path='/(|profile|settings)'>
         <>
           {/* <Search placeholder='Search...' /> */}
           <Link to='/new'>
