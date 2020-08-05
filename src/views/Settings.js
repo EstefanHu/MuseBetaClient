@@ -16,7 +16,14 @@ export const Settings = () => {
 
   return (
     <section style={styles.container}>
-      <button onClick={() => logout(() => history.push('/'))}>Logout</button>
+      <button
+        onClick={
+          () =>
+            logout(() => history.push('/'))
+        }
+      >
+        Logout
+        </button>
     </section>
   );
 };

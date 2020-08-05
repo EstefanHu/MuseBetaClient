@@ -67,7 +67,7 @@ export const NavBar = () => (
       <Logo>:Muse</Logo>
       <Route exact path='/'>
         <>
-          <Search placeholder='Search...' />
+          {/* <Search placeholder='Search...' /> */}
           <Link to='/new'>
             <Button>New</Button>
           </Link>
