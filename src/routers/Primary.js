@@ -7,6 +7,7 @@ import { Background } from '../layout/background';
 import { Home } from '../views/Home.js';
 import { New } from '../views/New.js';
 import { Profile } from '../views/Profile.js';
+import { Settings } from './../views/Settings.js';
 
 import { Context as ProfileContext } from './../providers/profileProvider.js';
 
@@ -38,6 +39,7 @@ export const Primary = () => {
         <Route exact path='/' component={Home} />
         <Route exact path='/new' component={New} />
         <Route exact path='/profile' component={Profile} />
+        <Route exact path='/settings' component={Settings} />
         <Background />
       </Main>
     </>

@@ -60,9 +60,10 @@ const tryLocalLogin = dispatch => async () => {
   if (token) dispatch({ type: 'login', payload: token });
 };
 
-const logout = dispatch => async () => {
+const logout = dispatch => async callback => {
   await localStorage.removeItem('token');
   dispatch({ type: 'logout' });
+  callback();
 };
 
 export const { Provider, Context } = createDataContext(

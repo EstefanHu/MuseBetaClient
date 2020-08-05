@@ -87,7 +87,9 @@ export const NavBar = () => (
       <Link to='/profile'>
         <Button>Profile</Button>
       </Link>
-      <Button>Settings</Button>
+      <Link to='/settings'>
+        <Button>Settings</Button>
+      </Link>
     </LinkDiv>
   </Nav>
 );

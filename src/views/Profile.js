@@ -68,7 +68,7 @@ export const Profile = () => {
 
   const uploadImage = () => {
     console.log('hello world');
-  }
+  };
 
   return (
     <section style={styles.container}>
@@ -90,6 +90,7 @@ export const Profile = () => {
           </span>
         </ImageWrapper>
         <div style={styles.profileInfo}>
+          
         </div>
       </div>
       {
