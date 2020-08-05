@@ -189,17 +189,18 @@ const NewMarker = () => {
 }
 
 const ProfileMarkers = () => {
-  const { state: { channel, focusedStoryId, stories } } = React.useContext(ProfileContext);
+  const { state: { channel, focusedStoryId } } = React.useContext(StoryContext);
+  const { state: { library, stories } } = React.useContext(ProfileContext);
   const [popupInfo, setPopupInfo] = useState(null);
   const SIZE = 30;
 
-  return stories && (
+  return library && stories && (
     <>
       {
-        stories.map(item => {
+        stories.concat(library).map((item, idx) => {
           if (channel === 'All' || channel === item.channel)
             return <Marker
-              key={item._id}
+              key={item._id + idx}
               longitude={item.startLocation.coordinates[0]}
               latitude={item.startLocation.coordinates[1]}
               style={{ position: 'relative' }}
