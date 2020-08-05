@@ -2,6 +2,7 @@ import React from 'react';
 import { Context as ProfileContext } from './../providers/profileProvider.js';
 import { Intro } from './../components/intro.js';
 import { RiCamera2Line } from 'react-icons/ri';
+import { MdModeEdit } from 'react-icons/md';
 import styled from 'styled-components';
 
 import { getProfileImage } from './../constants/network.js';
@@ -33,13 +34,33 @@ const styles = {
     alignItems: 'center'
   },
   profileInfo: {
-    paddingTop: '20px',
+    width: '300px',
+    paddingRight: '20px',
+    paddingTop: '30px',
+  },
+  action: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginBottom: '20px'
+  },
+  label: {
+    color: 'grey',
+    fontSize: 13,
+  },
+  value: {
+    fontSize: 18
+  },
+  editIcon: {
+    marginTop: 5,
+    cursor: 'pointer'
   },
   sectionHeader: {
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: '10px'
-  }
+  },
 };
 
 const ImageWrapper = styled.div`
@@ -63,7 +84,7 @@ const ImageWrapper = styled.div`
 `;
 
 export const Profile = () => {
-  const { state: { id, photo, library, stories }, fetchLibrary, fetchStories } = React.useContext(ProfileContext);
+  const { state: { id, name, email, bio, photo, library, stories }, fetchLibrary, fetchStories } = React.useContext(ProfileContext);
 
   React.useEffect(() => {
     if (stories === null && id)
@@ -100,8 +121,49 @@ export const Profile = () => {
             <RiCamera2Line size={60} color={'grey'} />
           </span>
         </ImageWrapper>
-        <div style={styles.profileInfo}>
 
+        <div style={styles.profileInfo}>
+          <div style={styles.action}>
+            <div>
+              <p style={styles.label}>Name</p>
+              <p style={styles.value}>{name}</p>
+            </div>
+            <div style={styles.editIcon}>
+              <MdModeEdit
+                size={20}
+                color='black'
+                onClick={() => console.log('profile')}
+              />
+            </div>
+          </div>
+
+          <div style={styles.action}>
+            <div>
+              <p style={styles.label}>Email</p>
+              <p style={styles.value}>{email}</p>
+            </div>
+            <div style={styles.editIcon}>
+              <MdModeEdit
+                size={20}
+                color='black'
+                onClick={() => console.log('profile')}
+              />
+            </div>
+          </div>
+
+          <div style={styles.action}>
+            <div>
+              <p style={styles.label}>Bio</p>
+              <p style={styles.value}>{bio}</p>
+            </div>
+            <div style={styles.editIcon}>
+              <MdModeEdit
+                size={20}
+                color='black'
+                onClick={() => console.log('profile')}
+              />
+            </div>
+          </div>
         </div>
       </div>
       <div>
