@@ -34,6 +34,11 @@ const styles = {
   },
   profileInfo: {
     paddingTop: '20px',
+  },
+  sectionHeader: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: '10px'
   }
 };
 
@@ -58,13 +63,19 @@ const ImageWrapper = styled.div`
 `;
 
 export const Profile = () => {
-  const { state: { id, photo, stories }, fetchStories } = React.useContext(ProfileContext);
+  const { state: { id, photo, library, stories }, fetchLibrary, fetchStories } = React.useContext(ProfileContext);
 
   React.useEffect(() => {
     if (stories === null && id)
       fetchStories(id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, stories]);
+
+  React.useEffect(() => {
+    if (library === null)
+      fetchLibrary()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const uploadImage = () => {
     console.log('hello world');
@@ -90,17 +101,31 @@ export const Profile = () => {
           </span>
         </ImageWrapper>
         <div style={styles.profileInfo}>
-          
+
         </div>
       </div>
-      {
-        stories?.map(item => (
-          <Intro
-            key={item._id}
-            item={item}
-          />
-        ))
-      }
+      <div>
+        <h2 style={styles.sectionHeader}>Library</h2>
+        {
+          library?.map(item => (
+            <Intro
+              key={item._id}
+              item={item}
+            />
+          ))
+        }
+      </div>
+      <div>
+        <h2 style={styles.sectionHeader}>Your Stories</h2>
+        {
+          stories?.map(item => (
+            <Intro
+              key={item._id}
+              item={item}
+            />
+          ))
+        }
+      </div>
     </section>
   );
 };

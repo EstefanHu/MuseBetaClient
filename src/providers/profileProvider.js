@@ -1,6 +1,13 @@
 import createDataContext from './createDataContext.js';
 import { useFetch } from '../hooks/useFetch.js';
-import { storyUrl, profileUrl, updateMeUrl } from '../constants/network.js';
+import {
+  profileUrl,
+  updateMeUrl,
+  getLibrary,
+  storyUrl,
+  addStoryToLibrary,
+  removeStoryFromLibrary
+} from '../constants/network.js';
 
 const profileReducer = (state, action) => {
   switch (action.type) {
@@ -20,6 +27,20 @@ const profileReducer = (state, action) => {
       }
     case 'upload_profile_photo':
       return { ...state, photo: action.payload };
+    case 'fetch_library':
+      return { ...state, library: action.payload };
+    case 'add_to_library':
+      return {
+        ...state,
+        libraryIds: [...state.libraryIds, action.payload._id],
+        library: [...state.library, action.payload]
+      };
+    case 'remove_from_library':
+      return {
+        ...state,
+        libraryIds: state.libraryIds.filter(storyId => storyId !== action.payload),
+        library: state.library.filter(story => story._id !== action.payload)
+      };
     case 'fetch_stories':
       return { ...state, stories: action.payload };
     default:
@@ -69,6 +90,39 @@ const updateProfile = dispatch => async body => {
   };
 };
 
+const fetchLibrary = dispatch => async () => {
+  try {
+    const response = await useFetch(getLibrary, 'GET', null);
+    if (response.status !== 'success')
+      return dispatch({ type: 'add_error', payload: response.payload });
+    dispatch({ type: 'fetch_library', payload: response.payload });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const addToLibrary = dispatch => async storyId => {
+  try {
+    const response = await useFetch(addStoryToLibrary, 'PATCH', { id: storyId });
+    if (response.status !== 'success')
+      return dispatch({ type: 'add_error', payload: response.payload });
+    dispatch({ type: 'add_to_library', payload: response.payload });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const removeFromLibrary = dispatch => async storyId => {
+  try {
+    const response = await useFetch(removeStoryFromLibrary, 'PATCH', { id: storyId });
+    if (response.status !== 'success')
+      return dispatch({ type: 'add_error', payload: response.payload });
+    dispatch({ type: 'remove_from_library', payload: response.payload });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 const fetchStories = dispatch => async authorId => {
   try {
     const response = await useFetch(storyUrl + `?authorId=${authorId}`, 'GET', null);
@@ -85,8 +139,11 @@ export const { Context, Provider } = createDataContext(
   profileReducer,
   {
     getMe,
-    fetchStories,
     uploadProfilePhoto,
+    fetchLibrary,
+    addToLibrary,
+    removeFromLibrary,
+    fetchStories,
     updateProfile,
   },
   {
@@ -97,7 +154,7 @@ export const { Context, Provider } = createDataContext(
     type: null,
     links: [],
     libraryIds: [],
-    library: [],
+    library: null,
     stories: null,
     credibility: null,
     photo: null,

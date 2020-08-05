@@ -13,6 +13,7 @@ import { PIN } from '../constants/svg.js';
 import { Context as NewStoryContext } from '../providers/newStoryProvider.js';
 import { Context as StoryContext } from '../providers/storyProvider.js';
 import { Context as RefContext } from './../providers/refProvider.js';
+import { Context as ProfileContext } from './../providers/profileProvider.js';
 
 import styled from 'styled-components';
 
@@ -105,6 +106,7 @@ export const Map = React.memo(({ apikey, longitude, latitude }) => {
 
         <Route exact path='/' component={HomeMarkers} />
         <Route exact path='/new' component={NewMarker} />
+        <Route exact path='/profile' component={ProfileMarkers} />
 
       </ReactMapGl>
     </MapboxView >
@@ -112,7 +114,7 @@ export const Map = React.memo(({ apikey, longitude, latitude }) => {
 });
 
 const HomeMarkers = () => {
-  const { state: { genre, focusedStoryId, stories } } = React.useContext(StoryContext);
+  const { state: { channel, focusedStoryId, stories } } = React.useContext(StoryContext);
   const [popupInfo, setPopupInfo] = useState(null);
   const SIZE = 30;
 
@@ -120,7 +122,7 @@ const HomeMarkers = () => {
     <>
       {
         stories.map(item => {
-          if (genre === 'All' || genre === item.genre)
+          if (channel === 'All' || channel === item.channel)
             return <Marker
               key={item._id}
               longitude={item.startLocation.coordinates[0]}
@@ -185,3 +187,52 @@ const NewMarker = () => {
     </>
   )
 }
+
+const ProfileMarkers = () => {
+  const { state: { channel, focusedStoryId, stories } } = React.useContext(ProfileContext);
+  const [popupInfo, setPopupInfo] = useState(null);
+  const SIZE = 30;
+
+  return stories && (
+    <>
+      {
+        stories.map(item => {
+          if (channel === 'All' || channel === item.channel)
+            return <Marker
+              key={item._id}
+              longitude={item.startLocation.coordinates[0]}
+              latitude={item.startLocation.coordinates[1]}
+              style={{ position: 'relative' }}
+            >
+              <Pin
+                height={SIZE}
+                viewBox="0 0 24 24"
+                style={{
+                  fill: focusedStoryId === item._id ? 'var(--color)' : 'black',
+                  transform: `translate(${-SIZE / 2}px,${-SIZE}px)`
+                }}
+                onMouseEnter={() => setPopupInfo(item)}
+                onMouseLeave={() => setPopupInfo(null)}
+              >
+                <path d={PIN} />
+              </Pin>
+            </Marker>
+          return null;
+        })
+      }
+      {
+        popupInfo &&
+        <PopupContainer
+          tipSize={0}
+          longitude={popupInfo.startLocation.coordinates[0]}
+          latitude={popupInfo.startLocation.coordinates[1]}
+          closeButton={false}
+          anchor='bottom'
+          offsetTop={-35}
+        >
+          <InfoPopup>{popupInfo.title}</InfoPopup>
+        </PopupContainer>
+      }
+    </>
+  );
+};
