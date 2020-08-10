@@ -8,7 +8,6 @@ import {
 import decode from 'jwt-decode';
 
 import { Context as AuthContext } from './providers/authProvider.js';
-import { Context as LocationContext } from './providers/locationProvider.js';
 
 import { Landing } from './routers/Landing.js';
 import { Primary } from './routers/Primary';
@@ -46,12 +45,10 @@ const AuthRoute = ({ component: Component, ...rest }) => {
 
 export const App = () => {
   const { state: { token }, tryLocalLogin } = useContext(AuthContext);
-  const { approximateLocation } = useContext(LocationContext);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
-      await approximateLocation();
       await tryLocalLogin();
       setIsLoading(false);
     })();

@@ -25,11 +25,11 @@ export const { Provider, Context } = createDataContext(
   LocationReducer,
   { approximateLocation },
   {
-    approximateLongitude: null,
-    approximateLatitude: null,
-    longitude: null,
-    latitude: null,
-    city: null,
+    approximateLongitude: -122.3321,
+    approximateLatitude: 47.6062,
+    longitude: -122.3321,
+    latitude: 47.6062,
+    city: 'Seattle',
     region: null
   }
 )
