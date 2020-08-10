@@ -1,4 +1,4 @@
-exports.useFetch = async (url, method, body) => {
+const useFetch = async (url, method, body) => {
   try {
     const token = await localStorage.getItem('token');
     const bodyIsFormData = body instanceof FormData;
@@ -24,3 +24,5 @@ exports.useFetch = async (url, method, body) => {
     return { status: 'failure', payload: error };
   }
 };
+
+export { useFetch };

@@ -1,5 +1,6 @@
 import createDataContext from './createDataContext.js';
 import { useFetch } from './../hooks/useFetch.js';
+// import * as useFetch from './../hooks/useFetch';
 import { loginUrl, registerUrl } from './../constants/network.js';
 
 const authReducer = (state, action) => {
