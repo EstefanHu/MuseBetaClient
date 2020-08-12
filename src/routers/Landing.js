@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import { Link as ScrollLink} from 'react-scroll';
+import { Link as ScrollLink } from 'react-scroll';
 import { FaConnectdevelop } from 'react-icons/fa';
 import { Splash } from '../views/Splash.js';
 import { Forgot } from '../views/Forgot.js';
@@ -40,9 +40,20 @@ export const Landing = () => {
       <Route exact path='/terms' component={Terms} />
       <Route exact path='/privacy' component={Privacy} />
       <Auth />
+      <footer style={styles.footer}>
+        <div style={styles.footerContent}>
+          <h1 style={styles.footerHeader}>Project:Muse</h1>
+          <span style={styles.footerLinksContainer}>
+            <Link style={styles.footerLink} to='/'>Home</Link>
+            <Link style={styles.footerLink} to='/terms'>Terms</Link>
+            <Link style={styles.footerLink} to='/privacy'>Privacy</Link>
+          </span>
+        </div>
+        <div></div>
+      </footer>
     </>
-  )
-}
+  );
+};
 
 const styles = {
   header: {
@@ -66,4 +77,32 @@ const styles = {
     marginLeft: '40px',
     fontSize: '1.2rem',
   },
-}
+  footer: {
+    backgroundColor: 'rgb(30,30,30)',
+    width: '100vw',
+    height: '200px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  footerContent: {
+    width: '800px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  footerHeader: {
+    color: 'var(--color-secondary)'
+  },
+  footerLinksContainer: {
+    width: '400px',
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  footerLink: {
+    color: 'white',
+    textDecoration: 'none',
+    fontSize: '18px',
+    fontWeight: 'bold',
+  }
+};
