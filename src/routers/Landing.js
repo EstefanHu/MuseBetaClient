@@ -41,15 +41,16 @@ export const Landing = () => {
       <Route exact path='/privacy' component={Privacy} />
       <Auth />
       <footer style={styles.footer}>
-        <div style={styles.footerContent}>
-          <h1 style={styles.footerHeader}>Project:Muse</h1>
-          <span style={styles.footerLinksContainer}>
-            <Link style={styles.footerLink} to='/'>Home</Link>
-            <Link style={styles.footerLink} to='/terms'>Terms</Link>
-            <Link style={styles.footerLink} to='/privacy'>Privacy</Link>
-          </span>
-        </div>
-        <div></div>
+        <h1 style={styles.footerHeader}>Project:Muse</h1>
+        <section style={styles.footerSection}>
+          <h4 style={styles.footerSectionHeader}>Links</h4>
+          <Link style={styles.footerLink} to='/'>Home</Link>
+          <Link style={styles.footerLink} to='/terms'>Terms</Link>
+          <Link style={styles.footerLink} to='/privacy'>Privacy</Link>
+        </section>
+        <section style={styles.footerSection}>
+          <h4 style={styles.footerSectionHeader}>Apps</h4>
+        </section>
       </footer>
     </>
   );
@@ -79,11 +80,11 @@ const styles = {
   },
   footer: {
     position: 'relative',
-    backgroundColor: 'rgb(30,30,30)',
+    backgroundColor: 'rgb(25,25,25)',
     width: '100vw',
     height: '300px',
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
   footerContent: {
@@ -96,20 +97,31 @@ const styles = {
     position: 'absolute',
     top: 0,
     left: 0,
-    color: 'rgb(18,18,18)',
+    color: 'rgb(20,20,20)',
     fontSize: '240px',
     zIndex: 0,
+    cursor: 'default'
   },
-  footerLinksContainer: {
-    width: '400px',
+  footerSection: {
+    height: 'inherit',
     display: 'flex',
-    justifyContent: 'space-between',
+    flexDirection: 'column',
+    justifyContent: 'center',
     zIndex: 1,
+    padding: '60px 0',
+    marginLeft: '100px',
+  },
+  footerSectionHeader: {
+    color: 'var(--color-secondary)',
+    fontSize: '22px',
+    textDecoration: 'underline',
+    marginBottom: '15px',
+    cursor: 'default'
   },
   footerLink: {
-    color: 'white',
+    color: 'var(--color-secondary)',
     textDecoration: 'none',
-    fontSize: '18px',
-    fontWeight: 'bold',
+    fontSize: '19px',
+    marginBottom: '6px',
   }
 };
