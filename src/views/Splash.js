@@ -1,7 +1,10 @@
 import React from 'react';
 import { BsArrowDown } from 'react-icons/bs';
 import { GiGlobe } from 'react-icons/gi';
-import { MdCardTravel } from 'react-icons/md';
+import {
+  MdCardTravel,
+  MdRecordVoiceOver
+} from 'react-icons/md';
 
 const styles = {
   container: {
@@ -65,8 +68,8 @@ const styles = {
     padding: '20px 0 30px 0',
   },
   visionCard: {
-    height: '200px',
-    width: '200px',
+    height: '250px',
+    width: '250px',
     borderRadius: '15px',
     backgroundColor: 'rgb(20,20,20)',
     display: 'flex',
@@ -82,8 +85,8 @@ const styles = {
   },
 }
 
-const VISION_CARD_ICON_SIZE = 130;
-const VISION_CARD_ICON_COLOR = 'rgb(255,100,100)';
+const VISION_CARD_ICON_SIZE = 180;
+const VISION_CARD_ICON_COLOR = 'rgb(240,100,100)';
 
 export const Splash = () => {
   return (
@@ -115,14 +118,16 @@ export const Splash = () => {
               <div style={styles.visionCard}>
                 <MdCardTravel color={VISION_CARD_ICON_COLOR} size={VISION_CARD_ICON_SIZE} />
               </div>
-              <h2 style={styles.visionText}>Imagine, traveling to a new city, and immediately connecting with the stories, the culture and the history of that land</h2>
+              <h2 style={styles.visionText}>Imagine traveling to a new city and immediately connecting with the stories, the culture and the history of that land</h2>
             </li>
             <li style={styles.visionItem}>
               <div style={styles.visionCard}></div>
               <h2 style={styles.visionText}></h2>
             </li>
             <li style={styles.visionItem}>
-              <div style={styles.visionCard}></div>
+              <div style={styles.visionCard}>
+                <MdRecordVoiceOver color={VISION_CARD_ICON_COLOR} size={VISION_CARD_ICON_SIZE} />
+              </div>
               <h2 style={styles.visionText}></h2>
             </li>
           </ul>
