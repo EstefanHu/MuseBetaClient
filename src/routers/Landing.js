@@ -112,14 +112,14 @@ const styles = {
     marginLeft: '100px',
   },
   footerSectionHeader: {
-    color: 'var(--color-secondary)',
+    color: 'rgb(220,220,220)',
     fontSize: '22px',
     textDecoration: 'underline',
     marginBottom: '15px',
     cursor: 'default'
   },
   footerLink: {
-    color: 'var(--color-secondary)',
+    color: 'rgb(220,220,220)',
     textDecoration: 'none',
     fontSize: '19px',
     marginBottom: '6px',
