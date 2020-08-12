@@ -80,7 +80,7 @@ const styles = {
   },
   footer: {
     position: 'relative',
-    backgroundColor: 'rgb(25,25,25)',
+    backgroundColor: 'rgb(18,18,18)',
     width: '100vw',
     height: '300px',
     display: 'flex',
@@ -97,7 +97,7 @@ const styles = {
     position: 'absolute',
     top: 0,
     left: 0,
-    color: 'rgb(20,20,20)',
+    color: 'rgb(15,15,15)',
     fontSize: '240px',
     zIndex: 0,
     cursor: 'default'
