@@ -8,54 +8,6 @@ import { Terms } from '../views/Terms.js';
 import { Privacy } from '../views/Privacy.js';
 import { Auth } from '../layout/auth.js';
 
-export const Landing = () => {
-  return (
-    <>
-      <header style={styles.header}>
-        <FaConnectdevelop size={40} color='black' />&nbsp;
-        <Link style={{ color: 'white', textDecoration: 'none' }} to='/'>
-          <h1>:Muse</h1>
-        </Link>
-        <Route exact path='/'>
-          <ul style={styles.links}>
-            <li>
-              <ScrollLink
-                to='me'
-                smooth={true}
-                duration={500}
-                style={styles.link}
-              >Who are We</ScrollLink>
-            </li>
-            <li>
-              <ScrollLink
-                to='vision'
-                style={styles.link}
-              >Our Future</ScrollLink>
-            </li>
-          </ul>
-        </Route>
-      </header>
-      <Route exact path='/' component={Splash} />
-      <Route exact path='/forgot' component={Forgot} />
-      <Route exact path='/terms' component={Terms} />
-      <Route exact path='/privacy' component={Privacy} />
-      <Auth />
-      <footer style={styles.footer}>
-        <h1 style={styles.footerHeader}>Project:Muse</h1>
-        <section style={styles.footerSection}>
-          <h4 style={styles.footerSectionHeader}>Links</h4>
-          <Link style={styles.footerLink} to='/'>Home</Link>
-          <Link style={styles.footerLink} to='/terms'>Terms</Link>
-          <Link style={styles.footerLink} to='/privacy'>Privacy</Link>
-        </section>
-        <section style={styles.footerSection}>
-          <h4 style={styles.footerSectionHeader}>Apps</h4>
-        </section>
-      </footer>
-    </>
-  );
-};
-
 const styles = {
   header: {
     position: 'absolute',
@@ -80,7 +32,7 @@ const styles = {
   },
   footer: {
     position: 'relative',
-    backgroundColor: 'rgb(18,18,18)',
+    backgroundColor: 'rgb(20,20,20)',
     width: '100vw',
     height: '300px',
     display: 'flex',
@@ -124,4 +76,54 @@ const styles = {
     fontSize: '19px',
     marginBottom: '6px',
   }
+};
+
+export const Landing = () => {
+  return (
+    <>
+      <header style={styles.header}>
+        <FaConnectdevelop size={40} color='black' />&nbsp;
+        <Link style={{ color: 'white', textDecoration: 'none' }} to='/'>
+          <h1>:Muse</h1>
+        </Link>
+        <Route exact path='/'>
+          <ul style={styles.links}>
+            <li>
+              <ScrollLink
+                to='us'
+                smooth={true}
+                duration={500}
+                style={styles.link}
+              >Who are We</ScrollLink>
+            </li>
+            <li>
+              <ScrollLink
+                to='vision'
+                smooth={true}
+                duration={500}
+                style={styles.link}
+              >Our Future</ScrollLink>
+            </li>
+          </ul>
+        </Route>
+      </header>
+      <Route exact path='/' component={Splash} />
+      <Route exact path='/forgot' component={Forgot} />
+      <Route exact path='/terms' component={Terms} />
+      <Route exact path='/privacy' component={Privacy} />
+      <Auth />
+      <footer style={styles.footer}>
+        <h1 style={styles.footerHeader}>Project:Muse</h1>
+        <section style={styles.footerSection}>
+          <h4 style={styles.footerSectionHeader}>Links</h4>
+          <Link style={styles.footerLink} to='/'>Home</Link>
+          <Link style={styles.footerLink} to='/terms'>Terms</Link>
+          <Link style={styles.footerLink} to='/privacy'>Privacy</Link>
+        </section>
+        <section style={styles.footerSection}>
+          <h4 style={styles.footerSectionHeader}>Apps</h4>
+        </section>
+      </footer>
+    </>
+  );
 };
