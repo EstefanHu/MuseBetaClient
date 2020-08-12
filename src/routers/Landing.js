@@ -78,9 +78,10 @@ const styles = {
     fontSize: '1.2rem',
   },
   footer: {
+    position: 'relative',
     backgroundColor: 'rgb(30,30,30)',
     width: '100vw',
-    height: '200px',
+    height: '300px',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -92,12 +93,18 @@ const styles = {
     alignItems: 'center',
   },
   footerHeader: {
-    color: 'var(--color-secondary)'
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    color: 'rgb(18,18,18)',
+    fontSize: '240px',
+    zIndex: 0,
   },
   footerLinksContainer: {
     width: '400px',
     display: 'flex',
     justifyContent: 'space-between',
+    zIndex: 1,
   },
   footerLink: {
     color: 'white',

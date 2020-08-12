@@ -51,11 +51,10 @@ export const Splash = () => {
           your writing and your life with your communities story.</p>
           <BsArrowDown style={styles.downArrow} />
         </section>
-        {/* <section style={styles.world}>
+        <section style={styles.world}>
         </section>
         <section id='me'>
-        </section> */}
-
+        </section>
       </main>
     </>
   );
